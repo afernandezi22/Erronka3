@@ -36,6 +36,23 @@ public class DB {
       }
       return conn;
    }
+
+    public void erakutsiProd(){
+        try {
+            Connection conn = konexioa();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM PRODUKTU");
+            while (rs.next()) {
+                System.out.println(rs.getString("IZENA"));
+            }
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close();
+         } catch (SQLException e) {
+             System.out.println("ERROREA: " + e);
+         }
+    }
    
    /*
    public void gehituBezero(int bezeroKodea, String bezeroIzena, String kontaktuIzena, String kontaktuAbizena, String telefonoa, String fax, String helbideLerroa1, String helbideLerroa2, String herria, String eskualdea, String herrialdea, String postakodea, int salerosketaLangileKodea, double kredituMuga){
