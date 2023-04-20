@@ -11,12 +11,12 @@ import java.awt.Font;
 public class BezeroarenErregistroaGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField tFIzena;
+	private JTextField tFAbizena;
+	private JTextField tFHelbidea;
+	private JTextField tFEmaila;
+	private JTextField tFPasahitza;
+	private JTextField tFPasahitza_1;
 
 	/**
 	 * Launch the application.
@@ -49,6 +49,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("GARBITU");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewButton.setBounds(291, 151, 115, 29);
 		contentPane.add(btnNewButton);
 		
@@ -56,35 +57,35 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		btnErregistratu.setBounds(291, 205, 115, 29);
 		contentPane.add(btnErregistratu);
 		
-		textField = new JTextField();
-		textField.setBounds(26, 11, 146, 29);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tFIzena = new JTextField();
+		tFIzena.setBounds(26, 11, 146, 29);
+		contentPane.add(tFIzena);
+		tFIzena.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(26, 51, 146, 29);
-		contentPane.add(textField_1);
+		tFAbizena = new JTextField();
+		tFAbizena.setColumns(10);
+		tFAbizena.setBounds(26, 51, 146, 29);
+		contentPane.add(tFAbizena);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(26, 91, 146, 29);
-		contentPane.add(textField_2);
+		tFHelbidea = new JTextField();
+		tFHelbidea.setColumns(10);
+		tFHelbidea.setBounds(26, 91, 146, 29);
+		contentPane.add(tFHelbidea);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(26, 131, 146, 29);
-		contentPane.add(textField_3);
+		tFEmaila = new JTextField();
+		tFEmaila.setColumns(10);
+		tFEmaila.setBounds(26, 131, 146, 29);
+		contentPane.add(tFEmaila);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(26, 171, 146, 29);
-		contentPane.add(textField_4);
+		tFPasahitza = new JTextField();
+		tFPasahitza.setColumns(10);
+		tFPasahitza.setBounds(26, 171, 146, 29);
+		contentPane.add(tFPasahitza);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(26, 211, 146, 29);
-		contentPane.add(textField_5);
+		tFPasahitza_1 = new JTextField();
+		tFPasahitza_1.setColumns(10);
+		tFPasahitza_1.setBounds(26, 211, 146, 29);
+		contentPane.add(tFPasahitza_1);
 		
 		JLabel lblAbizena = new JLabel("Abizena");
 		lblAbizena.setFont(new Font("Calibri", Font.PLAIN, 15));
