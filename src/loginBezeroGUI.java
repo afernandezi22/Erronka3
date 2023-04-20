@@ -84,7 +84,7 @@ public class loginBezeroGUI {
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Saltzailea zara?");
-		btnNewButton_2.setBounds(133, 412, 113, 23);
+		btnNewButton_2.setBounds(133, 387, 113, 23);
 		frame.getContentPane().add(btnNewButton_2);
 	}
 }
