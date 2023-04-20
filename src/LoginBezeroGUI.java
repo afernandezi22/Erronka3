@@ -21,7 +21,7 @@ public class LoginBezeroGUI {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,7 +32,7 @@ public class LoginBezeroGUI {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -99,5 +99,8 @@ public class LoginBezeroGUI {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton_2.setBounds(132, 376, 124, 35);
 		frame.getContentPane().add(btnNewButton_2);
+		
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 	}
 }
