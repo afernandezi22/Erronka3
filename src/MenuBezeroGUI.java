@@ -47,15 +47,17 @@ public class MenuBezeroGUI extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Produktuak erosi");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(95, 166, 125, 41);
+		btnNewButton.setBounds(90, 165, 144, 47);
 		contentPane.add(btnNewButton);
 		
 		JButton btnEskariakBilatu = new JButton("Eskariak bilatu");
-		btnEskariakBilatu.setBounds(95, 218, 125, 41);
+		btnEskariakBilatu.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnEskariakBilatu.setBounds(90, 223, 144, 47);
 		contentPane.add(btnEskariakBilatu);
 	}
 }
