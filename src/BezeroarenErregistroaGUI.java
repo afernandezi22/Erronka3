@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class BezeroarenErregistroaGUI extends JFrame {
 
@@ -44,13 +46,13 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(260, 154, 105, 29);
+		JButton btnNewButton = new JButton("GARBITU");
+		btnNewButton.setBounds(291, 151, 115, 29);
 		contentPane.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(260, 205, 105, 29);
-		contentPane.add(btnNewButton_1);
+		JButton btnErregistratu = new JButton("ERREGISTRATU");
+		btnErregistratu.setBounds(291, 205, 115, 29);
+		contentPane.add(btnErregistratu);
 		
 		textField = new JTextField();
 		textField.setBounds(26, 11, 146, 29);
@@ -81,5 +83,35 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		textField_5.setColumns(10);
 		textField_5.setBounds(26, 211, 146, 29);
 		contentPane.add(textField_5);
+		
+		JLabel lblAbizena = new JLabel("Abizena");
+		lblAbizena.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblAbizena.setBounds(182, 58, 61, 19);
+		contentPane.add(lblAbizena);
+		
+		JLabel lblIzena = new JLabel("Izena");
+		lblIzena.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblIzena.setBounds(182, 18, 61, 19);
+		contentPane.add(lblIzena);
+		
+		JLabel lblHelbidea = new JLabel("Helbidea");
+		lblHelbidea.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblHelbidea.setBounds(182, 98, 61, 19);
+		contentPane.add(lblHelbidea);
+		
+		JLabel lblEmaila = new JLabel("Emaila");
+		lblEmaila.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblEmaila.setBounds(182, 138, 61, 19);
+		contentPane.add(lblEmaila);
+		
+		JLabel lblPasahitza = new JLabel("Pasahitza");
+		lblPasahitza.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblPasahitza.setBounds(182, 178, 61, 19);
+		contentPane.add(lblPasahitza);
+		
+		JLabel lblPasahitza_1 = new JLabel("Pasahitza");
+		lblPasahitza_1.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblPasahitza_1.setBounds(182, 215, 61, 19);
+		contentPane.add(lblPasahitza_1);
 	}
 }
