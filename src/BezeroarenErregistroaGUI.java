@@ -21,19 +21,21 @@ public class BezeroarenErregistroaGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					BezeroarenErregistroaGUI frame = new BezeroarenErregistroaGUI();
-					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	*/
+	
 	/**
 	 * Create the frame.
 	 */
@@ -113,5 +115,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		lblPasahitza_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblPasahitza_1.setBounds(182, 215, 61, 19);
 		contentPane.add(lblPasahitza_1);
+		
+		setVisible(true);
 	}
 }
