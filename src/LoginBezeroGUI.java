@@ -10,7 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class loginBezeroGUI {
+public class LoginBezeroGUI {
 
 	private JFrame frame;
 	private JPasswordField passwordField;
@@ -23,7 +23,7 @@ public class loginBezeroGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					loginBezeroGUI window = new loginBezeroGUI();
+					LoginBezeroGUI window = new LoginBezeroGUI();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class loginBezeroGUI {
 	/**
 	 * Create the application.
 	 */
-	public loginBezeroGUI() {
+	public LoginBezeroGUI() {
 		initialize();
 	}
 
@@ -76,15 +76,17 @@ public class loginBezeroGUI {
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("SARTU");
-		btnNewButton.setBounds(143, 243, 89, 23);
+		btnNewButton.setBounds(143, 243, 102, 31);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("ERREGISTRATU");
-		btnNewButton_1.setBounds(132, 330, 113, 23);
+		btnNewButton_1.setBackground(new Color(255, 255, 255));
+		btnNewButton_1.setForeground(new Color(0, 0, 0));
+		btnNewButton_1.setBounds(132, 330, 124, 35);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Saltzailea zara?");
-		btnNewButton_2.setBounds(132, 376, 113, 23);
+		btnNewButton_2.setBounds(132, 376, 124, 35);
 		frame.getContentPane().add(btnNewButton_2);
 	}
 }
