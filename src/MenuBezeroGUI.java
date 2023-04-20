@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class pantaila2 extends JFrame {
+public class MenuBezeroGUI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -20,7 +20,7 @@ public class pantaila2 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					pantaila2 frame = new pantaila2();
+					MenuBezeroGUI frame = new MenuBezeroGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -32,7 +32,7 @@ public class pantaila2 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public pantaila2() {
+	public MenuBezeroGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 333, 441);
 		contentPane = new JPanel();
