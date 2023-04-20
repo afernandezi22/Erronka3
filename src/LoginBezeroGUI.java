@@ -9,6 +9,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class LoginBezeroGUI {
 
@@ -44,48 +46,57 @@ public class LoginBezeroGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Vladimir Script", Font.PLAIN, 11));
+		frame.getContentPane().setBackground(new Color(240, 240, 240));
 		frame.setBounds(100, 100, 401, 529);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(180, 190, 118, 27);
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		passwordField.setBounds(160, 190, 179, 27);
 		frame.getContentPane().add(passwordField);
 		
 		textField = new JTextField();
-		textField.setBounds(180, 152, 118, 27);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		textField.setBounds(160, 152, 179, 27);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Erabiltzailea");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel.setBounds(84, 152, 66, 27);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel.setBounds(61, 152, 89, 27);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Pasahitza");
-		lblNewLabel_1.setBounds(84, 196, 66, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(61, 196, 89, 14);
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("ONGI ETORRI");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		lblNewLabel_2.setBounds(98, 63, 187, 59);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		lblNewLabel_2.setBounds(96, 64, 232, 59);
 		frame.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Ez duzu konturik? Sortu bat.");
-		lblNewLabel_3.setBounds(122, 285, 163, 27);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(107, 285, 179, 27);
 		frame.getContentPane().add(lblNewLabel_3);
 		
 		JButton btnNewButton = new JButton("SARTU");
-		btnNewButton.setBounds(143, 243, 102, 31);
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton.setBounds(143, 243, 113, 31);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("ERREGISTRATU");
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setBounds(132, 330, 124, 35);
 		frame.getContentPane().add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Saltzailea zara?");
+		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnNewButton_2.setBounds(132, 376, 124, 35);
 		frame.getContentPane().add(btnNewButton_2);
 	}
