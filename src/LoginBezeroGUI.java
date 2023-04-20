@@ -17,6 +17,7 @@ public class LoginBezeroGUI {
 	private JFrame frame;
 	private JPasswordField passwordField;
 	private JTextField textField;
+	private DB db;
 
 	/**
 	 * Launch the application.
@@ -89,7 +90,7 @@ public class LoginBezeroGUI {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("ERREGISTRATU");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setForeground(new Color(0, 0, 0));
 		btnNewButton_1.setBounds(132, 330, 124, 35);
@@ -102,5 +103,8 @@ public class LoginBezeroGUI {
 		
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		
+		//Datu basearekin konektatu
+		db = new DB();
 	}
 }

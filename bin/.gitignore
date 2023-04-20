@@ -1,29 +1,8 @@
-<<<<<<< HEAD
-/BezeroarenErregistroaGUI$1.class
 /BezeroarenErregistroaGUI.class
-=======
-<<<<<<< HEAD
-/pantaila2$1.class
-/pantaila2.class
-/pantaila2$2.class
-/LoginBezeroGUI$1.class
-/LoginBezeroGUI.class
-=======
-/asdasd.class
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
-/FrogaFrame$1.class
-/FrogaFrame.class
-<<<<<<< HEAD
-<<<<<<< HEAD
-/MenuBezeroGUI$1.class
-/MenuBezeroGUI$2.class
-/MenuBezeroGUI.class
-=======
-/ErosketaGUI$1.class
+/DB.class
+/Erosketa.class
 /ErosketaGUI.class
-/ErosketaGUI$2.class
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
-=======
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
+/LoginBezeroGUI.class
+/MenuBezeroGUI$1.class
+/MenuBezeroGUI.class
 /main.class

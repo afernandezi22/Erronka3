@@ -53,6 +53,63 @@ public class DB {
              System.out.println("ERROREA: " + e);
          }
     }
+    
+    //Bezeroa datu-basean dagoen edo ez konprobatzeko
+    public boolean bezeroDago(String erabiltzailea) {
+    	boolean ondo = false;
+    	String sql = "SELECT EMAIL FROM BEZEROAK";
+    	String erabil = "";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+	            erabil = rs.getString("EMAILA"); 
+	            if(erabil.equals(erabiltzailea)) {
+	            	ondo = true;
+	            	break;
+	            }
+            }
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		System.out.println("Errorea " + e);
+    		ondo = false;
+    	}
+    	
+    	return ondo;
+    }
+    
+    //Bezeroa eta pasahitza ondo dauden jakiteko
+    public boolean bezeroLogin(String erabiltzailea, String pasahitza) {
+    	boolean ondo = false;
+    	String erabil, pasa;
+    	String sql = "SELECT EMAILA, PASAHITZA FROM BEZEROAK";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+	            erabil = rs.getString("EMAILA");
+	            pasa = rs.getString("PASAHITZA");
+	            if(erabil.equals(erabiltzailea) && pasa.equals(pasahitza)) {
+	            	ondo = true;
+	            	break;
+	            }
+            }
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		System.out.println("Errorea " + e);
+    		ondo = false;
+    	}
+    	
+    	return ondo;
+    }
    
    /*
    public void gehituBezero(int bezeroKodea, String bezeroIzena, String kontaktuIzena, String kontaktuAbizena, String telefonoa, String fax, String helbideLerroa1, String helbideLerroa2, String herria, String eskualdea, String herrialdea, String postakodea, int salerosketaLangileKodea, double kredituMuga){
