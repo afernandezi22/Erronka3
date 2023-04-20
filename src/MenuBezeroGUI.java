@@ -15,7 +15,7 @@ public class MenuBezeroGUI extends JFrame {
 
 	/**
 	 * Launch the application.
-	 */
+	 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -28,7 +28,7 @@ public class MenuBezeroGUI extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
@@ -59,5 +59,7 @@ public class MenuBezeroGUI extends JFrame {
 		btnEskariakBilatu.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEskariakBilatu.setBounds(90, 223, 144, 47);
 		contentPane.add(btnEskariakBilatu);
+		
+		setVisible(true);
 	}
 }
