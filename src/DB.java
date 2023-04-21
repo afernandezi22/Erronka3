@@ -13,8 +13,8 @@ public class DB {
    //defektuzko sortzailea 
    public DB (){
       this.url="jdbc:oracle:thin:@localhost:1521/xepdb1";
-      this.user="ERRONKAFROGA";
-      this.pass="ERRONKAFROGA";
+      this.user="ERRONKA_HIRU";
+      this.pass="ERRONKA_HIRU";
    }
    
    //sortzailea parametroekin
