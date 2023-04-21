@@ -118,7 +118,7 @@ public class LoginBezeroGUI {
 		String pass = String.valueOf(pasahitza);
 		
 		if(db.bezeroDago(erabiltzaile)) {
-			if(db.bezeroLogin2(erabiltzaile, pass)) {
+			if(db.bezeroLogin(erabiltzaile, pass)) {
 				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
 				frame.dispose();
 				mbg = new MenuBezeroGUI();
