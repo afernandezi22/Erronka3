@@ -1,9 +1,11 @@
 import java.awt.EventQueue;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -15,9 +17,10 @@ import javax.swing.UIManager;
 public class LoginBezeroGUI {
 
 	private JFrame frame;
-	private JPasswordField passwordField;
-	private JTextField textField;
+	private JPasswordField pasahitzaF;
+	private JTextField erabiltzaileF;
 	private DB db;
+	private MenuBezeroGUI mbg;
 
 	/**
 	 * Launch the application.
@@ -53,16 +56,16 @@ public class LoginBezeroGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		passwordField.setBounds(160, 190, 179, 27);
-		frame.getContentPane().add(passwordField);
+		pasahitzaF = new JPasswordField();
+		pasahitzaF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		pasahitzaF.setBounds(160, 190, 179, 27);
+		frame.getContentPane().add(pasahitzaF);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setBounds(160, 152, 179, 27);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		erabiltzaileF = new JTextField();
+		erabiltzaileF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		erabiltzaileF.setBounds(160, 152, 179, 27);
+		frame.getContentPane().add(erabiltzaileF);
+		erabiltzaileF.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Erabiltzailea");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -84,27 +87,47 @@ public class LoginBezeroGUI {
 		lblNewLabel_3.setBounds(107, 285, 179, 27);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JButton btnNewButton = new JButton("SARTU");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(143, 243, 113, 31);
-		frame.getContentPane().add(btnNewButton);
+		JButton sartu = new JButton("SARTU");
+		sartu.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		sartu.setBounds(143, 243, 113, 31);
+		frame.getContentPane().add(sartu);
 		
-		JButton btnNewButton_1 = new JButton("ERREGISTRATU");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setBounds(132, 330, 124, 35);
-		frame.getContentPane().add(btnNewButton_1);
+		JButton erregistratu = new JButton("ERREGISTRATU");
+		erregistratu.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		erregistratu.setBackground(new Color(255, 255, 255));
+		erregistratu.setForeground(new Color(0, 0, 0));
+		erregistratu.setBounds(132, 330, 124, 35);
+		frame.getContentPane().add(erregistratu);
 		
-		JButton btnNewButton_2 = new JButton("Saltzailea zara?");
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton_2.setBounds(132, 376, 124, 35);
-		frame.getContentPane().add(btnNewButton_2);
+		JButton saltzaile = new JButton("Saltzailea zara?");
+		saltzaile.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		saltzaile.setBounds(132, 376, 124, 35);
+		frame.getContentPane().add(saltzaile);
 		
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
 		//Datu basearekin konektatu
 		db = new DB();
+		
+		//listenerrak
+		sartu.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
+	}
+	
+	private void login(String erabiltzaile, char[] pasahitza) {
+		String pass = String.valueOf(pasahitza);
+		
+		if(db.bezeroDago(erabiltzaile)) {
+			if(db.bezeroLogin2(erabiltzaile, pass)) {
+				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
+				frame.dispose();
+				mbg = new MenuBezeroGUI();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA", JOptionPane.WARNING_MESSAGE);
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
