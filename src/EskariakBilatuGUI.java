@@ -16,10 +16,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
 
-public class EskariAldatuGUI extends JFrame {
+public class EskariakBilatuGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -45,7 +44,7 @@ public class EskariAldatuGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EskariAldatuGUI() {
+	public EskariakBilatuGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -76,28 +75,17 @@ public class EskariAldatuGUI extends JFrame {
 		lblNewLabel.setBounds(48, 23, 79, 20);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(48, 49, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
 		JButton btnNewButton = new JButton("BILATU");
 		btnNewButton.setBounds(273, 38, 111, 31);
 		contentPane.add(btnNewButton);
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setEditable(false);
-		textPane.setBounds(110, 80, 195, 98);
+		textPane.setBounds(82, 80, 261, 135);
 		contentPane.add(textPane);
 		
-		JButton btnGorde = new JButton("GORDE");
-		btnGorde.setBounds(273, 197, 111, 31);
-		contentPane.add(btnGorde);
-		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Egiteke", "Bidalita", "Ezeztatuta"}));
-		comboBox.setBounds(45, 201, 138, 27);
+		comboBox.setBounds(48, 38, 102, 31);
 		contentPane.add(comboBox);
 		
 		setVisible(true);

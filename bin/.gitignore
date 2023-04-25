@@ -6,6 +6,7 @@
 /MenuBezeroGUI$1.class
 /MenuBezeroGUI.class
 /main.class
+<<<<<<< HEAD
 /LoginSaltzaile$1.class
 /LoginSaltzaile.class
 /LoginSaltzaileGUI.class
@@ -14,3 +15,10 @@
 /MenuSaltzaileGUI.class
 /EskariAldatuGUI$1.class
 /EskariAldatuGUI.class
+=======
+/LoginBezeroGUI$1.class
+>>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
+/BezeroakKudeatuGUI$1.class
+/BezeroakKudeatuGUI.class
+/EskariakBilatuGUI.class
+/EskariakBilatuGUI$1.class

@@ -12,7 +12,8 @@ import java.awt.event.ActionEvent;
 public class MenuBezeroGUI extends JFrame {
 
 	private JPanel contentPane;
-
+	private ErosketaGUI eg;
+	private JButton erosi, bilatu;
 	/**
 	 * Launch the application.
 	 
@@ -46,20 +47,31 @@ public class MenuBezeroGUI extends JFrame {
 		lblNewLabel.setBounds(72, 96, 186, 41);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Produktuak erosi");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.addActionListener(new ActionListener() {
+		erosi = new JButton("Produktuak erosi");
+		erosi.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		erosi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setBounds(90, 165, 144, 47);
-		contentPane.add(btnNewButton);
+		erosi.setBounds(90, 165, 144, 47);
+		contentPane.add(erosi);
 		
-		JButton btnEskariakBilatu = new JButton("Eskariak bilatu");
-		btnEskariakBilatu.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnEskariakBilatu.setBounds(90, 223, 144, 47);
-		contentPane.add(btnEskariakBilatu);
+		bilatu = new JButton("Eskariak bilatu");
+		bilatu.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		bilatu.setBounds(90, 223, 144, 47);
+		contentPane.add(bilatu);
 		
+		//Listenerrak
+		erosi.addActionListener(e -> zabaldu(erosi));
+		
+		setLocationRelativeTo(null);
 		setVisible(true);
+	}
+	
+	public void zabaldu(JButton botoi) {
+		if(botoi == erosi) {
+			eg = new ErosketaGUI();
+			this.dispose();
+		}
 	}
 }

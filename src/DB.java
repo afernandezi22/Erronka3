@@ -1,8 +1,10 @@
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Types;
 import java.sql.PreparedStatement;
 public class DB {
 
@@ -57,7 +59,7 @@ public class DB {
     //Bezeroa datu-basean dagoen edo ez konprobatzeko
     public boolean bezeroDago(String erabiltzailea) {
     	boolean ondo = false;
-    	String sql = "SELECT EMAIL FROM BEZEROAK";
+    	String sql = "SELECT EMAILA FROM BEZERO";
     	String erabil = "";
     	try {
     		Connection conn = konexioa();
@@ -82,11 +84,35 @@ public class DB {
     	return ondo;
     }
     
+    //LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+    public boolean bezeroLogin(String erabiltzailea, String pasahitza) {  
+    	int ondo = 0;
+    	try{
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{? = call BEZEROLOGIN(?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.registerOutParameter(1, Types.INTEGER);
+        	cstmt.setString(2, erabiltzailea);
+        	cstmt.setString(3, pasahitza);
+        	cstmt.executeUpdate();
+        	ondo = cstmt.getInt(1);
+    	}catch(SQLException e) {
+    		System.out.println("Errorea "+ e);
+    		ondo = 0;
+    	}
+    	if(ondo == 0) {
+    		return false;
+    	}else {
+    		return true;
+    	}
+    }
+    
     //Bezeroa eta pasahitza ondo dauden jakiteko
+    //LOGIN ZAHARRA, DATU-BASEKO FUNTZIOA ERABILITZEN DUENA
+    /*
     public boolean bezeroLogin(String erabiltzailea, String pasahitza) {
     	boolean ondo = false;
     	String erabil, pasa;
-    	String sql = "SELECT EMAILA, PASAHITZA FROM BEZEROAK";
+    	String sql = "SELECT EMAILA, PASAHITZA FROM BEZERO";
     	try {
     		Connection conn = konexioa();
     		Statement stmt = conn.createStatement();
@@ -109,7 +135,7 @@ public class DB {
     	}
     	
     	return ondo;
-    }
+    }*/
    
    /*
    public void gehituBezero(int bezeroKodea, String bezeroIzena, String kontaktuIzena, String kontaktuAbizena, String telefonoa, String fax, String helbideLerroa1, String helbideLerroa2, String herria, String eskualdea, String herrialdea, String postakodea, int salerosketaLangileKodea, double kredituMuga){
