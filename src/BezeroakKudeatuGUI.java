@@ -50,71 +50,71 @@ public class BezeroakKudeatuGUI extends JFrame {
 		
 		JButton btnNewButton = new JButton("GARBITU");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNewButton.setBounds(291, 151, 115, 29);
+		btnNewButton.setBounds(319, 151, 115, 29);
 		contentPane.add(btnNewButton);
 		
 		JButton btnErregistratu = new JButton("ERREGISTRATU");
-		btnErregistratu.setBounds(291, 205, 115, 29);
+		btnErregistratu.setBounds(319, 205, 115, 29);
 		contentPane.add(btnErregistratu);
 		
 		tFIzena = new JTextField();
-		tFIzena.setBounds(26, 11, 146, 29);
+		tFIzena.setBounds(54, 11, 146, 29);
 		contentPane.add(tFIzena);
 		tFIzena.setColumns(10);
 		
 		tFAbizena = new JTextField();
 		tFAbizena.setColumns(10);
-		tFAbizena.setBounds(26, 51, 146, 29);
+		tFAbizena.setBounds(54, 51, 146, 29);
 		contentPane.add(tFAbizena);
 		
 		tFHelbidea = new JTextField();
 		tFHelbidea.setColumns(10);
-		tFHelbidea.setBounds(26, 91, 146, 29);
+		tFHelbidea.setBounds(54, 91, 146, 29);
 		contentPane.add(tFHelbidea);
 		
 		tFEmaila = new JTextField();
 		tFEmaila.setColumns(10);
-		tFEmaila.setBounds(26, 131, 146, 29);
+		tFEmaila.setBounds(54, 131, 146, 29);
 		contentPane.add(tFEmaila);
 		
 		tFPasahitza = new JTextField();
 		tFPasahitza.setColumns(10);
-		tFPasahitza.setBounds(26, 171, 146, 29);
+		tFPasahitza.setBounds(54, 171, 146, 29);
 		contentPane.add(tFPasahitza);
 		
 		tFPasahitza_1 = new JTextField();
 		tFPasahitza_1.setColumns(10);
-		tFPasahitza_1.setBounds(26, 211, 146, 29);
+		tFPasahitza_1.setBounds(54, 211, 146, 29);
 		contentPane.add(tFPasahitza_1);
 		
 		JLabel lblAbizena = new JLabel("Abizena");
 		lblAbizena.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblAbizena.setBounds(182, 58, 61, 19);
+		lblAbizena.setBounds(210, 58, 61, 19);
 		contentPane.add(lblAbizena);
 		
 		JLabel lblIzena = new JLabel("Izena");
 		lblIzena.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblIzena.setBounds(182, 18, 61, 19);
+		lblIzena.setBounds(210, 18, 61, 19);
 		contentPane.add(lblIzena);
 		
 		JLabel lblHelbidea = new JLabel("Helbidea");
 		lblHelbidea.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblHelbidea.setBounds(182, 98, 61, 19);
+		lblHelbidea.setBounds(210, 98, 61, 19);
 		contentPane.add(lblHelbidea);
 		
 		JLabel lblEmaila = new JLabel("Emaila");
 		lblEmaila.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblEmaila.setBounds(182, 138, 61, 19);
+		lblEmaila.setBounds(210, 138, 61, 19);
 		contentPane.add(lblEmaila);
 		
 		JLabel lblPasahitza = new JLabel("Pasahitza");
 		lblPasahitza.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblPasahitza.setBounds(182, 178, 61, 19);
+		lblPasahitza.setBounds(210, 178, 61, 19);
 		contentPane.add(lblPasahitza);
 		
 		JLabel lblPasahitza_1 = new JLabel("Pasahitza");
 		lblPasahitza_1.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblPasahitza_1.setBounds(182, 215, 61, 19);
+		lblPasahitza_1.setBounds(210, 215, 61, 19);
 		contentPane.add(lblPasahitza_1);
 		
 		setVisible(true);
