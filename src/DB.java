@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 import java.sql.PreparedStatement;
+import javax.swing.*;
 public class DB {
 
    private String url;
