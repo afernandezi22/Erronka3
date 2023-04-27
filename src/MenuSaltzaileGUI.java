@@ -44,37 +44,37 @@ public class MenuSaltzaileGUI extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Erabiltzaile");
-		mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mnNewMenu.setHorizontalAlignment(SwingConstants.TRAILING);
-		menuBar.add(mnNewMenu);
+		JMenu erabiltzaileM = new JMenu("Erabiltzaile");
+		erabiltzaileM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		erabiltzaileM.setHorizontalAlignment(SwingConstants.TRAILING);
+		menuBar.add(erabiltzaileM);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Aldatu erabiltzaile");
-		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmNewMenuItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem aldatuerabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
+		aldatuerabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
+		aldatuerabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		erabiltzaileM.add(aldatuerabiltzaileMI);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Itxi saioa eta itxi programa");
-		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
+		itxisaioaMI.setHorizontalAlignment(SwingConstants.LEFT);
+		itxisaioaMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		erabiltzaileM.add(itxisaioaMI);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("ESKARI EGOERA ALDATU");
-		btnNewButton.setBounds(10, 77, 155, 31);
-		contentPane.add(btnNewButton);
+		JButton ekariegoeraButton = new JButton("ESKARI EGOERA ALDATU");
+		ekariegoeraButton.setBounds(10, 77, 155, 31);
+		contentPane.add(ekariegoeraButton);
 		
-		JButton btnBezeroakKudeatu = new JButton("BEZEROAK KUDEATU");
-		btnBezeroakKudeatu.setBounds(269, 77, 155, 31);
-		contentPane.add(btnBezeroakKudeatu);
+		JButton bezerokudeatuButton = new JButton("BEZEROAK KUDEATU");
+		bezerokudeatuButton.setBounds(269, 77, 155, 31);
+		contentPane.add(bezerokudeatuButton);
 		
-		JButton btnProduktuPrezio = new JButton("PRODUKTU PREZIOA");
-		btnProduktuPrezio.setBounds(142, 119, 155, 31);
-		contentPane.add(btnProduktuPrezio);
+		JButton produktuprezioButton = new JButton("PRODUKTU PREZIOA");
+		produktuprezioButton.setBounds(142, 119, 155, 31);
+		contentPane.add(produktuprezioButton);
 		setVisible(true);
 	}
 }
