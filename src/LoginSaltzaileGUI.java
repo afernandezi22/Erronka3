@@ -17,8 +17,8 @@ import java.awt.event.ActionEvent;
 public class LoginSaltzaileGUI {
 
 	private JFrame frame;
-	private JPasswordField passwordField;
-	private JTextField textField;
+	private JPasswordField pasahitzaTF;
+	private JTextField erabiltzaileTF;
 	private DB db;
 
 	/**
@@ -55,16 +55,16 @@ public class LoginSaltzaileGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		passwordField.setBounds(154, 209, 179, 27);
-		frame.getContentPane().add(passwordField);
+		pasahitzaTF = new JPasswordField();
+		pasahitzaTF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		pasahitzaTF.setBounds(154, 209, 179, 27);
+		frame.getContentPane().add(pasahitzaTF);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		textField.setBounds(154, 171, 179, 27);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		erabiltzaileTF = new JTextField();
+		erabiltzaileTF.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		erabiltzaileTF.setBounds(154, 171, 179, 27);
+		frame.getContentPane().add(erabiltzaileTF);
+		erabiltzaileTF.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Erabiltzailea");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -81,21 +81,21 @@ public class LoginSaltzaileGUI {
 		lblNewLabel_2.setBounds(90, 83, 232, 59);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JButton btnNewButton = new JButton("SARTU");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnNewButton.setBounds(137, 262, 113, 31);
-		frame.getContentPane().add(btnNewButton);
+		JButton sartuButton = new JButton("SARTU");
+		sartuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		sartuButton.setBounds(137, 262, 113, 31);
+		frame.getContentPane().add(sartuButton);
 		
-		JButton btnNewButton_1 = new JButton("BEZERO");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton bezeroButton = new JButton("BEZERO");
+		bezeroButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton_1.setBackground(new Color(255, 255, 255));
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setBounds(132, 330, 124, 35);
-		frame.getContentPane().add(btnNewButton_1);
+		bezeroButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		bezeroButton.setBackground(new Color(255, 255, 255));
+		bezeroButton.setForeground(new Color(0, 0, 0));
+		bezeroButton.setBounds(132, 330, 124, 35);
+		frame.getContentPane().add(bezeroButton);
 		
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);

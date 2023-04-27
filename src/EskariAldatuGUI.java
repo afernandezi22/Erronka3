@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 public class EskariAldatuGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField eskariIdTF;
 
 	/**
 	 * Launch the application.
@@ -52,19 +52,19 @@ public class EskariAldatuGUI extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Erabiltzaile");
-		mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		menuBar.add(mnNewMenu);
+		JMenu erabiltzaileM = new JMenu("Erabiltzaile");
+		erabiltzaileM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		menuBar.add(erabiltzaileM);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Aldatu erabiltzaile");
-		mntmNewMenuItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.LEFT);
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem aldatueabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
+		aldatueabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		aldatueabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
+		erabiltzaileM.add(aldatueabiltzaileMI);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Itxi saioa eta itxi programa");
-		mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
+		itxisaioaMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		itxisaioaMI.setHorizontalAlignment(SwingConstants.LEFT);
+		erabiltzaileM.add(itxisaioaMI);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -76,29 +76,29 @@ public class EskariAldatuGUI extends JFrame {
 		lblNewLabel.setBounds(48, 23, 79, 20);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(48, 49, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		eskariIdTF = new JTextField();
+		eskariIdTF.setBounds(48, 49, 86, 20);
+		contentPane.add(eskariIdTF);
+		eskariIdTF.setColumns(10);
 		
-		JButton btnNewButton = new JButton("BILATU");
-		btnNewButton.setBounds(273, 38, 111, 31);
-		contentPane.add(btnNewButton);
+		JButton bilatuButton = new JButton("BILATU");
+		bilatuButton.setBounds(273, 38, 111, 31);
+		contentPane.add(bilatuButton);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setBounds(110, 80, 195, 98);
-		contentPane.add(textPane);
+		JTextPane eskariarenTP = new JTextPane();
+		eskariarenTP.setEditable(false);
+		eskariarenTP.setBounds(110, 80, 195, 98);
+		contentPane.add(eskariarenTP);
 		
-		JButton btnGorde = new JButton("GORDE");
-		btnGorde.setBounds(273, 197, 111, 31);
-		contentPane.add(btnGorde);
+		JButton gordeButton = new JButton("GORDE");
+		gordeButton.setBounds(273, 197, 111, 31);
+		contentPane.add(gordeButton);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Egiteke", "Bidalita", "Ezeztatuta"}));
-		comboBox.setBounds(45, 201, 138, 27);
-		contentPane.add(comboBox);
+		JComboBox egoerarenCB = new JComboBox();
+		egoerarenCB.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		egoerarenCB.setModel(new DefaultComboBoxModel(new String[] {"Egiteke", "Bidalita", "Ezeztatuta"}));
+		egoerarenCB.setBounds(45, 201, 138, 27);
+		contentPane.add(egoerarenCB);
 		
 		setVisible(true);
 	}

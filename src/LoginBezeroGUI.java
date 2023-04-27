@@ -87,22 +87,22 @@ public class LoginBezeroGUI {
 		lblNewLabel_3.setBounds(107, 285, 179, 27);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JButton sartu = new JButton("SARTU");
-		sartu.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		sartu.setBounds(143, 243, 113, 31);
-		frame.getContentPane().add(sartu);
+		JButton sartuButton = new JButton("SARTU");
+		sartuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		sartuButton.setBounds(143, 243, 113, 31);
+		frame.getContentPane().add(sartuButton);
 		
-		JButton erregistratu = new JButton("ERREGISTRATU");
-		erregistratu.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		erregistratu.setBackground(new Color(255, 255, 255));
-		erregistratu.setForeground(new Color(0, 0, 0));
-		erregistratu.setBounds(132, 330, 124, 35);
-		frame.getContentPane().add(erregistratu);
+		JButton erregistratuButton = new JButton("ERREGISTRATU");
+		erregistratuButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		erregistratuButton.setBackground(new Color(255, 255, 255));
+		erregistratuButton.setForeground(new Color(0, 0, 0));
+		erregistratuButton.setBounds(132, 330, 124, 35);
+		frame.getContentPane().add(erregistratuButton);
 		
-		JButton saltzaile = new JButton("Saltzailea zara?");
-		saltzaile.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		saltzaile.setBounds(132, 376, 124, 35);
-		frame.getContentPane().add(saltzaile);
+		JButton saltzaileButton = new JButton("Saltzailea zara?");
+		saltzaileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		saltzaileButton.setBounds(132, 376, 124, 35);
+		frame.getContentPane().add(saltzaileButton);
 		
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
@@ -113,7 +113,7 @@ public class LoginBezeroGUI {
 		//db = new DB("jdbc:oracle:thin:@192.168.106.11:1521/xepdb1", "GAMESTOP", "GAMESTOP");
 		
 		//listenerrak
-		sartu.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
+		sartuButton.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
 	}
 	
 	private void login(String erabiltzaile, char[] pasahitza) {
