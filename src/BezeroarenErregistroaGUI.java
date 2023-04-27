@@ -11,10 +11,10 @@ import java.awt.Font;
 public class BezeroarenErregistroaGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tFIzena;
-	private JTextField tFAbizena;
-	private JTextField tFHelbidea;
-	private JTextField tFEmaila;
+	private JTextField izenaTF;
+	private JTextField abizenaTF;
+	private JTextField helbideaTF;
+	private JTextField emailaTF;
 	private JTextField tFPasahitza;
 	private JTextField tFPasahitza_1;
 
@@ -48,34 +48,34 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("GARBITU");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNewButton.setBounds(291, 151, 115, 29);
-		contentPane.add(btnNewButton);
+		JButton garbituButton = new JButton("GARBITU");
+		garbituButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		garbituButton.setBounds(291, 151, 115, 29);
+		contentPane.add(garbituButton);
 		
-		JButton btnErregistratu = new JButton("ERREGISTRATU");
-		btnErregistratu.setBounds(291, 205, 115, 29);
-		contentPane.add(btnErregistratu);
+		JButton erregistratuButton = new JButton("ERREGISTRATU");
+		erregistratuButton.setBounds(291, 205, 115, 29);
+		contentPane.add(erregistratuButton);
 		
-		tFIzena = new JTextField();
-		tFIzena.setBounds(26, 11, 146, 29);
-		contentPane.add(tFIzena);
-		tFIzena.setColumns(10);
+		izenaTF = new JTextField();
+		izenaTF.setBounds(26, 11, 146, 29);
+		contentPane.add(izenaTF);
+		izenaTF.setColumns(10);
 		
-		tFAbizena = new JTextField();
-		tFAbizena.setColumns(10);
-		tFAbizena.setBounds(26, 51, 146, 29);
-		contentPane.add(tFAbizena);
+		abizenaTF = new JTextField();
+		abizenaTF.setColumns(10);
+		abizenaTF.setBounds(26, 51, 146, 29);
+		contentPane.add(abizenaTF);
 		
-		tFHelbidea = new JTextField();
-		tFHelbidea.setColumns(10);
-		tFHelbidea.setBounds(26, 91, 146, 29);
-		contentPane.add(tFHelbidea);
+		helbideaTF = new JTextField();
+		helbideaTF.setColumns(10);
+		helbideaTF.setBounds(26, 91, 146, 29);
+		contentPane.add(helbideaTF);
 		
-		tFEmaila = new JTextField();
-		tFEmaila.setColumns(10);
-		tFEmaila.setBounds(26, 131, 146, 29);
-		contentPane.add(tFEmaila);
+		emailaTF = new JTextField();
+		emailaTF.setColumns(10);
+		emailaTF.setBounds(26, 131, 146, 29);
+		contentPane.add(emailaTF);
 		
 		tFPasahitza = new JTextField();
 		tFPasahitza.setColumns(10);

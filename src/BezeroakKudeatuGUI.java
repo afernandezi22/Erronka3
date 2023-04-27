@@ -16,12 +16,12 @@ import javax.swing.JSeparator;
 public class BezeroakKudeatuGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tFIzena;
-	private JTextField tFAbizena;
-	private JTextField tFHelbidea;
-	private JTextField tFEmaila;
-	private JTextField tFPasahitza;
-	private JTextField tFPasahitza_1;
+	private JTextField idbilatuTF;
+	private JTextField bezeroIdTF;
+	private JTextField izenaTF;
+	private JTextField abizenaTF;
+	private JTextField helbideaTF;
+	private JTextField emailTF;
 
 	/**
 	 * Launch the application.
@@ -51,63 +51,63 @@ public class BezeroakKudeatuGUI extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Erabiltzaile");
-		mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		menuBar.add(mnNewMenu);
+		JMenu erabiltzaileM = new JMenu("Erabiltzaile");
+		erabiltzaileM.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		menuBar.add(erabiltzaileM);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Aldatu erabiltzaile");
-		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
-		mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem aldatuerabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
+		aldatuerabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
+		aldatuerabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		erabiltzaileM.add(aldatuerabiltzaileMI);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Itxi saioa eta itxi programa");
-		mntmNewMenuItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.LEFT);
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
+		itxisaioaMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		itxisaioaMI.setHorizontalAlignment(SwingConstants.LEFT);
+		erabiltzaileM.add(itxisaioaMI);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("GARBITU");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNewButton.setBounds(352, 128, 115, 29);
-		contentPane.add(btnNewButton);
+		JButton garbituButton = new JButton("GARBITU");
+		garbituButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		garbituButton.setBounds(352, 128, 115, 29);
+		contentPane.add(garbituButton);
 		
-		JButton btnErregistratu = new JButton("EGUNERATU");
-		btnErregistratu.setBounds(352, 168, 115, 29);
-		contentPane.add(btnErregistratu);
+		JButton eguneratuButton = new JButton("EGUNERATU");
+		eguneratuButton.setBounds(352, 168, 115, 29);
+		contentPane.add(eguneratuButton);
 		
-		tFIzena = new JTextField();
-		tFIzena.setBounds(80, 48, 146, 29);
-		contentPane.add(tFIzena);
-		tFIzena.setColumns(10);
+		idbilatuTF = new JTextField();
+		idbilatuTF.setBounds(80, 48, 146, 29);
+		contentPane.add(idbilatuTF);
+		idbilatuTF.setColumns(10);
 		
-		tFAbizena = new JTextField();
-		tFAbizena.setColumns(10);
-		tFAbizena.setBounds(116, 128, 146, 29);
-		contentPane.add(tFAbizena);
+		bezeroIdTF = new JTextField();
+		bezeroIdTF.setColumns(10);
+		bezeroIdTF.setBounds(116, 128, 146, 29);
+		contentPane.add(bezeroIdTF);
 		
-		tFHelbidea = new JTextField();
-		tFHelbidea.setColumns(10);
-		tFHelbidea.setBounds(116, 168, 146, 29);
-		contentPane.add(tFHelbidea);
+		izenaTF = new JTextField();
+		izenaTF.setColumns(10);
+		izenaTF.setBounds(116, 168, 146, 29);
+		contentPane.add(izenaTF);
 		
-		tFEmaila = new JTextField();
-		tFEmaila.setColumns(10);
-		tFEmaila.setBounds(116, 208, 146, 29);
-		contentPane.add(tFEmaila);
+		abizenaTF = new JTextField();
+		abizenaTF.setColumns(10);
+		abizenaTF.setBounds(116, 208, 146, 29);
+		contentPane.add(abizenaTF);
 		
-		tFPasahitza = new JTextField();
-		tFPasahitza.setColumns(10);
-		tFPasahitza.setBounds(116, 248, 215, 29);
-		contentPane.add(tFPasahitza);
+		helbideaTF = new JTextField();
+		helbideaTF.setColumns(10);
+		helbideaTF.setBounds(116, 248, 215, 29);
+		contentPane.add(helbideaTF);
 		
-		tFPasahitza_1 = new JTextField();
-		tFPasahitza_1.setColumns(10);
-		tFPasahitza_1.setBounds(116, 288, 215, 29);
-		contentPane.add(tFPasahitza_1);
+		emailTF = new JTextField();
+		emailTF.setColumns(10);
+		emailTF.setBounds(116, 288, 215, 29);
+		contentPane.add(emailTF);
 		
 		JLabel lblAbizena = new JLabel("Bezero ID-a:");
 		lblAbizena.setFont(new Font("Calibri", Font.PLAIN, 15));
@@ -143,14 +143,14 @@ public class BezeroakKudeatuGUI extends JFrame {
 		separator.setBounds(10, 88, 503, 2);
 		contentPane.add(separator);
 		
-		JButton btnBilatu = new JButton("BILATU");
-		btnBilatu.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnBilatu.setBounds(290, 48, 115, 29);
-		contentPane.add(btnBilatu);
+		JButton bilatuButton = new JButton("BILATU");
+		bilatuButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bilatuButton.setBounds(290, 48, 115, 29);
+		contentPane.add(bilatuButton);
 		
-		JButton btnEzabatu = new JButton("EZABATU");
-		btnEzabatu.setBounds(352, 208, 115, 29);
-		contentPane.add(btnEzabatu);
+		JButton ezabatuButton = new JButton("EZABATU");
+		ezabatuButton.setBounds(352, 208, 115, 29);
+		contentPane.add(ezabatuButton);
 		
 		setVisible(true);
 	}
