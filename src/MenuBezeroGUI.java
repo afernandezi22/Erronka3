@@ -14,6 +14,7 @@ public class MenuBezeroGUI extends JFrame {
 	private JPanel contentPane;
 	private ErosketaGUI eg;
 	private JButton erosi, bilatu;
+	private EskariAldatuGUI ea;
 	/**
 	 * Launch the application.
 	 
@@ -63,6 +64,7 @@ public class MenuBezeroGUI extends JFrame {
 		
 		//Listenerrak
 		erosi.addActionListener(e -> zabaldu(erosi));
+		bilatu.addActionListener(e-> zabaldu(bilatu));
 		
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -71,6 +73,9 @@ public class MenuBezeroGUI extends JFrame {
 	public void zabaldu(JButton botoi) {
 		if(botoi == erosi) {
 			eg = new ErosketaGUI();
+			this.dispose();
+		} else if(botoi == bilatu) {
+			ea = new EskariAldatuGUI();
 			this.dispose();
 		}
 	}
