@@ -21,6 +21,8 @@ public class LoginBezeroGUI {
 	private JTextField erabiltzaileF;
 	private DB db;
 	private MenuBezeroGUI mbg;
+	private JButton saltzaileButton, erregistratuButton, sartuButton;
+	private BezeroarenErregistroaGUI beGUI;
 
 	/**
 	 * Launch the application.
@@ -87,19 +89,19 @@ public class LoginBezeroGUI {
 		lblNewLabel_3.setBounds(107, 285, 179, 27);
 		frame.getContentPane().add(lblNewLabel_3);
 		
-		JButton sartuButton = new JButton("SARTU");
+		sartuButton = new JButton("SARTU");
 		sartuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		sartuButton.setBounds(143, 243, 113, 31);
 		frame.getContentPane().add(sartuButton);
 		
-		JButton erregistratuButton = new JButton("ERREGISTRATU");
+		erregistratuButton = new JButton("ERREGISTRATU");
 		erregistratuButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		erregistratuButton.setBackground(new Color(255, 255, 255));
 		erregistratuButton.setForeground(new Color(0, 0, 0));
 		erregistratuButton.setBounds(132, 330, 124, 35);
 		frame.getContentPane().add(erregistratuButton);
 		
-		JButton saltzaileButton = new JButton("Saltzailea zara?");
+		saltzaileButton = new JButton("Saltzailea zara?");
 		saltzaileButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		saltzaileButton.setBounds(132, 376, 124, 35);
 		frame.getContentPane().add(saltzaileButton);
@@ -114,6 +116,7 @@ public class LoginBezeroGUI {
 		
 		//listenerrak
 		sartuButton.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
+		erregistratuButton.addActionListener(e->zabaldu(erregistratuButton));
 	}
 	
 	private void login(String erabiltzaile, char[] pasahitza) {
@@ -130,6 +133,13 @@ public class LoginBezeroGUI {
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	public void zabaldu(JButton botoi) {
+		if(botoi == erregistratuButton) {
+			beGUI = new BezeroarenErregistroaGUI();
+			frame.setVisible(false);
 		}
 	}
 }
