@@ -109,6 +109,8 @@ public class LoginBezeroGUI {
 		
 		//Datu basearekin konektatu
 		db = new DB();
+		//Datubaserako konexioa egiteko goiko konexioa komentatu eta behekoa deskomentatu
+		//db = new DB("jdbc:oracle:thin:@192.168.106.11:1521/xepdb1", "GAMESTOP", "GAMESTOP");
 		
 		//listenerrak
 		sartu.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));

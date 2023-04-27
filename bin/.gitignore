@@ -1,26 +1,15 @@
+/BezeroakKudeatuGUI.class
 /BezeroarenErregistroaGUI.class
 /DB.class
 /Erosketa.class
 /ErosketaGUI.class
+/EskariAldatuGUI.class
+/EskariakBilatuGUI.class
 /LoginBezeroGUI.class
+/LoginSaltzaileGUI$1.class
+/LoginSaltzaileGUI.class
 /MenuBezeroGUI$1.class
 /MenuBezeroGUI.class
-/main.class
-<<<<<<< HEAD
-/LoginSaltzaile$1.class
-/LoginSaltzaile.class
-/LoginSaltzaileGUI.class
-/LoginSaltzaileGUI$1.class
-/MenuSaltzaileGUI$1.class
 /MenuSaltzaileGUI.class
-/EskariAldatuGUI$1.class
-/EskariAldatuGUI.class
-=======
-/LoginBezeroGUI$1.class
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
-/BezeroakKudeatuGUI$1.class
-/BezeroakKudeatuGUI.class
-/EskariakBilatuGUI.class
-/EskariakBilatuGUI$1.class
-/PrezioAldaketaGUI$1.class
 /PrezioAldaketaGUI.class
+/main.class
