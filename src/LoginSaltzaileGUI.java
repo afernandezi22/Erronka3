@@ -1,5 +1,12 @@
-import java.awt.EventQueue;
+/**
+ * @clase Saltzailearen loginaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 28/04/2023
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
