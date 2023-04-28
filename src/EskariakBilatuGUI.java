@@ -19,6 +19,14 @@ import javax.swing.SwingConstants;
 public class EskariakBilatuGUI extends JFrame {
 
 	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel;
+	private JTextPane textPane;
+	private JComboBox comboBox; 
 
 	/**
 	 * Launch the application.
@@ -48,19 +56,19 @@ public class EskariakBilatuGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Erabiltzaile");
+		mnNewMenu = new JMenu("Erabiltzaile");
 		mnNewMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Aldatu erabiltzaile");
+		mntmNewMenuItem = new JMenuItem("Aldatu erabiltzaile");
 		mntmNewMenuItem.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		mntmNewMenuItem.setHorizontalAlignment(SwingConstants.LEFT);
 		mnNewMenu.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Itxi saioa eta itxi programa");
+		mntmNewMenuItem_1 = new JMenuItem("Itxi saioa eta itxi programa");
 		mntmNewMenuItem_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		mntmNewMenuItem_1.setHorizontalAlignment(SwingConstants.LEFT);
 		mnNewMenu.add(mntmNewMenuItem_1);
@@ -70,21 +78,21 @@ public class EskariakBilatuGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Eskari ID-a");
+		lblNewLabel = new JLabel("Eskari ID-a");
 		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblNewLabel.setBounds(48, 23, 79, 20);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("BILATU");
+		btnNewButton = new JButton("BILATU");
 		btnNewButton.setBounds(273, 38, 111, 31);
 		contentPane.add(btnNewButton);
 		
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		textPane.setEditable(false);
 		textPane.setBounds(82, 80, 261, 135);
 		contentPane.add(textPane);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(48, 38, 102, 31);
 		contentPane.add(comboBox);
 		
