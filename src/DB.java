@@ -107,86 +107,99 @@ public class DB {
     	}
     }
     
-    //Bezeroa eta pasahitza ondo dauden jakiteko
-    //LOGIN ZAHARRA, DATU-BASEKO FUNTZIOA ERABILITZEN DUENA
-    /*
-    public boolean bezeroLogin(String erabiltzailea, String pasahitza) {
-    	boolean ondo = false;
-    	String erabil, pasa;
-    	String sql = "SELECT EMAILA, PASAHITZA FROM BEZERO";
+    //Datu-basean dagoen preziorik handiena lortzeko
+    public double prezioHandiena() {
+    	double handiena = 0;
+    	String sql = "SELECT MAX(SALNEURRIA) AS HANDIENA FROM PRODUKTU";
     	try {
     		Connection conn = konexioa();
     		Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-	            erabil = rs.getString("EMAILA");
-	            pasa = rs.getString("PASAHITZA");
-	            if(erabil.equals(erabiltzailea) && pasa.equals(pasahitza)) {
-	            	ondo = true;
-	            	break;
-	            }
-            }
+            rs.next();
+            handiena = rs.getDouble("HANDIENA");
+
             //konexioak itxi
             conn.close();
             stmt.close();
             rs.close(); 
     	}catch(SQLException e) {
     		System.out.println("Errorea " + e);
-    		ondo = false;
     	}
     	
-    	return ondo;
-    }*/
-   
-   /*
-   public void gehituBezero(int bezeroKodea, String bezeroIzena, String kontaktuIzena, String kontaktuAbizena, String telefonoa, String fax, String helbideLerroa1, String helbideLerroa2, String herria, String eskualdea, String herrialdea, String postakodea, int salerosketaLangileKodea, double kredituMuga){
-      String sql = "INSERT INTO BEZEROAK(BEZEROKODEA, BEZEROIZENA, KONTAKTUIZENA, KONTAKTUABIZENA, TELEFONOA, FAX, HELBIDELERROA1, HELBIDELERROA2, HERRIA, ESKUALDEA, HERRIALDEA, POSTAKODEA, SALEROSKETALANGILEKODEA, KREDITUMUGA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      
-      try{
-         Connection conn = konexioa();
-         PreparedStatement statement = conn.prepareStatement(sql);
-         statement.setInt(1, bezeroKodea);
-         statement.setString(2, bezeroIzena);
-         statement.setString(3, kontaktuIzena);         
-         statement.setString(4, kontaktuAbizena);
-         statement.setString(5, telefonoa);
-         statement.setString(6, fax);
-         statement.setString(7, helbideLerroa1);
-         statement.setString(8, helbideLerroa2);
-         statement.setString(9, herria);
-         statement.setString(10, eskualdea);
-         statement.setString(11, herrialdea);
-         statement.setString(12, postakodea);
-         statement.setInt(13, salerosketaLangileKodea);
-         statement.setDouble(14, kredituMuga);
-         statement.executeUpdate();
-         conn.close();
-         statement.close();                                                                                               
-      }catch(SQLException e){
-         System.out.println("ERROREA: " +e);
-      }  
-   }*/
-   
-   /* 
-   public String [] bulegoak(){
-      String[] bb = new String[0];
-      String bulego;
-      try {
-         Connection conn = konexioa();
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery("SELECT * FROM BULEGOAK");
-         while (rs.next()) {
-         bulego = rs.getString("BULEGOKODEA") + " " + rs.getString("HERRIA") + " " + rs.getString("HERRIALDEA") + " " + rs.getString("ESKUALDEA") + " " + rs.getString("POSTAKODEA") + " " + rs.getString("TELEFONOA") + " " + rs.getString("HELBIDELERROA1") + " " + rs.getString("HELBIDELERROA2"); 
-         bb = Arrays.copyOf(bb, bb.length+1);
-         bb[bb.length-1] = bulego;
-         }
-         //konexioak itxi
-         conn.close();
-         stmt.close();
-         rs.close();
-      } catch (SQLException e) {
-          System.out.println("ERROREA: " + e);
-      }
-      return bb;   
-   }*/  
+    	return handiena;
+    }
+    
+    //Datu-basean dauden produktu guztiak lortzeko. Filtro barik
+    public Produktuak getProduktuak() {
+    	Produktuak pk = new Produktuak();
+    	String sql = "SELECT * FROM PRODUKTU";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    }
+    
+    //Datu-basean dauden produktuak, kategoria kontuan hartuta
+    public Produktuak getKategoriarekin(int kategoria) {
+    	String sql = "SELECT * FROM PRODUKTU WHERE ID_KATEGORIA = ?";
+    	Produktuak pk = new Produktuak();
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, (kategoria+1));
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    }
+    
+    //Datu-basean dauden produktuak, filtro guztiekin
+    public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
+    	String sql = "SELECT * FROM PRODUKTU WHERE ID_KATEGORIA = ?";
+    	Produktuak pk = new Produktuak();
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, (kategoria+1));
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    }     
 }
