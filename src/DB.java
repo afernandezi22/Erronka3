@@ -201,5 +201,24 @@ public class DB {
     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     	}
     	return pk;
-    }     
+    } 
+    
+    //Bezeroak erregistratzeko
+    public void erregistratuBezeroa(JTextField izenaTF, JTextField abizenaTF, JTextField helbideaTF, JTextField emailaTF, JTextField tFPasahitza) {
+    	String sql = "INSERT INTO BEZEROAK VALUES (?, ?, ? , ?, ?)";
+    	try{
+            Connection conn = konexioa();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, izenaTF.getText());
+            statement.setString(1, abizenaTF.getText()); 
+            statement.setString(1, helbideaTF.getText()); 
+            statement.setString(1, emailaTF.getText()); 
+            statement.setString(1, tFPasahitza.getText()); 
+            statement.executeUpdate();
+            conn.close();
+            statement.close();                                                                                 
+         }catch(SQLException e){
+            System.out.println("ERROREA: " +e);
+         }
+    }
 }

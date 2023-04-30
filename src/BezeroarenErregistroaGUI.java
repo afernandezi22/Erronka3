@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Font;
 
 public class BezeroarenErregistroaGUI extends JFrame {
@@ -17,6 +17,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 	private JTextField emailaTF;
 	private JTextField tFPasahitza;
 	private JTextField tFPasahitza_1;
+	private DB db;
 
 	/**
 	 * Launch the application.
@@ -40,6 +41,8 @@ public class BezeroarenErregistroaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public BezeroarenErregistroaGUI() {
+		db = new DB();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -118,5 +121,29 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		contentPane.add(lblPasahitza_1);
 		
 		setVisible(true);
+		
+		garbituButton.addActionListener(e->garbitu());
+		erregistratuButton.addActionListener(e->erregistratu());
 	}
+	
+	public void garbitu() {
+		
+		izenaTF.setText("");
+		abizenaTF.setText("");
+		helbideaTF.setText("");
+		emailaTF.setText("");
+		tFPasahitza.setText("");
+		tFPasahitza_1.setText("");
+	}
+	
+	public void erregistratu() {
+		String pasahitza1 = tFPasahitza.getText();
+		String pasahitza2 = tFPasahitza_1.getText();
+		
+		if (pasahitza1.equals(pasahitza2)) {
+			db.erregistratuBezeroa(izenaTF, abizenaTF, helbideaTF, emailaTF, tFPasahitza);
+		}else {
+			JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak.", "PASAHITZ DESBERDINAK", JOptionPane.WARNING_MESSAGE);
+		}
+}
 }
