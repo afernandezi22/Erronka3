@@ -1,3 +1,11 @@
+/**
+ * @clase Datu Basearen konexioa
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,22 +21,32 @@ public class DB {
    private String user;
    private String pass;
    
-   //defektuzko sortzailea 
+   /**  
+	 * defektuzko sortzailea 
+	 * @param ez
+	 */
    public DB (){
       this.url="jdbc:oracle:thin:@localhost:1521/xepdb1";
       this.user="ERRONKA_HIRU";
       this.pass="ERRONKA_HIRU";
    }
    
-   //sortzailea parametroekin
+   /**  
+	 * sortzailea parametroekin
+	 * @param url --> esteka
+	 * @param user --> erabiltzailea
+	 * @param pass --> pasahitza
+	 */
    public DB (String url, String user, String pass){
       this.url=url;
       this.user=user;
       this.pass=pass;
    }
    
-   
-   //konexioa egin, bat generikoa balio izango duena konexio guztietarako
+   /**  
+	 * konexioa egin, bat generikoa balio izango duena konexio guztietarako
+	 * @param ez
+	 */
    public Connection konexioa (){
       Connection conn = null;
       try{
@@ -40,6 +58,10 @@ public class DB {
       return conn;
    }
 
+   /**  
+	 * konexioa produktuekin
+	 * @param ez
+	 */
     public void erakutsiProd(){
         try {
             Connection conn = konexioa();
@@ -57,7 +79,10 @@ public class DB {
          }
     }
     
-    //Bezeroa datu-basean dagoen edo ez konprobatzeko
+    /**  
+	 * Bezeroa datu-basean dagoen edo ez konprobatzeko
+	 * @param String erabiltzailea --> erabiltzailea+
+	 */
     public boolean bezeroDago(String erabiltzailea) {
     	boolean ondo = false;
     	String sql = "SELECT EMAILA FROM BEZERO";
@@ -85,7 +110,11 @@ public class DB {
     	return ondo;
     }
     
-    //LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+    /**  
+	 * LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+	 * @param String erabiltzailea --> erabiltzailea
+	 * @param String pasahitza --> pasahitza
+	 */
     public boolean bezeroLogin(String erabiltzailea, String pasahitza) {  
     	int ondo = 0;
     	try{
@@ -107,7 +136,11 @@ public class DB {
     	}
     }
     
-    //Datu-basean dagoen preziorik handiena lortzeko
+    
+    /**  
+	 * Datu-basean dagoen preziorik handiena lortzeko
+	 * @param ez
+	 */
     public double prezioHandiena() {
     	double handiena = 0;
     	String sql = "SELECT MAX(SALNEURRIA) AS HANDIENA FROM PRODUKTU";
@@ -129,7 +162,10 @@ public class DB {
     	return handiena;
     }
     
-    //Datu-basean dauden produktu guztiak lortzeko. Filtro barik
+    /**  
+	 * Datu-basean dauden produktu guztiak lortzeko. Filtro barik
+	 * @param ez
+	 */
     public Produktuak getProduktuak() {
     	Produktuak pk = new Produktuak();
     	String sql = "SELECT * FROM PRODUKTU";
@@ -153,7 +189,10 @@ public class DB {
     	return pk;
     }
     
-    //Datu-basean dauden produktuak, kategoria kontuan hartuta
+    /**  
+	 * Datu-basean dauden produktuak, kategoria kontuan hartuta
+	 * @param int kategoria --> kategoria
+	 */
     public Produktuak getKategoriarekin(int kategoria) {
     	String sql = "SELECT * FROM PRODUKTU WHERE ID_KATEGORIA = ?";
     	Produktuak pk = new Produktuak();
@@ -178,7 +217,16 @@ public class DB {
     	return pk;
     }
     
-    //Datu-basean dauden produktuak, filtro guztiekin
+    /**  
+	 * Datu-basean dauden produktuak, filtro guztiekin
+	 * @param double gehienezkoPrezioa --> prezio maximoaren filtroa
+	 * @param double gutxienezkoPrezioa --> prezio minimoaren filtroa
+	 * @param boolean maxMin --> handienetik txikiraren filtroa
+	 * @param boolean minMax --> txikienetik handiraren filtroa  
+	 * @param boolean stock --> stock-aren filtroa
+	 * @param int lehenengo --> lehenengo ... -en filtroa
+	 * @param int kategoria --> kategoriaren filtroa
+	 */
     public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
     	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID IN(SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA ASC FETCH FIRST ? ROWS ONLY";
     	Produktuak pk = new Produktuak();
@@ -222,7 +270,14 @@ public class DB {
     	return pk;
     } 
     
-    //Bezeroak erregistratzeko
+    /**  
+	 * Bezeroak erregistratzeko
+	 * @param JTextField izenaTF --> 
+	 * @param JTextField abizenaTF --> 
+	 * @param JTextField helbideaTF --> 
+	 * @param JTextField emailaTF -->  
+	 * @param JTextField tFPasahitza --> 
+	 */
     public void erregistratuBezeroa(JTextField izenaTF, JTextField abizenaTF, JTextField helbideaTF, JTextField emailaTF, JTextField tFPasahitza) {
     	String sql = "INSERT INTO BEZEROAK VALUES (?, ?, ? , ?, ?)";
     	try{
