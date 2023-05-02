@@ -32,25 +32,18 @@ public class LoginSaltzaileGUI {
 	private LoginBezeroGUI lbg;
 
 
-<<<<<<< Upstream, based on branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	/**  
 	 * Sortzailea
 	 * @param ez
 	 */
-=======
->>>>>>> 2c1e26d Aldaketak datubasean, loginetan eta SQL fitxategian.
 	public LoginSaltzaileGUI() {
 		initialize();
 	}
 
-<<<<<<< Upstream, based on branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	/**  
 	 * Diseinu guztia daukan funtzioa 
 	 * @param ez
 	 */
-=======
-
->>>>>>> 2c1e26d Aldaketak datubasean, loginetan eta SQL fitxategian.
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Vladimir Script", Font.PLAIN, 11));
