@@ -20,6 +20,7 @@ import javax.swing.JButton;
 public class MenuSaltzaileGUI extends JFrame {
 
 	private JPanel contentPane;
+
 	private PrezioAldaketaGUI pag;
 	private EskariAldatuGUI eag;
 	private BezeroakKudeatuGUI bkg;
