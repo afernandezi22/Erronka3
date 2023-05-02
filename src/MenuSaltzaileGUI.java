@@ -30,7 +30,7 @@ public class MenuSaltzaileGUI extends JFrame {
 	 * Sortzailea
 	 * @param ez
 	 */
-	public MenuSaltzaileGUI() {
+	public MenuSaltzaileGUI(String erabiltzaile) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -68,16 +68,18 @@ public class MenuSaltzaileGUI extends JFrame {
 		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
 		produktuPrezioButton.setBounds(142, 119, 155, 31);
 		contentPane.add(produktuPrezioButton);
+		
+		setLocationRelativeTo(null);
 		setVisible(true);
 		
 		//Action listenerrak
-		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu());
+		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu(erabiltzaile));
 		bezeroKudeatuButton.addActionListener(e -> sortuBezeroakKudeatu());
 		produktuPrezioButton.addActionListener(e -> sortuPrezioAldaketa());
 	}
 	
-	public void sortuEskariAldatu() {
-		this.eag = new EskariAldatuGUI();
+	public void sortuEskariAldatu(String erabiltzaile) {
+		this.eag = new EskariAldatuGUI(erabiltzaile);
 		this.dispose();
 	}
 	

@@ -20,19 +20,25 @@ import javax.swing.JEditorPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
+import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class EskariAldatuGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField eskariIdTF;
 	private DB db;
+	private Eskari es;
+	private JTextArea eskariJTA;
 
 	/**  
 	 * Sortzailea
 	 * @param ez
 	 */
-	public EskariAldatuGUI() {
+	public EskariAldatuGUI(String erabiltzaile) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -72,11 +78,6 @@ public class EskariAldatuGUI extends JFrame {
 		bilatuButton.setBounds(273, 38, 111, 31);
 		contentPane.add(bilatuButton);
 		
-		JTextPane eskariarenTP = new JTextPane();
-		eskariarenTP.setEditable(false);
-		eskariarenTP.setBounds(110, 80, 195, 98);
-		contentPane.add(eskariarenTP);
-		
 		JButton gordeButton = new JButton("GORDE");
 		gordeButton.setBounds(273, 197, 111, 31);
 		contentPane.add(gordeButton);
@@ -87,13 +88,43 @@ public class EskariAldatuGUI extends JFrame {
 		egoerarenCB.setBounds(45, 201, 138, 27);
 		contentPane.add(egoerarenCB);
 		
+		eskariJTA = new JTextArea();
+		eskariJTA.setEditable(false);
+		eskariJTA.setForeground(new Color(0, 0, 0));
+		eskariJTA.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		eskariJTA.setBounds(87, 80, 263, 106);
+		contentPane.add(eskariJTA);
+		
 		//Datu-baserako konexioa
 		db = new DB();
 		
+		//Action listenerra
+		bilatuButton.addActionListener(e -> bilatu());
+		
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
 	public void bilatu() {
-		
+		try {
+			es = db.getEskari(Integer.parseInt(eskariIdTF.getText()));
+			 eskariJTA.setText("");
+			 eskariJTA.append("Eskari ID: " + es.getID() + "\n");
+			 eskariJTA.append("ID bezero: " + es.getID_bezero() + "\n");
+			 if(es.getID_saltzaile() == 0) {
+				 eskariJTA.append("ID saltzaile: EZ DAGO SALTZAILERIK \n"); 
+			 }else {
+				 eskariJTA.append("ID saltzaile: " + es.getID_saltzaile() + "\n"); 
+			 }
+			 eskariJTA.append("Eskaera data: " + es.getEskaera_data() + "\n");
+			 if(es.getAzken_aldaketa() == 0) {
+				 eskariJTA.append("Azken aldaketa: EZ DAGO SALTZAILERIK");
+			 }else {
+				 eskariJTA.append("Azken aldaketa: " + es.getAzken_aldaketa());
+			 }
+			 
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Ez dago eskaririk zenbaki horrekin: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }
