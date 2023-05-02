@@ -1,3 +1,11 @@
+/**
+ * @clase Erosketaren pantailaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
+
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -37,7 +45,10 @@ public class ErosketaGUI extends JFrame {
 	private JComboBox filtroCB;
 	
 
-
+	/**  
+	 * Sortzailea
+	 * @param ez
+	 */
 	public ErosketaGUI() {
 		//Datu-baserako konexioa
 		db = new DB();
@@ -187,10 +198,15 @@ public class ErosketaGUI extends JFrame {
 		setVisible(true);
 	}
 	
+	
 	public static void main(String [] args) {
 		new ErosketaGUI();
 	}
 	
+	/**  
+	 * Produktuak kargatzen duen funtzioa
+	 * @param ez
+	 */
 	public void kargatuProduktuGuztiak() {
 		pk = db.getProduktuak(); //Produktuak objektua lortzeko
 		p = pk.getP(); //Barruan daukan arraya lortzeko
@@ -202,6 +218,10 @@ public class ErosketaGUI extends JFrame {
 		}
 	}
 	
+	/**  
+	 * Kategoria kargatzen duen funtzioa
+	 * @param int x --> filtroCB-aren posizioa jakiteko
+	 */
 	public void kargatuKategoria(int x) {
 		pk = db.getKategoriarekin(x);
 		p = pk.getP();
@@ -213,6 +233,10 @@ public class ErosketaGUI extends JFrame {
 		}
 	}
 	
+	/**  
+	 * Kategoria kargatzen duen funtzioa
+	 * @param ez
+	 */
 	public void kargatuFiltroekin() {
 		pk = db.getFiltroekin(Double.parseDouble(gehiPPane.getText()), Double.parseDouble(gutxPPane.getText()), maxMinB.isSelected(), minMaxB.isSelected(), strockbakarrikButton.isSelected(), Integer.parseInt(ateralehenengoTF.getText()), filtroCB.getSelectedIndex());
 		p = pk.getP();
@@ -224,6 +248,10 @@ public class ErosketaGUI extends JFrame {
 		}
 	}
 	
+	/**  
+	 * filtroCB eguneratzeko filtroekin 
+	 * @param ez
+	 */
 	public void filtratu() {
 		if(filtroaktibatuButton.isSelected()) {
 			kargatuFiltroekin();

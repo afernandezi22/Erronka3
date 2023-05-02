@@ -1,5 +1,12 @@
-import java.awt.EventQueue;
+/**
+ * @clase Bezeroak erregistroaren pantailaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -37,8 +44,9 @@ public class BezeroarenErregistroaGUI extends JFrame {
 	}
 	*/
 	
-	/**
-	 * Create the frame.
+	/**  
+	 * Sortzailea
+	 * @param ez
 	 */
 	public BezeroarenErregistroaGUI() {
 		db = new DB();
@@ -126,6 +134,10 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		erregistratuButton.addActionListener(e->erregistratu());
 	}
 	
+	/**  
+	 * Garbitzeko botoia sakatzean testu guztia kentzen da
+	 * @param ez
+	 */
 	public void garbitu() {
 		
 		izenaTF.setText("");
@@ -136,6 +148,10 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		tFPasahitza_1.setText("");
 	}
 	
+	/**  
+	 * Erregistroa egitean pasahitza bi alditan jartzean berdina dela zihurtatzeko
+	 * @param ez
+	 */
 	public void erregistratu() {
 		String pasahitza1 = tFPasahitza.getText();
 		String pasahitza2 = tFPasahitza_1.getText();
