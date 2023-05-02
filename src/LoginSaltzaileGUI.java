@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -27,35 +28,29 @@ public class LoginSaltzaileGUI {
 	private JPasswordField pasahitzaTF;
 	private JTextField erabiltzaileTF;
 	private DB db;
+	private MenuSaltzaileGUI msg;
+	private LoginBezeroGUI lbg;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginBezeroGUI window = new LoginBezeroGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
+<<<<<<< Upstream, based on branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	/**  
 	 * Sortzailea
 	 * @param ez
 	 */
+=======
+>>>>>>> 2c1e26d Aldaketak datubasean, loginetan eta SQL fitxategian.
 	public LoginSaltzaileGUI() {
 		initialize();
 	}
 
+<<<<<<< Upstream, based on branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	/**  
 	 * Diseinu guztia daukan funtzioa 
 	 * @param ez
 	 */
+=======
+
+>>>>>>> 2c1e26d Aldaketak datubasean, loginetan eta SQL fitxategian.
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Vladimir Script", Font.PLAIN, 11));
@@ -111,5 +106,34 @@ public class LoginSaltzaileGUI {
 		
 		//Datu basearekin konektatu
 		db = new DB();
+		
+		//Action listenerrak
+		sartuButton.addActionListener(e -> login(erabiltzaileTF.getText(), pasahitzaTF.getPassword()));
+	}
+	
+	private void login(String erabiltzaile, char[] pasahitza) {
+		String pass = String.valueOf(pasahitza);
+		
+		if(db.saltzaileDago(erabiltzaile)) {
+			if(db.saltzaileLogin(erabiltzaile, pass)) {
+				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
+				frame.dispose();
+				msg = new MenuSaltzaileGUI();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA", JOptionPane.WARNING_MESSAGE);
+			}
+		}else {
+			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void bezeroZabaldu() {
+		lbg = new LoginBezeroGUI();
+		frame.dispose();
+	}
+	
+	public static void main(String[] args) {
+		new LoginSaltzaileGUI();
 	}
 }

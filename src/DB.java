@@ -107,6 +107,56 @@ public class DB {
     	}
     }
     
+  //Saltzailea datu-basean dagoen edo ez konprobatzeko
+    public boolean saltzaileDago(String erabiltzailea) {
+    	boolean ondo = false;
+    	String sql = "SELECT ERABILTZAILEA FROM SALTZAILE";
+    	String erabil = "";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+	            erabil = rs.getString("ERABILTZAILEA"); 
+	            if(erabil.equals(erabiltzailea)) {
+	            	ondo = true;
+	            	break;
+	            }
+            }
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		System.out.println("Errorea " + e);
+    		ondo = false;
+    	}
+    	
+    	return ondo;
+    }
+    
+    //SALTZAILEAREN LOGINA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+    public boolean saltzaileLogin(String erabiltzailea, String pasahitza) {  
+    	int ondo = 0;
+    	try{
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{? = call SALTZAILELOGIN(?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.registerOutParameter(1, Types.INTEGER);
+        	cstmt.setString(2, erabiltzailea);
+        	cstmt.setString(3, pasahitza);
+        	cstmt.executeUpdate();
+        	ondo = cstmt.getInt(1);
+    	}catch(SQLException e) {
+    		System.out.println("Errorea "+ e);
+    		ondo = 0;
+    	}
+    	if(ondo == 0) {
+    		return false;
+    	}else {
+    		return true;
+    	}
+    }
+    
     //Datu-basean dagoen preziorik handiena lortzeko
     public double prezioHandiena() {
     	double handiena = 0;
