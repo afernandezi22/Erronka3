@@ -20,25 +20,6 @@ import javax.swing.JButton;
 public class MenuSaltzaileGUI extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuSaltzaileGUI frame = new MenuSaltzaileGUI();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
 	
 	
 	/**  
