@@ -193,7 +193,7 @@ public class ErosketaGUI extends JFrame {
 	
 	public void kargatuProduktuGuztiak() {
 		pk = db.getProduktuak(); //Produktuak objektua lortzeko
-		p = pk.getP(); //Baruan daukan arraya lortzeko
+		p = pk.getP(); //Barruan daukan arraya lortzeko
 		
 		produktuCB.removeAllItems();
 		
@@ -213,12 +213,27 @@ public class ErosketaGUI extends JFrame {
 		}
 	}
 	
+	public void kargatuFiltroekin() {
+		pk = db.getFiltroekin(Double.parseDouble(gehiPPane.getText()), Double.parseDouble(gutxPPane.getText()), maxMinB.isSelected(), minMaxB.isSelected(), strockbakarrikButton.isSelected(), Integer.parseInt(ateralehenengoTF.getText()), filtroCB.getSelectedIndex());
+		p = pk.getP();
+		
+		produktuCB.removeAllItems();
+		
+		for (int i = 0; i < p.length; i++) {
+			produktuCB.addItem(p[i].getIzena());
+		}
+	}
+	
 	public void filtratu() {
-		if(filtroCB.getSelectedIndex() == 5) {
-			kargatuProduktuGuztiak();
-		}else {
-			kargatuKategoria(filtroCB.getSelectedIndex());
+		if(filtroaktibatuButton.isSelected()) {
+			kargatuFiltroekin();
+		} else {
+			if(filtroCB.getSelectedIndex() == 5) {
+				kargatuProduktuGuztiak();
+			}else {
+				kargatuKategoria(filtroCB.getSelectedIndex());
 
+			}
 		}
 	}
 	

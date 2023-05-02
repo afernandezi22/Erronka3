@@ -180,12 +180,31 @@ public class DB {
     
     //Datu-basean dauden produktuak, filtro guztiekin
     public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
-    	String sql = "SELECT * FROM PRODUKTU WHERE ID_KATEGORIA = ?";
+    	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID IN(SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA ASC FETCH FIRST ? ROWS ONLY";
     	Produktuak pk = new Produktuak();
+    	String order = "ASC", stockString = "NOT IN";
+    	if(maxMin) {
+    		order = "DESC";
+    	}
+    	if(minMax) {
+    		order = "ASC";
+    	}
+    	if(stock) {
+    		stockString = "IN";
+    	}
+    	else {
+    		stockString = "NOT IN";
+    	}
     	try {
     		Connection conn = konexioa();
     		PreparedStatement stmt = conn.prepareStatement(sql);
-    		stmt.setInt(1, (kategoria+1));
+    		stmt.setDouble(1, gehienezkoPrezioa);
+    		stmt.setDouble(2, gutxienezkoPrezioa);
+    		//stmt.setString(3, stockString);
+    		stmt.setInt(3, (kategoria+1));
+    		//stmt.setString(4, order);
+    		stmt.setInt(4, lehenengo);
+    		
             ResultSet rs = stmt.executeQuery();
             rs.next();
             while(rs.next()) {
