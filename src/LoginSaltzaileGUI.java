@@ -44,15 +44,17 @@ public class LoginSaltzaileGUI {
 		});
 	}*/
 
-	/**
-	 * Create the application.
+	/**  
+	 * Sortzailea
+	 * @param ez
 	 */
 	public LoginSaltzaileGUI() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
+	/**  
+	 * Diseinu guztia daukan funtzioa 
+	 * @param ez
 	 */
 	private void initialize() {
 		frame = new JFrame();
