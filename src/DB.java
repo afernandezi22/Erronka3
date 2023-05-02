@@ -347,4 +347,27 @@ public class DB {
             System.out.println("ERROREA: " +e);
          }
     }
+    
+    public Eskari getEskari(int ID) {
+    	String sql = "SELECT ID, ID_BEZERO, ID_EGOERA, ID_SALTZAILE, TO_CHAR(ESKAERA_DATA, 'YYYY/MM/DD HH24:MI') AS ESK_DATA, AZKEN_ALDAKETA FROM ESKARI WHERE ID = ?";
+    	Eskari es = null;
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, ID);
+            ResultSet rs = stmt.executeQuery();
+            //rs.next();
+            while(rs.next()) {
+            	es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return es;
+    }
 }

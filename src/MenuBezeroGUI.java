@@ -5,7 +5,6 @@
  * @return 
  * @version 02/05/2023
  */
-
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,23 +20,8 @@ public class MenuBezeroGUI extends JFrame {
 	private JPanel contentPane;
 	private ErosketaGUI eg;
 	private JButton erosiButton, bilatuButton;
-	private EskariAldatuGUI ea;
-	/**
-	 * Launch the application.
-	 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuBezeroGUI frame = new MenuBezeroGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
+	private EskariakBilatuGUI eb;
+
 	/**  
 	 * Sortzailea
 	 * @param ez
@@ -87,7 +71,7 @@ public class MenuBezeroGUI extends JFrame {
 			eg = new ErosketaGUI();
 			this.dispose();
 		} else if(botoi == bilatuButton) {
-			ea = new EskariAldatuGUI();
+			eb = new EskariakBilatuGUI();
 			this.dispose();
 		}
 	}

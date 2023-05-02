@@ -111,8 +111,8 @@ public class LoginSaltzaileGUI {
 		if(db.saltzaileDago(erabiltzaile)) {
 			if(db.saltzaileLogin(erabiltzaile, pass)) {
 				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
+				msg = new MenuSaltzaileGUI(erabiltzaile);
 				frame.dispose();
-				msg = new MenuSaltzaileGUI();
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA", JOptionPane.WARNING_MESSAGE);
