@@ -24,32 +24,10 @@ public class LoginBezeroGUI {
 	private JButton saltzaileButton, erregistratuButton, sartuButton;
 	private BezeroarenErregistroaGUI beGUI;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginBezeroGUI window = new LoginBezeroGUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the application.
-	 */
 	public LoginBezeroGUI() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Vladimir Script", Font.PLAIN, 11));

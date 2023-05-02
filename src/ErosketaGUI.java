@@ -214,7 +214,7 @@ public class ErosketaGUI extends JFrame {
 		produktuCB.removeAllItems();
 		
 		for (int i = 0; i < p.length; i++) {
-			produktuCB.addItem(p[i].getIzena());
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
 		}
 	}
 	
@@ -229,7 +229,7 @@ public class ErosketaGUI extends JFrame {
 		produktuCB.removeAllItems();
 
 		for (int i = 0; i < p.length; i++) {
-			produktuCB.addItem(p[i].getIzena());
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
 		}
 	}
 	
@@ -244,7 +244,7 @@ public class ErosketaGUI extends JFrame {
 		produktuCB.removeAllItems();
 		
 		for (int i = 0; i < p.length; i++) {
-			produktuCB.addItem(p[i].getIzena());
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
 		}
 	}
 	
