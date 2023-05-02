@@ -26,27 +26,7 @@ public class EskariAldatuGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField eskariIdTF;
-
-	/**
-	 * Launch the application.
-	 */
-	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EskariAldatuGUI frame = new EskariAldatuGUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
-
-
-
+	private DB db;
 
 	/**  
 	 * Sortzailea
@@ -107,6 +87,13 @@ public class EskariAldatuGUI extends JFrame {
 		egoerarenCB.setBounds(45, 201, 138, 27);
 		contentPane.add(egoerarenCB);
 		
+		//Datu-baserako konexioa
+		db = new DB();
+		
 		setVisible(true);
+	}
+	
+	public void bilatu() {
+		
 	}
 }

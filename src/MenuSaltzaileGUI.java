@@ -20,25 +20,9 @@ import javax.swing.JButton;
 public class MenuSaltzaileGUI extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuSaltzaileGUI frame = new MenuSaltzaileGUI();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
+	private PrezioAldaketaGUI pag;
+	private EskariAldatuGUI eag;
+	private BezeroakKudeatuGUI bkg;
 	
 	
 	/**  
@@ -72,17 +56,38 @@ public class MenuSaltzaileGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton ekariegoeraButton = new JButton("ESKARI EGOERA ALDATU");
-		ekariegoeraButton.setBounds(10, 77, 155, 31);
-		contentPane.add(ekariegoeraButton);
+		JButton eskariEgoeraButton = new JButton("ESKARI EGOERA ALDATU");
+		eskariEgoeraButton.setBounds(10, 77, 155, 31);
+		contentPane.add(eskariEgoeraButton);
 		
-		JButton bezerokudeatuButton = new JButton("BEZEROAK KUDEATU");
-		bezerokudeatuButton.setBounds(269, 77, 155, 31);
-		contentPane.add(bezerokudeatuButton);
+		JButton bezeroKudeatuButton = new JButton("BEZEROAK KUDEATU");
+		bezeroKudeatuButton.setBounds(269, 77, 155, 31);
+		contentPane.add(bezeroKudeatuButton);
 		
-		JButton produktuprezioButton = new JButton("PRODUKTU PREZIOA");
-		produktuprezioButton.setBounds(142, 119, 155, 31);
-		contentPane.add(produktuprezioButton);
+		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
+		produktuPrezioButton.setBounds(142, 119, 155, 31);
+		contentPane.add(produktuPrezioButton);
 		setVisible(true);
+		
+		//Action listenerrak
+		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu());
+		bezeroKudeatuButton.addActionListener(e -> sortuBezeroakKudeatu());
+		produktuPrezioButton.addActionListener(e -> sortuPrezioAldaketa());
 	}
+	
+	public void sortuEskariAldatu() {
+		this.eag = new EskariAldatuGUI();
+		this.dispose();
+	}
+	
+	public void sortuBezeroakKudeatu() {
+		this.bkg = new BezeroakKudeatuGUI();
+		this.dispose();
+	}
+	
+	public void sortuPrezioAldaketa(){
+		this.pag = new PrezioAldaketaGUI();
+		this.dispose();
+	}
+	
 }
