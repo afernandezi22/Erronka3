@@ -5,9 +5,9 @@ public class Produktu {
 	private double balioa;
 	private double salneurria;
 	private int ID_kategoria;
-	
+
 	public Produktu() {}
-	
+
 	public Produktu(int iD, String izena, String deskribapena, double balioa, double salneurria, int iD_kategoria) {
 		super();
 		ID = iD;
