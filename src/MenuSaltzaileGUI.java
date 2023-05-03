@@ -1,5 +1,12 @@
-import java.awt.EventQueue;
+/**
+ * @clase Saltzailearen menuaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,30 +21,16 @@ public class MenuSaltzaileGUI extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
+	private PrezioAldaketaGUI pag;
+	private EskariAldatuGUI eag;
+	private BezeroakKudeatuGUI bkg;
+	
+	
+	/**  
+	 * Sortzailea
+	 * @param ez
 	 */
-	
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuSaltzaileGUI frame = new MenuSaltzaileGUI();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	*/
-	
-	
-	/**
-	 * Create the frame.
-	 */
-	public MenuSaltzaileGUI() {
+	public MenuSaltzaileGUI(String erabiltzaile) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -64,17 +57,40 @@ public class MenuSaltzaileGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton ekariegoeraButton = new JButton("ESKARI EGOERA ALDATU");
-		ekariegoeraButton.setBounds(10, 77, 155, 31);
-		contentPane.add(ekariegoeraButton);
+		JButton eskariEgoeraButton = new JButton("ESKARI EGOERA ALDATU");
+		eskariEgoeraButton.setBounds(10, 77, 155, 31);
+		contentPane.add(eskariEgoeraButton);
 		
-		JButton bezerokudeatuButton = new JButton("BEZEROAK KUDEATU");
-		bezerokudeatuButton.setBounds(269, 77, 155, 31);
-		contentPane.add(bezerokudeatuButton);
+		JButton bezeroKudeatuButton = new JButton("BEZEROAK KUDEATU");
+		bezeroKudeatuButton.setBounds(269, 77, 155, 31);
+		contentPane.add(bezeroKudeatuButton);
 		
-		JButton produktuprezioButton = new JButton("PRODUKTU PREZIOA");
-		produktuprezioButton.setBounds(142, 119, 155, 31);
-		contentPane.add(produktuprezioButton);
+		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
+		produktuPrezioButton.setBounds(142, 119, 155, 31);
+		contentPane.add(produktuPrezioButton);
+		
+		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		//Action listenerrak
+		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu(erabiltzaile));
+		bezeroKudeatuButton.addActionListener(e -> sortuBezeroakKudeatu());
+		produktuPrezioButton.addActionListener(e -> sortuPrezioAldaketa());
 	}
+	
+	public void sortuEskariAldatu(String erabiltzaile) {
+		this.eag = new EskariAldatuGUI(erabiltzaile);
+		this.dispose();
+	}
+	
+	public void sortuBezeroakKudeatu() {
+		this.bkg = new BezeroakKudeatuGUI();
+		this.dispose();
+	}
+	
+	public void sortuPrezioAldaketa(){
+		this.pag = new PrezioAldaketaGUI();
+		this.dispose();
+	}
+	
 }

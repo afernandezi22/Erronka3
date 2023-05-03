@@ -1,5 +1,12 @@
-import java.awt.EventQueue;
+/**
+ * @clase Prezio aldaketen pantailaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -51,8 +58,9 @@ public class PrezioAldaketaGUI extends JFrame {
 
 
 
-	/**
-	 * Create the frame.
+	/**  
+	 * Sortzailea
+	 * @param ez
 	 */
 	public PrezioAldaketaGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

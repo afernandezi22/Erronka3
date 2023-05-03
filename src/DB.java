@@ -1,3 +1,11 @@
+/**
+ * @clase Datu Basearen konexioa
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,22 +21,32 @@ public class DB {
    private String user;
    private String pass;
    
-   //defektuzko sortzailea 
+   /**  
+	 * defektuzko sortzailea 
+	 * @param ez
+	 */
    public DB (){
       this.url="jdbc:oracle:thin:@localhost:1521/xepdb1";
       this.user="ERRONKA_HIRU";
       this.pass="ERRONKA_HIRU";
    }
    
-   //sortzailea parametroekin
+   /**  
+	 * sortzailea parametroekin
+	 * @param url --> esteka
+	 * @param user --> erabiltzailea
+	 * @param pass --> pasahitza
+	 */
    public DB (String url, String user, String pass){
       this.url=url;
       this.user=user;
       this.pass=pass;
    }
    
-   
-   //konexioa egin, bat generikoa balio izango duena konexio guztietarako
+   /**  
+	 * konexioa egin, bat generikoa balio izango duena konexio guztietarako
+	 * @param ez
+	 */
    public Connection konexioa (){
       Connection conn = null;
       try{
@@ -40,6 +58,10 @@ public class DB {
       return conn;
    }
 
+   /**  
+	 * konexioa produktuekin
+	 * @param ez
+	 */
     public void erakutsiProd(){
         try {
             Connection conn = konexioa();
@@ -57,7 +79,10 @@ public class DB {
          }
     }
     
-    //Bezeroa datu-basean dagoen edo ez konprobatzeko
+    /**  
+	 * Bezeroa datu-basean dagoen edo ez konprobatzeko
+	 * @param String erabiltzailea --> erabiltzailea+
+	 */
     public boolean bezeroDago(String erabiltzailea) {
     	boolean ondo = false;
     	String sql = "SELECT EMAILA FROM BEZERO";
@@ -85,7 +110,11 @@ public class DB {
     	return ondo;
     }
     
-    //LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+    /**  
+	 * LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+	 * @param String erabiltzailea --> erabiltzailea
+	 * @param String pasahitza --> pasahitza
+	 */
     public boolean bezeroLogin(String erabiltzailea, String pasahitza) {  
     	int ondo = 0;
     	try{
@@ -107,21 +136,24 @@ public class DB {
     	}
     }
     
-    //Bezeroa eta pasahitza ondo dauden jakiteko
-    //LOGIN ZAHARRA, DATU-BASEKO FUNTZIOA ERABILITZEN DUENA
-    /*
-    public boolean bezeroLogin(String erabiltzailea, String pasahitza) {
+    
+    /**  
+	 * Datu-basean dagoen preziorik handiena lortzeko
+	 * @param ez
+	 */
+
+  //Saltzailea datu-basean dagoen edo ez konprobatzeko
+    public boolean saltzaileDago(String erabiltzailea) {
     	boolean ondo = false;
-    	String erabil, pasa;
-    	String sql = "SELECT EMAILA, PASAHITZA FROM BEZERO";
+    	String sql = "SELECT ERABILTZAILEA FROM SALTZAILE";
+    	String erabil = "";
     	try {
     		Connection conn = konexioa();
     		Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-	            erabil = rs.getString("EMAILA");
-	            pasa = rs.getString("PASAHITZA");
-	            if(erabil.equals(erabiltzailea) && pasa.equals(pasahitza)) {
+	            erabil = rs.getString("ERABILTZAILEA"); 
+	            if(erabil.equals(erabiltzailea)) {
 	            	ondo = true;
 	            	break;
 	            }
@@ -136,57 +168,206 @@ public class DB {
     	}
     	
     	return ondo;
-    }*/
-   
-   /*
-   public void gehituBezero(int bezeroKodea, String bezeroIzena, String kontaktuIzena, String kontaktuAbizena, String telefonoa, String fax, String helbideLerroa1, String helbideLerroa2, String herria, String eskualdea, String herrialdea, String postakodea, int salerosketaLangileKodea, double kredituMuga){
-      String sql = "INSERT INTO BEZEROAK(BEZEROKODEA, BEZEROIZENA, KONTAKTUIZENA, KONTAKTUABIZENA, TELEFONOA, FAX, HELBIDELERROA1, HELBIDELERROA2, HERRIA, ESKUALDEA, HERRIALDEA, POSTAKODEA, SALEROSKETALANGILEKODEA, KREDITUMUGA) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-      
-      try{
-         Connection conn = konexioa();
-         PreparedStatement statement = conn.prepareStatement(sql);
-         statement.setInt(1, bezeroKodea);
-         statement.setString(2, bezeroIzena);
-         statement.setString(3, kontaktuIzena);         
-         statement.setString(4, kontaktuAbizena);
-         statement.setString(5, telefonoa);
-         statement.setString(6, fax);
-         statement.setString(7, helbideLerroa1);
-         statement.setString(8, helbideLerroa2);
-         statement.setString(9, herria);
-         statement.setString(10, eskualdea);
-         statement.setString(11, herrialdea);
-         statement.setString(12, postakodea);
-         statement.setInt(13, salerosketaLangileKodea);
-         statement.setDouble(14, kredituMuga);
-         statement.executeUpdate();
-         conn.close();
-         statement.close();                                                                                               
-      }catch(SQLException e){
-         System.out.println("ERROREA: " +e);
-      }  
-   }*/
-   
-   /* 
-   public String [] bulegoak(){
-      String[] bb = new String[0];
-      String bulego;
-      try {
-         Connection conn = konexioa();
-         Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery("SELECT * FROM BULEGOAK");
-         while (rs.next()) {
-         bulego = rs.getString("BULEGOKODEA") + " " + rs.getString("HERRIA") + " " + rs.getString("HERRIALDEA") + " " + rs.getString("ESKUALDEA") + " " + rs.getString("POSTAKODEA") + " " + rs.getString("TELEFONOA") + " " + rs.getString("HELBIDELERROA1") + " " + rs.getString("HELBIDELERROA2"); 
-         bb = Arrays.copyOf(bb, bb.length+1);
-         bb[bb.length-1] = bulego;
+    }
+    
+    //SALTZAILEAREN LOGINA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
+    public boolean saltzaileLogin(String erabiltzailea, String pasahitza) {  
+    	int ondo = 0;
+    	try{
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{? = call SALTZAILELOGIN(?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.registerOutParameter(1, Types.INTEGER);
+        	cstmt.setString(2, erabiltzailea);
+        	cstmt.setString(3, pasahitza);
+        	cstmt.executeUpdate();
+        	ondo = cstmt.getInt(1);
+    	}catch(SQLException e) {
+    		System.out.println("Errorea "+ e);
+    		ondo = 0;
+    	}
+    	if(ondo == 0) {
+    		return false;
+    	}else {
+    		return true;
+    	}
+    }
+    
+    //Datu-basean dagoen preziorik handiena lortzeko
+    public double prezioHandiena() {
+    	double handiena = 0;
+    	String sql = "SELECT MAX(SALNEURRIA) AS HANDIENA FROM PRODUKTU";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            handiena = rs.getDouble("HANDIENA");
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		System.out.println("Errorea " + e);
+    	}
+    	
+    	return handiena;
+    }
+    
+    /**  
+	 * Datu-basean dauden produktu guztiak lortzeko. Filtro barik
+	 * @param ez
+	 */
+    public Produktuak getProduktuak() {
+    	Produktuak pk = new Produktuak();
+    	String sql = "SELECT * FROM PRODUKTU";
+    	try {
+    		Connection conn = konexioa();
+    		Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    }
+    
+    /**  
+	 * Datu-basean dauden produktuak, kategoria kontuan hartuta
+	 * @param int kategoria --> kategoria
+	 */
+    public Produktuak getKategoriarekin(int kategoria) {
+    	String sql = "SELECT * FROM PRODUKTU WHERE ID_KATEGORIA = ?";
+    	Produktuak pk = new Produktuak();
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, (kategoria+1));
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    }
+    
+    /**  
+	 * Datu-basean dauden produktuak, filtro guztiekin
+	 * @param double gehienezkoPrezioa --> prezio maximoaren filtroa
+	 * @param double gutxienezkoPrezioa --> prezio minimoaren filtroa
+	 * @param boolean maxMin --> handienetik txikiraren filtroa
+	 * @param boolean minMax --> txikienetik handiraren filtroa  
+	 * @param boolean stock --> stock-aren filtroa
+	 * @param int lehenengo --> lehenengo ... -en filtroa
+	 * @param int kategoria --> kategoriaren filtroa
+	 */
+    public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
+    	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID IN(SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA ASC FETCH FIRST ? ROWS ONLY";
+    	Produktuak pk = new Produktuak();
+    	String order = "ASC", stockString = "NOT IN";
+    	if(maxMin) {
+    		order = "DESC";
+    	}
+    	if(minMax) {
+    		order = "ASC";
+    	}
+    	if(stock) {
+    		stockString = "IN";
+    	}
+    	else {
+    		stockString = "NOT IN";
+    	}
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setDouble(1, gehienezkoPrezioa);
+    		stmt.setDouble(2, gutxienezkoPrezioa);
+    		//stmt.setString(3, stockString);
+    		stmt.setInt(3, (kategoria+1));
+    		//stmt.setString(4, order);
+    		stmt.setInt(4, lehenengo);
+    		
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            while(rs.next()) {
+            	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
+            	pk.addProduktu(p);
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return pk;
+    } 
+    
+    /**  
+	 * Bezeroak erregistratzeko
+	 * @param JTextField izenaTF --> 
+	 * @param JTextField abizenaTF --> 
+	 * @param JTextField helbideaTF --> 
+	 * @param JTextField emailaTF -->  
+	 * @param JTextField tFPasahitza --> 
+	 */
+    public void erregistratuBezeroa(JTextField izenaTF, JTextField abizenaTF, JTextField helbideaTF, JTextField emailaTF, JTextField tFPasahitza) {
+    	String sql = "INSERT INTO BEZEROAK VALUES (?, ?, ? , ?, ?)";
+    	try{
+            Connection conn = konexioa();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, izenaTF.getText());
+            statement.setString(1, abizenaTF.getText()); 
+            statement.setString(1, helbideaTF.getText()); 
+            statement.setString(1, emailaTF.getText()); 
+            statement.setString(1, tFPasahitza.getText()); 
+            statement.executeUpdate();
+            conn.close();
+            statement.close();                                                                                 
+         }catch(SQLException e){
+            System.out.println("ERROREA: " +e);
          }
-         //konexioak itxi
-         conn.close();
-         stmt.close();
-         rs.close();
-      } catch (SQLException e) {
-          System.out.println("ERROREA: " + e);
-      }
-      return bb;   
-   }*/  
+    }
+    
+    public Eskari getEskari(int ID) {
+    	String sql = "SELECT ID, ID_BEZERO, ID_EGOERA, ID_SALTZAILE, TO_CHAR(ESKAERA_DATA, 'YYYY/MM/DD HH24:MI') AS ESK_DATA, AZKEN_ALDAKETA FROM ESKARI WHERE ID = ?";
+    	Eskari es = null;
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, ID);
+            ResultSet rs = stmt.executeQuery();
+            //rs.next();
+            while(rs.next()) {
+            	es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return es;
+    }
 }

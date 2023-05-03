@@ -1,5 +1,12 @@
-import java.awt.EventQueue;
+/**
+ * @clase Erosketaren pantailaren GUI
+ * @author Talde3
+ * @param
+ * @return 
+ * @version 02/05/2023
+ */
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,32 +24,36 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+import javax.swing.event.ChangeListener;
+import javax.swing.ButtonGroup;
+
 
 public class ErosketaGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField ateralehenengoTF;
+	private DB db;
+	private JSlider gehienezkoPSli, gutxinezkoPSli;
+	private JTextPane gehiPPane, gutxPPane;
+	private JRadioButton maxMinB, minMaxB;
+	private ButtonGroup maxMin;
+	private JToggleButton strockbakarrikButton, filtroaktibatuButton;
+	private JComboBox <String> produktuCB;
+	private JButton erosiButton, filtratuButton;
+	private Produktuak pk;
+	private Produktu [] p;
+	private JComboBox filtroCB;
+	
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ErosketaGUI frame = new ErosketaGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the frame.
+	/**  
+	 * Sortzailea
+	 * @param ez
 	 */
 	public ErosketaGUI() {
+		//Datu-baserako konexioa
+		db = new DB();
+		
+		//FRAMEAN DAGOEN GUZTIA
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 552, 440);
 		
@@ -68,11 +79,16 @@ public class ErosketaGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JSlider gehienezkoPSli = new JSlider();
+		//Sliderrak
+		gehienezkoPSli = new JSlider();
+		gehienezkoPSli.setSnapToTicks(true);
+		gehienezkoPSli.setMajorTickSpacing(150);
 		gehienezkoPSli.setBounds(166, 29, 200, 26);
 		contentPane.add(gehienezkoPSli);
 		
-		JSlider gutxinezkoPSli = new JSlider();
+		gutxinezkoPSli = new JSlider();
+		gutxinezkoPSli.setMajorTickSpacing(150);
+		gutxinezkoPSli.setSnapToTicks(true);
 		gutxinezkoPSli.setBounds(166, 66, 200, 26);
 		contentPane.add(gutxinezkoPSli);
 		
@@ -86,59 +102,72 @@ public class ErosketaGUI extends JFrame {
 		lblGutxienezkoPrezioa.setBounds(20, 66, 136, 26);
 		contentPane.add(lblGutxienezkoPrezioa);
 		
-		JTextPane gehiPPane = new JTextPane();
+		//TextPane
+		gehiPPane = new JTextPane();
 		gehiPPane.setEditable(false);
-		gehiPPane.setBounds(376, 29, 28, 26);
+		gehiPPane.setBounds(376, 29, 41, 26);
 		contentPane.add(gehiPPane);
+		gehiPPane.setText(""+(int)db.prezioHandiena()/2);
 		
-		JTextPane gutxPPane = new JTextPane();
+		gutxPPane = new JTextPane();
 		gutxPPane.setEditable(false);
-		gutxPPane.setBounds(376, 66, 28, 26);
+		gutxPPane.setBounds(376, 66, 41, 26);
 		contentPane.add(gutxPPane);
-		
-		JRadioButton maxMinB = new JRadioButton("Garestienetik merkeenera");
+		gutxPPane.setText(""+(int)db.prezioHandiena()/2);
+
+		//RadioButton
+		maxMinB = new JRadioButton("Garestienetik merkeenera");
 		maxMinB.setSelected(true);
 		maxMinB.setFont(new Font("Calibri", Font.PLAIN, 15));
 		maxMinB.setBounds(20, 119, 200, 23);
 		contentPane.add(maxMinB);
 		
-		JRadioButton minMaxB = new JRadioButton("Merkeenatik garestienera");
+		minMaxB = new JRadioButton("Merkeenatik garestienera");
 		minMaxB.setFont(new Font("Calibri", Font.PLAIN, 15));
 		minMaxB.setBounds(20, 145, 185, 23);
 		contentPane.add(minMaxB);
 		
-		JToggleButton strockbakarrikButton = new JToggleButton("STOCK BAKARRIK");
+		//Botoiak batu
+		maxMin = new ButtonGroup();
+		maxMin.add(maxMinB);
+		maxMin.add(minMaxB);
+		
+		//ToggleButton
+		strockbakarrikButton = new JToggleButton("STOCK BAKARRIK");
 		strockbakarrikButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		strockbakarrikButton.setBounds(288, 97, 129, 36);
 		contentPane.add(strockbakarrikButton);
+		
+		filtroaktibatuButton = new JToggleButton("FILTROAK AKTIBATU");
+		filtroaktibatuButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		filtroaktibatuButton.setBounds(288, 188, 144, 36);
+		contentPane.add(filtroaktibatuButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("Atera bakarrik lehenengo...");
 		lblNewLabel_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(244, 142, 185, 26);
 		contentPane.add(lblNewLabel_1);
 		
-		JComboBox filtroCB = new JComboBox();
+		//ComboBoxak
+		filtroCB = new JComboBox();
 		filtroCB.setModel(new DefaultComboBoxModel(new String[] {"CPU", "Video Card", "RAM", "Mother Board", "Storage", "Guztiak"}));
 		filtroCB.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		filtroCB.setBounds(20, 193, 112, 26);
 		contentPane.add(filtroCB);
 		
-		JToggleButton filtroaktibatuButton = new JToggleButton("FILTROAK AKTIBATU");
-		filtroaktibatuButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		filtroaktibatuButton.setBounds(288, 188, 144, 36);
-		contentPane.add(filtroaktibatuButton);
-		
-		JComboBox produktuCB = new JComboBox();
+		produktuCB = new JComboBox();
 		produktuCB.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		produktuCB.setBounds(20, 282, 479, 26);
 		contentPane.add(produktuCB);
+		kargatuProduktuGuztiak();//Produktu guztiak kargatzen ditu. Filtro barik
 		
-		JButton erosiButton = new JButton("EROSI");
+		//JButtonak
+		erosiButton = new JButton("EROSI");
 		erosiButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		erosiButton.setBounds(352, 319, 136, 36);
 		contentPane.add(erosiButton);
 		
-		JButton filtratuButton = new JButton("FILTRATU");
+		filtratuButton = new JButton("FILTRATU");
 		filtratuButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		filtratuButton.setBounds(339, 235, 90, 36);
 		contentPane.add(filtratuButton);
@@ -148,7 +177,92 @@ public class ErosketaGUI extends JFrame {
 		contentPane.add(ateralehenengoTF);
 		ateralehenengoTF.setColumns(10);
 		
+		//******************Funtzionaltasuna******************************
+		
+		//Sliderren parametroak zehaztu
+		gehienezkoPSli.setMaximum((int)db.prezioHandiena());
+		gehienezkoPSli.setValue((int)db.prezioHandiena()/2);
+		gutxinezkoPSli.setMaximum((int)db.prezioHandiena());
+		gutxinezkoPSli.setValue((int)db.prezioHandiena()/2);
+		
+		//Sliderraren aktzion listenerrak
+		gehienezkoPSli.addChangeListener(e -> gehiPPane.setText(Integer.toString(gehienezkoPSli.getValue())));
+		gutxinezkoPSli.addChangeListener(e -> gutxPPane.setText(Integer.toString(gutxinezkoPSli.getValue())));
+		
+		//Filtratu botoiaren listenerra
+		filtratuButton.addActionListener(e -> filtratu());
+		
+
+		
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
+	
+	
+	public static void main(String [] args) {
+		new ErosketaGUI();
+	}
+	
+	/**  
+	 * Produktuak kargatzen duen funtzioa
+	 * @param ez
+	 */
+	public void kargatuProduktuGuztiak() {
+		pk = db.getProduktuak(); //Produktuak objektua lortzeko
+		p = pk.getP(); //Barruan daukan arraya lortzeko
+		
+		produktuCB.removeAllItems();
+		
+		for (int i = 0; i < p.length; i++) {
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
+		}
+	}
+	
+	/**  
+	 * Kategoria kargatzen duen funtzioa
+	 * @param int x --> filtroCB-aren posizioa jakiteko
+	 */
+	public void kargatuKategoria(int x) {
+		pk = db.getKategoriarekin(x);
+		p = pk.getP();
+		
+		produktuCB.removeAllItems();
+
+		for (int i = 0; i < p.length; i++) {
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
+		}
+	}
+	
+	/**  
+	 * Kategoria kargatzen duen funtzioa
+	 * @param ez
+	 */
+	public void kargatuFiltroekin() {
+		pk = db.getFiltroekin(Double.parseDouble(gehiPPane.getText()), Double.parseDouble(gutxPPane.getText()), maxMinB.isSelected(), minMaxB.isSelected(), strockbakarrikButton.isSelected(), Integer.parseInt(ateralehenengoTF.getText()), filtroCB.getSelectedIndex());
+		p = pk.getP();
+		
+		produktuCB.removeAllItems();
+		
+		for (int i = 0; i < p.length; i++) {
+			produktuCB.addItem(p[i].getIzena() + " - " + p[i].getSalneurria() + "€");
+		}
+	}
+	
+	/**  
+	 * filtroCB eguneratzeko filtroekin 
+	 * @param ez
+	 */
+	public void filtratu() {
+		if(filtroaktibatuButton.isSelected()) {
+			kargatuFiltroekin();
+		} else {
+			if(filtroCB.getSelectedIndex() == 5) {
+				kargatuProduktuGuztiak();
+			}else {
+				kargatuKategoria(filtroCB.getSelectedIndex());
+
+			}
+		}
+	}
+	
 }
