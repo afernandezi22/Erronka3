@@ -6,14 +6,11 @@
  * @return
  * @version 02/05/2023
  */
-<<<<<<< HEAD
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-=======
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,10 +32,6 @@ public class MenuBezeroGUI extends JFrame {
 	private ErosketaGUI eg;
 	private JButton erosiButton, bilatuButton;
 	private EskariakBilatuGUI eb;
-<<<<<<< HEAD
-
-	/**  
-=======
 	private LoginBezeroGUI lbg;
 	private JMenuBar menuBar;
 	private JMenu erabiltzaileM;
@@ -47,7 +40,6 @@ public class MenuBezeroGUI extends JFrame {
 
 
 	/**
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	 * Sortzailea
 	 *
 	 * @param ez
@@ -115,10 +107,6 @@ public class MenuBezeroGUI extends JFrame {
 		if (botoi == erosiButton) {
 			eg = new ErosketaGUI(erabiltzaile);
 			this.dispose();
-<<<<<<< HEAD
-		} else if(botoi == bilatuButton) {
-			eb = new EskariakBilatuGUI();
-=======
 		} else if (botoi == bilatuButton) {
 			eb = new EskariakBilatuGUI(erabiltzaile);
 			this.dispose();
@@ -133,7 +121,6 @@ public class MenuBezeroGUI extends JFrame {
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 			this.dispose();
 		}
 	}

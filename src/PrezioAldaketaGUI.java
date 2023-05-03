@@ -37,6 +37,7 @@ public class PrezioAldaketaGUI extends JFrame {
 	private JTextField dtoPortzTF;
 	private LoginSaltzaileGUI lsg;
 	private MenuSaltzaileGUI msg;
+	private DB db;
 
 
 	/**
@@ -45,6 +46,9 @@ public class PrezioAldaketaGUI extends JFrame {
 	 * @param ez
 	 */
 	public PrezioAldaketaGUI(String erabiltzaile) {
+		//Datubaserako konexioa
+		db = new DB();
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 471, 326);
 
@@ -153,10 +157,10 @@ public class PrezioAldaketaGUI extends JFrame {
 		dtoPortzTF.setBounds(288, 178, 44, 20);
 		contentPane.add(dtoPortzTF);
 
-		JLabel lblPreziotikAurrera = new JLabel("_preziotik aurrera");
-		lblPreziotikAurrera.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblPreziotikAurrera.setBounds(167, 17, 111, 20);
-		contentPane.add(lblPreziotikAurrera);
+		JLabel lblStocketikAurrera = new JLabel("... stocketik aurrera");
+		lblStocketikAurrera.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblStocketikAurrera.setBounds(167, 17, 111, 20);
+		contentPane.add(lblStocketikAurrera);
 
 		JLabel lblNewLabel_6 = new JLabel("%");
 		lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 15));
@@ -167,6 +171,9 @@ public class PrezioAldaketaGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
+		
+		//Action listenerrak
+		igoButton.addActionListener(e -> prezioakAldatu());
 
 
 
@@ -177,20 +184,32 @@ public class PrezioAldaketaGUI extends JFrame {
 		setVisible(true);
 	}
 
-	private void loginBueltatu() {
+	public void loginBueltatu() {
 		lsg = new LoginSaltzaileGUI();
 		this.dispose();
 	}
 
-	private void itxi() {
+	public void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
 
-	private void menuraBueltatu(String erabiltzaile) {
+	public void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
+	}
+	
+	public void prezioakAldatu() {
+		if(cpuTF.equals("") || cpuPortzTF.equals("") || vcTF.equals("") || vcPortzTF.equals("") || ramTF.equals("") || ramPortzTF.equals("") || mbTF.equals("") || mbPortzTF.equals("") || stoTF.equals("") || dtoPortzTF.equals("")) {
+    		JOptionPane.showMessageDialog(null, "Ez dituzu eremu guztiak bete", "KONTUZ", JOptionPane.WARNING_MESSAGE);
+		}else {
+			if (JOptionPane.showConfirmDialog(null, "Ziur zaude?", "KONTUZ!",
+					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+				//HEMEN PREZIOAK ALDATU
+				db.prezioakAldatu(Integer.parseInt(cpuTF.getText()), Integer.parseInt(vcTF.getText()), Integer.parseInt(ramTF.getText()), Integer.parseInt(mbTF.getText()), Integer.parseInt(stoTF.getText()), Integer.parseInt(cpuPortzTF.getText()), Integer.parseInt(vcPortzTF.getText()), Integer.parseInt(ramPortzTF.getText()), Integer.parseInt(mbPortzTF.getText()), Integer.parseInt(dtoPortzTF.getText()));
+			}
+		}
 	}
 }

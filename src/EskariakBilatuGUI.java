@@ -22,6 +22,7 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
 
 public class EskariakBilatuGUI extends JFrame {
 
@@ -32,12 +33,14 @@ public class EskariakBilatuGUI extends JFrame {
 	private JMenuItem itxisaioaMI;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel;
-	private JTextPane textPane;
 	private JComboBox comboBox;
 	private LoginBezeroGUI lbg;
 	private MenuBezeroGUI mbg;
 	private JMenuItem mnMenu;
-
+	private Eskariak ee;
+	private Eskari[] es;
+	private DB db;
+	private JTextArea info;
 
 	/**
 	 * Sortzailea
@@ -45,6 +48,9 @@ public class EskariakBilatuGUI extends JFrame {
 	 * @param ez
 	 */
 	public EskariakBilatuGUI(String erabiltzaile) {
+		// Datubaserako konexioa
+		db = new DB();
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -83,21 +89,22 @@ public class EskariakBilatuGUI extends JFrame {
 		btnNewButton.setBounds(273, 38, 111, 31);
 		contentPane.add(btnNewButton);
 
-		textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setBounds(82, 80, 261, 135);
-		contentPane.add(textPane);
-
 		comboBox = new JComboBox();
 		comboBox.setBounds(48, 38, 102, 31);
 		contentPane.add(comboBox);
+
+		info = new JTextArea();
+		info.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		info.setEditable(false);
+		info.setBounds(92, 87, 242, 128);
+		contentPane.add(info);
+		kargatuEskariak(erabiltzaile);
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-
-
+		btnNewButton.addActionListener(e -> kargatuInfo(erabiltzaile, comboBox.getSelectedIndex()) );
 
 		setTitle("Eskariak bilatu");
 		setLocationRelativeTo(null);
@@ -110,8 +117,8 @@ public class EskariakBilatuGUI extends JFrame {
 	}
 
 	private void itxi() {
-		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
-		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
@@ -121,4 +128,36 @@ public class EskariakBilatuGUI extends JFrame {
 		this.dispose();
 	}
 
+	private void kargatuEskariak(String erabiltzaile) {
+		ee = db.bezeroEskariak(erabiltzaile);
+		es = ee.getEskari();
+		for (int i = 0; i < es.length; i++) {
+			comboBox.addItem(es[i].getID());
+		}
+	}
+
+	private void kargatuInfo(String erabiltzaile, int x) {
+		ee = db.bezeroEskariak(erabiltzaile);
+		es = ee.getEskari();
+		
+		info.setText("");
+
+		info.append("Eskari ID: " + es[x].getID() + "\n");
+		switch (es[x].getID_egoera()) {
+		case 1:
+			info.append("Egoera: bidaltzeke \n");
+			break;
+		case 2:
+			info.append("Egoera: ezeztatuta \\n");
+			break;
+		case 3:
+			info.append("Egoera: bidalita \\n");
+			break;
+		default:
+			info.append("Egoera: ezezaguna \\n");
+			break;
+		}
+		info.append("Saltzailearen ID: " + es[x].getID_saltzaile() + "\n");
+		info.append("Eskariaren data: " + es[x].getEskaera_data() + "\n");
+	}
 }

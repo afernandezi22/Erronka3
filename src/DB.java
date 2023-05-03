@@ -349,7 +349,6 @@ public class DB {
             System.out.println("ERROREA: " +e);
          }
     }
-<<<<<<< HEAD
     
     public Eskari getEskari(int ID) {
     	String sql = "SELECT ID, ID_BEZERO, ID_EGOERA, ID_SALTZAILE, TO_CHAR(ESKAERA_DATA, 'YYYY/MM/DD HH24:MI') AS ESK_DATA, AZKEN_ALDAKETA FROM ESKARI WHERE ID = ?";
@@ -368,29 +367,55 @@ public class DB {
             conn.close();
             stmt.close();
             rs.close(); 
-=======
-
-    public Eskari getEskari(int ID) {
-    	String sql = "SELECT ID, ID_BEZERO, ID_EGOERA, ID_SALTZAILE, TO_CHAR(ESKAERA_DATA, 'YYYY/MM/DD HH24:MI') AS ESK_DATA, AZKEN_ALDAKETA FROM ESKARI WHERE ID = ?";
-    	Eskari es = null;
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return es;
+    }
+    
+    public Eskariak bezeroEskariak(String erabiltzaile) {
+    	Eskariak ee = new Eskariak();
+    	String sql = "SELECT ID, ID_BEZERO, ID_EGOERA, ID_SALTZAILE, TO_CHAR(ESKAERA_DATA, 'YYYY/MM/DD HH24:MI') AS ESK_DATA, AZKEN_ALDAKETA FROM ESKARI WHERE ID_BEZERO = (SELECT ID FROM BEZERO WHERE EMAILA = ?)";
     	try {
     		Connection conn = konexioa();
     		PreparedStatement stmt = conn.prepareStatement(sql);
-    		stmt.setInt(1, ID);
+    		stmt.setString(1, erabiltzaile);
             ResultSet rs = stmt.executeQuery();
             //rs.next();
             while(rs.next()) {
-            	es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
+            	Eskari es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
+            	ee.addEskari(es);
             }
 
             //konexioak itxi
             conn.close();
             stmt.close();
-            rs.close();
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
+            rs.close(); 
     	}catch(SQLException e) {
     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     	}
-    	return es;
+    	return ee;
+    }
+    
+    public void prezioakAldatu(int cpuStock, int vcStock, int ramStock, int mbStock, int storageStock, int cpuIgo, int vcIgo, int ramIgo, int mbIgo, int storageIgo) {
+    	int zenbat = 0;
+    	try{
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{call IGOPREZIOAK(?,?,?,?,?,?,?,?,?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.setInt(1, cpuStock);
+        	cstmt.setInt(2, vcStock);
+        	cstmt.setInt(3, ramStock);
+        	cstmt.setInt(4, mbStock);
+        	cstmt.setInt(5, storageStock);
+        	cstmt.setInt(6, cpuIgo);
+        	cstmt.setInt(7, vcIgo);
+        	cstmt.setInt(8, ramIgo);
+        	cstmt.setInt(9, mbIgo);
+        	cstmt.setInt(10, storageIgo);
+        	cstmt.executeUpdate();
+        	JOptionPane.showMessageDialog(null, zenbat + "lerro eguneratu dira guztira", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
     }
 }

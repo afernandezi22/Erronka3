@@ -35,11 +35,7 @@ public class MenuSaltzaileGUI extends JFrame {
 	 * @param ez
 	 */
 	public MenuSaltzaileGUI(String erabiltzaile) {
-<<<<<<< HEAD
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-=======
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 		setBounds(100, 100, 450, 300);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -76,9 +72,6 @@ public class MenuSaltzaileGUI extends JFrame {
 		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
 		produktuPrezioButton.setBounds(10, 77, 155, 31);
 		contentPane.add(produktuPrezioButton);
-<<<<<<< HEAD
-		
-=======
 
 		// Action listenerrak
 		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu(erabiltzaile));
@@ -90,23 +83,10 @@ public class MenuSaltzaileGUI extends JFrame {
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 
 		setTitle("Bezeroak kudeatu");
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 		setLocationRelativeTo(null);
 		setVisible(true);
-<<<<<<< HEAD
-		
-		//Action listenerrak
-		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu(erabiltzaile));
-		bezeroKudeatuButton.addActionListener(e -> sortuBezeroakKudeatu());
-		produktuPrezioButton.addActionListener(e -> sortuPrezioAldaketa());
-=======
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> branch 'secondary' of https://github.com/afernandezi22/Erronka3.git
 	public void sortuEskariAldatu(String erabiltzaile) {
 		this.eag = new EskariAldatuGUI(erabiltzaile);
 		this.dispose();
