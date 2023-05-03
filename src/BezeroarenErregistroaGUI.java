@@ -3,15 +3,23 @@
  * @clase Bezeroak erregistroaren pantailaren GUI
  * @author Talde3
  * @param
- * @return 
+ * @return
  * @version 02/05/2023
  */
 
-import java.awt.EventQueue;
-
-import javax.swing.border.EmptyBorder;
-import javax.swing.*;
 import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 public class BezeroarenErregistroaGUI extends JFrame {
 
@@ -27,13 +35,13 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public BezeroarenErregistroaGUI() {
 		db = new DB();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -121,7 +129,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		lblPasahitza_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblPasahitza_1.setBounds(182, 215, 61, 19);
 		contentPane.add(lblPasahitza_1);
-		
+
 		//Action listenerrak
 		garbituButton.addActionListener(e -> garbitu());
 		erregistratuButton.addActionListener(e -> erregistratu());
@@ -138,7 +146,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Garbitzeko botoia sakatzean testu guztia kentzen da
-	 * 
+	 *
 	 * @param ez
 	 */
 	public void garbitu() {
@@ -153,7 +161,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Erregistroa egitean pasahitza bi alditan jartzean berdina dela zihurtatzeko
-	 * 
+	 *
 	 * @param ez
 	 */
 	public void erregistratu() {
@@ -167,7 +175,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
-	
+
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();

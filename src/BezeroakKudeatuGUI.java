@@ -3,24 +3,25 @@
  * @clase Bezeroak kudeazteko pantailaren GUI
  * @author Talde3
  * @param
- * @return 
+ * @return
  * @version 02/05/2023
  */
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JMenuBar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 public class BezeroakKudeatuGUI extends JFrame {
 
@@ -39,11 +40,11 @@ public class BezeroakKudeatuGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public BezeroakKudeatuGUI(String erabiltzaile) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 551, 400);
 
 		menuBar = new JMenuBar();
@@ -57,7 +58,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 		aldatuerabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
 		aldatuerabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		erabiltzaileM.add(aldatuerabiltzaileMI);
-		
+
 		JMenuItem mnMenu = new JMenuItem("Menura bueltatu");
 		erabiltzaileM.add(mnMenu);
 		mnMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -159,7 +160,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
 
-		
+
 		setTitle("Bezeroak kudeatu");
 		setLocationRelativeTo(null);
 		setVisible(true);
@@ -176,7 +177,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 			this.dispose();
 		}
 	}
-	
+
 	private void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();

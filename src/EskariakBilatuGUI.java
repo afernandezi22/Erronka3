@@ -3,27 +3,25 @@
  * @clase Eskariak bilatzen duen pantailaren GUI
  * @author Talde3
  * @param
- * @return 
+ * @return
  * @version 02/05/2023
  */
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
+
 import javax.swing.JButton;
-import javax.swing.JTextPane;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JEditorPane;
-import javax.swing.JMenuBar;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 public class EskariakBilatuGUI extends JFrame {
 
@@ -43,11 +41,11 @@ public class EskariakBilatuGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public EskariakBilatuGUI(String erabiltzaile) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
 		menuBar = new JMenuBar();
@@ -61,7 +59,7 @@ public class EskariakBilatuGUI extends JFrame {
 		aldatuerabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		aldatuerabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
 		erabiltzaileM.add(aldatuerabiltzaileMI);
-		
+
 		mnMenu = new JMenuItem("Menura bueltatu");
 		erabiltzaileM.add(mnMenu);
 		mnMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -100,12 +98,12 @@ public class EskariakBilatuGUI extends JFrame {
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
 
 
-		
+
 		setTitle("Eskariak bilatu");
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
+
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
@@ -117,7 +115,7 @@ public class EskariakBilatuGUI extends JFrame {
 			this.dispose();
 		}
 	}
-	
+
 	private void menuraBueltatu(String erabiltzaile) {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();

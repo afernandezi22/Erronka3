@@ -3,23 +3,23 @@
  * @clase Bezeroaren menuaren GUI
  * @author Talde3
  * @param
- * @return 
+ * @return
  * @version 02/05/2023
  */
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
 
 public class MenuBezeroGUI extends JFrame {
 
@@ -36,22 +36,22 @@ public class MenuBezeroGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public MenuBezeroGUI(String erabiltzaile) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 333, 441);
-		
+
 		menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		erabiltzaileM = new JMenu("Erabiltzaile");
 		menuBar.add(erabiltzaileM);
-		
+
 		aldatuerabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
 		erabiltzaileM.add(aldatuerabiltzaileMI);
-		
+
 		itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
 		erabiltzaileM.add(itxisaioaMI);
 		contentPane = new JPanel();
@@ -68,6 +68,7 @@ public class MenuBezeroGUI extends JFrame {
 		erosiButton = new JButton("Produktuak erosi");
 		erosiButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		erosiButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
@@ -94,7 +95,7 @@ public class MenuBezeroGUI extends JFrame {
 
 	/**
 	 * Beste pantaila batera mugitzeko
-	 * 
+	 *
 	 * @param JButton botoi --> botoiak sakatzean bere pantailara mugitzeko
 	 */
 	public void zabaldu(JButton botoi, String erabiltzaile) {

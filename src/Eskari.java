@@ -6,7 +6,7 @@ public class Eskari {
 	private int ID_saltzaile;
 	private String eskaera_data;
 	private int azken_aldaketa;
-	
+
 	public Eskari() {}
 
 	public Eskari(int ID, int ID_bezero, int ID_egoera, int iD_saltzaile, String eskaera_data, int azken_aldaketa) {
