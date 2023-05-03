@@ -1,3 +1,4 @@
+
 /**
  * @clase Bezeroaren menuaren GUI
  * @author Talde3
@@ -10,10 +11,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class MenuBezeroGUI extends JFrame {
 
@@ -21,25 +27,44 @@ public class MenuBezeroGUI extends JFrame {
 	private ErosketaGUI eg;
 	private JButton erosiButton, bilatuButton;
 	private EskariakBilatuGUI eb;
+	private LoginBezeroGUI lbg;
+	private JMenuBar menuBar;
+	private JMenu erabiltzaileM;
+	private JMenuItem aldatuerabiltzaileMI;
+	private JMenuItem itxisaioaMI;
 
-	/**  
+
+	/**
 	 * Sortzailea
+	 * 
 	 * @param ez
 	 */
-	public MenuBezeroGUI() {
+	public MenuBezeroGUI(String erabiltzaile) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 333, 441);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		erabiltzaileM = new JMenu("Erabiltzaile");
+		menuBar.add(erabiltzaileM);
+		
+		aldatuerabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
+		erabiltzaileM.add(aldatuerabiltzaileMI);
+		
+		itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
+		erabiltzaileM.add(itxisaioaMI);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Zer egin nahi duzu?");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(72, 96, 186, 41);
 		contentPane.add(lblNewLabel);
-		
+
 		erosiButton = new JButton("Produktuak erosi");
 		erosiButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		erosiButton.addActionListener(new ActionListener() {
@@ -48,30 +73,48 @@ public class MenuBezeroGUI extends JFrame {
 		});
 		erosiButton.setBounds(90, 165, 144, 47);
 		contentPane.add(erosiButton);
-		
+
 		bilatuButton = new JButton("Eskariak bilatu");
 		bilatuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		bilatuButton.setBounds(90, 223, 144, 47);
 		contentPane.add(bilatuButton);
-		
-		//Listenerrak
-		erosiButton.addActionListener(e -> zabaldu(erosiButton));
-		bilatuButton.addActionListener(e-> zabaldu(bilatuButton));
-		
+
+		// Listenerrak
+		erosiButton.addActionListener(e -> zabaldu(erosiButton, erabiltzaile));
+		bilatuButton.addActionListener(e -> zabaldu(bilatuButton, erabiltzaile));
+
+		// Menua
+		itxisaioaMI.addActionListener(e -> itxi());
+		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
+
+		setTitle("Menu - Bezeroak");
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	/**  
+
+	/**
 	 * Beste pantaila batera mugitzeko
+	 * 
 	 * @param JButton botoi --> botoiak sakatzean bere pantailara mugitzeko
 	 */
-	public void zabaldu(JButton botoi) {
-		if(botoi == erosiButton) {
-			eg = new ErosketaGUI();
+	public void zabaldu(JButton botoi, String erabiltzaile) {
+		if (botoi == erosiButton) {
+			eg = new ErosketaGUI(erabiltzaile);
 			this.dispose();
-		} else if(botoi == bilatuButton) {
-			eb = new EskariakBilatuGUI();
+		} else if (botoi == bilatuButton) {
+			eb = new EskariakBilatuGUI(erabiltzaile);
+			this.dispose();
+		}
+	}
+
+	private void loginBueltatu() {
+		lbg = new LoginBezeroGUI();
+		this.dispose();
+	}
+
+	private void itxi() {
+		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}

@@ -33,6 +33,9 @@ public class EskariAldatuGUI extends JFrame {
 	private DB db;
 	private Eskari es;
 	private JTextArea eskariJTA;
+	private LoginSaltzaileGUI lsg;
+	private MenuSaltzaileGUI msg;
+
 
 	/**  
 	 * Sortzailea
@@ -49,10 +52,14 @@ public class EskariAldatuGUI extends JFrame {
 		erabiltzaileM.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		menuBar.add(erabiltzaileM);
 		
-		JMenuItem aldatueabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
-		aldatueabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		aldatueabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
-		erabiltzaileM.add(aldatueabiltzaileMI);
+		JMenuItem aldatuerabiltzaileMI = new JMenuItem("Aldatu erabiltzaile");
+		aldatuerabiltzaileMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		aldatuerabiltzaileMI.setHorizontalAlignment(SwingConstants.LEFT);
+		erabiltzaileM.add(aldatuerabiltzaileMI);
+		
+		JMenuItem mnMenu = new JMenuItem("Menura bueltatu");
+		mnMenu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		erabiltzaileM.add(mnMenu);
 		
 		JMenuItem itxisaioaMI = new JMenuItem("Itxi saioa eta itxi programa");
 		itxisaioaMI.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -101,6 +108,14 @@ public class EskariAldatuGUI extends JFrame {
 		//Action listenerra
 		bilatuButton.addActionListener(e -> bilatu());
 		
+		// Menua
+		itxisaioaMI.addActionListener(e -> itxi());
+		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
+		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
+
+
+
+		setTitle("Eskariak kudeatu");
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -127,4 +142,22 @@ public class EskariAldatuGUI extends JFrame {
 			JOptionPane.showMessageDialog(null, "Ez dago eskaririk zenbaki horrekin: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	private void loginBueltatu() {
+		lsg = new LoginSaltzaileGUI();
+		this.dispose();
+	}
+
+	private void itxi() {
+		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			this.dispose();
+		}
+	}
+	
+	private void menuraBueltatu(String erabiltzaile) {
+		this.msg = new MenuSaltzaileGUI(erabiltzaile);
+		this.dispose();
+	}
+
 }

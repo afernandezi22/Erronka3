@@ -103,6 +103,7 @@ public class LoginSaltzaileGUI {
 		
 		//Action listenerrak
 		sartuButton.addActionListener(e -> login(erabiltzaileTF.getText(), pasahitzaTF.getPassword()));
+		bezeroButton.addActionListener(e -> bezeroZabaldu());
 	}
 	
 	private void login(String erabiltzaile, char[] pasahitza) {

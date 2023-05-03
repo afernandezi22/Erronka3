@@ -23,6 +23,7 @@ public class LoginBezeroGUI {
 	private MenuBezeroGUI mbg;
 	private JButton saltzaileButton, erregistratuButton, sartuButton;
 	private BezeroarenErregistroaGUI beGUI;
+	private LoginSaltzaileGUI slg;
 
 	public LoginBezeroGUI() {
 		initialize();
@@ -95,6 +96,7 @@ public class LoginBezeroGUI {
 		//listenerrak
 		sartuButton.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
 		erregistratuButton.addActionListener(e->zabaldu(erregistratuButton));
+		saltzaileButton.addActionListener(e->zabaldu(saltzaileButton));
 	}
 	
 	private void login(String erabiltzaile, char[] pasahitza) {
@@ -104,7 +106,7 @@ public class LoginBezeroGUI {
 			if(db.bezeroLogin(erabiltzaile, pass)) {
 				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
 				frame.dispose();
-				mbg = new MenuBezeroGUI();
+				mbg = new MenuBezeroGUI(erabiltzaile);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA", JOptionPane.WARNING_MESSAGE);
@@ -117,7 +119,15 @@ public class LoginBezeroGUI {
 	public void zabaldu(JButton botoi) {
 		if(botoi == erregistratuButton) {
 			beGUI = new BezeroarenErregistroaGUI();
-			frame.setVisible(false);
+			frame.dispose();
 		}
+		if(botoi == saltzaileButton) {
+			slg = new LoginSaltzaileGUI();
+			frame.dispose();
+		}
+	}
+	
+	public static void main(String[]args) {
+		new LoginBezeroGUI();
 	}
 }
