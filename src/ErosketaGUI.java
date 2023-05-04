@@ -51,7 +51,6 @@ public class ErosketaGUI extends JFrame {
 	private MenuBezeroGUI mbg;
 	private JMenuItem mnMenu;
 
-
 	/**
 	 * Sortzailea
 	 *
@@ -179,7 +178,7 @@ public class ErosketaGUI extends JFrame {
 		produktuCB.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		produktuCB.setBounds(20, 282, 479, 26);
 		contentPane.add(produktuCB);
-		kargatuProduktuGuztiak();// Produktu guztiak kargatzen ditu. Filtro barik
+		//kargatuProduktuGuztiak();// Produktu guztiak kargatzen ditu. Filtro barik
 
 		// JButtonak
 		erosiButton = new JButton("EROSI");
@@ -212,15 +211,15 @@ public class ErosketaGUI extends JFrame {
 
 		// Filtratu botoiaren listenerra
 		filtratuButton.addActionListener(e -> filtratu());
-		
-		//Action listenerrak
+
+		// Action listenerrak
 		filtroaktibatuButton.addActionListener(e -> aktibatuFiltroak());
+		erosiButton.addActionListener(e -> erosi(erabiltzaile));
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-
 
 		setTitle("Produktuak erosi");
 		setLocationRelativeTo(null);
@@ -311,9 +310,9 @@ public class ErosketaGUI extends JFrame {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();
 	}
-	
+
 	private void aktibatuFiltroak() {
-		if(filtroaktibatuButton.isSelected()) {
+		if (filtroaktibatuButton.isSelected()) {
 			gehienezkoPSli.setEnabled(true);
 			gutxinezkoPSli.setEnabled(true);
 			gehiPPane.setEnabled(true);
@@ -322,7 +321,7 @@ public class ErosketaGUI extends JFrame {
 			maxMinB.setEnabled(true);
 			minMaxB.setEnabled(true);
 			ateralehenengoTF.setEnabled(true);
-		}else {
+		} else {
 			gehienezkoPSli.setEnabled(false);
 			gutxinezkoPSli.setEnabled(false);
 			gehiPPane.setEnabled(false);
@@ -331,6 +330,27 @@ public class ErosketaGUI extends JFrame {
 			maxMinB.setEnabled(false);
 			minMaxB.setEnabled(false);
 			ateralehenengoTF.setEnabled(false);
+		}
+	}
+
+	private void erosi(String erabiltzailea) {
+		//Lortu comboboxean dauden produktuak
+		if (!filtroaktibatuButton.isSelected()) {
+			if (filtroCB.getSelectedIndex() == 5) {
+				pk = db.getProduktuak();
+			} else {
+				pk = db.getKategoriarekin(filtroCB.getSelectedIndex());
+			}
+		} else {
+			pk = db.getFiltroekin(Double.parseDouble(gehiPPane.getText()), Double.parseDouble(gutxPPane.getText()),
+					maxMinB.isSelected(), minMaxB.isSelected(), strockbakarrikButton.isSelected(),
+					Integer.parseInt(ateralehenengoTF.getText()), filtroCB.getSelectedIndex());
+		}
+		//Lortu erabiltzen ari den arraya
+		p = pk.getP();
+		if (JOptionPane.showConfirmDialog(null, "Erosketa egin nahi duzu?", "ADI!",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			db.erosi(p[produktuCB.getSelectedIndex()].getID(), erabiltzailea);
 		}
 	}
 }

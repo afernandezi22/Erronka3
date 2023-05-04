@@ -159,7 +159,7 @@ public class PrezioAldaketaGUI extends JFrame {
 
 		JLabel lblStocketikAurrera = new JLabel("... stocketik aurrera");
 		lblStocketikAurrera.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblStocketikAurrera.setBounds(167, 17, 111, 20);
+		lblStocketikAurrera.setBounds(159, 17, 119, 20);
 		contentPane.add(lblStocketikAurrera);
 
 		JLabel lblNewLabel_6 = new JLabel("%");
@@ -202,13 +202,18 @@ public class PrezioAldaketaGUI extends JFrame {
 	}
 	
 	public void prezioakAldatu() {
-		if(cpuTF.equals("") || cpuPortzTF.equals("") || vcTF.equals("") || vcPortzTF.equals("") || ramTF.equals("") || ramPortzTF.equals("") || mbTF.equals("") || mbPortzTF.equals("") || stoTF.equals("") || dtoPortzTF.equals("")) {
+		String cpu = cpuTF.getText(), cpuP = cpuPortzTF.getText(), vc = vcTF.getText(), vcP = vcPortzTF.getText(), ram = ramTF.getText(), ramP = ramPortzTF.getText(), mb = mbTF.getText(), mbP = mbPortzTF.getText(), sto = stoTF.getText(), stoP = dtoPortzTF.getText();
+		if(cpu.isEmpty()||cpuP.isEmpty()||vc.isEmpty()||vcP.isEmpty()||ram.isEmpty()||ramP.isEmpty()||mb.isEmpty()||mbP.isEmpty()||sto.isEmpty()||stoP.isEmpty()) {
     		JOptionPane.showMessageDialog(null, "Ez dituzu eremu guztiak bete", "KONTUZ", JOptionPane.WARNING_MESSAGE);
 		}else {
 			if (JOptionPane.showConfirmDialog(null, "Ziur zaude?", "KONTUZ!",
 					JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				//HEMEN PREZIOAK ALDATU
-				db.prezioakAldatu(Integer.parseInt(cpuTF.getText()), Integer.parseInt(vcTF.getText()), Integer.parseInt(ramTF.getText()), Integer.parseInt(mbTF.getText()), Integer.parseInt(stoTF.getText()), Integer.parseInt(cpuPortzTF.getText()), Integer.parseInt(vcPortzTF.getText()), Integer.parseInt(ramPortzTF.getText()), Integer.parseInt(mbPortzTF.getText()), Integer.parseInt(dtoPortzTF.getText()));
+				try{
+					db.prezioakAldatu(Integer.parseInt(cpuTF.getText()), Integer.parseInt(vcTF.getText()), Integer.parseInt(ramTF.getText()), Integer.parseInt(mbTF.getText()), Integer.parseInt(stoTF.getText()), Integer.parseInt(cpuPortzTF.getText()), Integer.parseInt(vcPortzTF.getText()), Integer.parseInt(ramPortzTF.getText()), Integer.parseInt(mbPortzTF.getText()), Integer.parseInt(dtoPortzTF.getText()));
+				}catch(Exception e) {
+		    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

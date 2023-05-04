@@ -37,6 +37,9 @@ public class BezeroakKudeatuGUI extends JFrame {
 	private JMenuItem aldatuerabiltzaileMI, itxisaioaMI;
 	private LoginSaltzaileGUI lsg;
 	private MenuSaltzaileGUI msg;
+	private Bezero b;
+	private DB db;
+	private JTextField VIPTF;
 
 	/**
 	 * Sortzailea
@@ -44,6 +47,9 @@ public class BezeroakKudeatuGUI extends JFrame {
 	 * @param ez
 	 */
 	public BezeroakKudeatuGUI(String erabiltzaile) {
+		//Datubaserako konexioa
+		db = new DB();
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 551, 400);
 
@@ -75,11 +81,11 @@ public class BezeroakKudeatuGUI extends JFrame {
 
 		JButton garbituButton = new JButton("GARBITU");
 		garbituButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		garbituButton.setBounds(352, 128, 115, 29);
+		garbituButton.setBounds(345, 101, 115, 29);
 		contentPane.add(garbituButton);
 
 		JButton eguneratuButton = new JButton("EGUNERATU");
-		eguneratuButton.setBounds(352, 168, 115, 29);
+		eguneratuButton.setBounds(345, 141, 115, 29);
 		contentPane.add(eguneratuButton);
 
 		idbilatuTF = new JTextField();
@@ -88,33 +94,34 @@ public class BezeroakKudeatuGUI extends JFrame {
 		idbilatuTF.setColumns(10);
 
 		bezeroIdTF = new JTextField();
+		bezeroIdTF.setEditable(false);
 		bezeroIdTF.setColumns(10);
-		bezeroIdTF.setBounds(116, 128, 146, 29);
+		bezeroIdTF.setBounds(109, 101, 146, 29);
 		contentPane.add(bezeroIdTF);
 
 		izenaTF = new JTextField();
 		izenaTF.setColumns(10);
-		izenaTF.setBounds(116, 168, 146, 29);
+		izenaTF.setBounds(109, 141, 146, 29);
 		contentPane.add(izenaTF);
 
 		abizenaTF = new JTextField();
 		abizenaTF.setColumns(10);
-		abizenaTF.setBounds(116, 208, 146, 29);
+		abizenaTF.setBounds(109, 181, 146, 29);
 		contentPane.add(abizenaTF);
 
 		helbideaTF = new JTextField();
 		helbideaTF.setColumns(10);
-		helbideaTF.setBounds(116, 248, 215, 29);
+		helbideaTF.setBounds(109, 221, 215, 29);
 		contentPane.add(helbideaTF);
 
 		emailTF = new JTextField();
 		emailTF.setColumns(10);
-		emailTF.setBounds(116, 288, 215, 29);
+		emailTF.setBounds(109, 261, 215, 29);
 		contentPane.add(emailTF);
 
 		JLabel lblAbizena = new JLabel("Bezero ID-a:");
 		lblAbizena.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblAbizena.setBounds(27, 135, 79, 19);
+		lblAbizena.setBounds(20, 108, 79, 19);
 		contentPane.add(lblAbizena);
 
 		JLabel lblIzena = new JLabel("ID:");
@@ -124,22 +131,22 @@ public class BezeroakKudeatuGUI extends JFrame {
 
 		JLabel lblHelbidea = new JLabel("Izena:");
 		lblHelbidea.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblHelbidea.setBounds(27, 175, 61, 19);
+		lblHelbidea.setBounds(20, 148, 61, 19);
 		contentPane.add(lblHelbidea);
 
 		JLabel lblEmaila = new JLabel("Abizena:");
 		lblEmaila.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblEmaila.setBounds(27, 215, 61, 19);
+		lblEmaila.setBounds(20, 188, 61, 19);
 		contentPane.add(lblEmaila);
 
 		JLabel lblPasahitza = new JLabel("Helbidea:");
 		lblPasahitza.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblPasahitza.setBounds(27, 255, 61, 19);
+		lblPasahitza.setBounds(20, 228, 61, 19);
 		contentPane.add(lblPasahitza);
 
 		JLabel lblPasahitza_1 = new JLabel("Emaila:");
 		lblPasahitza_1.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblPasahitza_1.setBounds(27, 295, 61, 19);
+		lblPasahitza_1.setBounds(20, 268, 61, 19);
 		contentPane.add(lblPasahitza_1);
 
 		JSeparator separator = new JSeparator();
@@ -152,13 +159,29 @@ public class BezeroakKudeatuGUI extends JFrame {
 		contentPane.add(bilatuButton);
 
 		JButton ezabatuButton = new JButton("EZABATU");
-		ezabatuButton.setBounds(352, 208, 115, 29);
+		ezabatuButton.setBounds(345, 181, 115, 29);
 		contentPane.add(ezabatuButton);
+		
+		JLabel lblPasahitza_1_1 = new JLabel("VIP:");
+		lblPasahitza_1_1.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblPasahitza_1_1.setBounds(20, 308, 61, 19);
+		contentPane.add(lblPasahitza_1_1);
+		
+		VIPTF = new JTextField();
+		VIPTF.setColumns(10);
+		VIPTF.setBounds(109, 301, 73, 29);
+		contentPane.add(VIPTF);
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
+		
+		//Action listenerrak
+		bilatuButton.addActionListener(e -> bilatu());
+		garbituButton.addActionListener(e -> garbitu());
+		eguneratuButton.addActionListener(e -> eguneratu());
+		ezabatuButton.addActionListener(e -> ezabatu());
 
 
 		setTitle("Bezeroak kudeatu");
@@ -181,5 +204,50 @@ public class BezeroakKudeatuGUI extends JFrame {
 	private void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
+	}
+	
+	private void bilatu() {
+		try{
+			b = db.getBezero(Integer.parseInt(idbilatuTF.getText()));
+			bezeroIdTF.setText(""+b.getID());
+			izenaTF.setText(b.getIzena());
+			abizenaTF.setText(b.getAbizena());
+			helbideaTF.setText(b.getHelbidea());
+			emailTF.setText(b.getEmaila());
+			VIPTF.setText(""+b.getVIP());
+		}catch(Exception e) {
+     		JOptionPane.showMessageDialog(null, "Errore bat egon da. Idatzi duzun ID-a ez da zuzena", "ERROREA", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	private void garbitu() {
+		bezeroIdTF.setText("");
+		izenaTF.setText("");
+		abizenaTF.setText("");
+		helbideaTF.setText("");
+		emailTF.setText("");
+		VIPTF.setText("");
+	}
+	
+	private void ezabatu() {
+		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if(!bezeroIdTF.getText().equals(idbilatuTF.getText())) {
+	     		JOptionPane.showMessageDialog(null, "Bilatu bezeroa ezer egin baino lehen", "ERROREA", JOptionPane.ERROR_MESSAGE);
+			}else {
+				db.ezabatuBezero(Integer.parseInt(idbilatuTF.getText()));
+			}
+		}
+	}
+	
+	private void eguneratu() {
+		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if(!bezeroIdTF.getText().equals(idbilatuTF.getText())) {
+	     		JOptionPane.showMessageDialog(null, "Bilatu bezeroa ezer egin baino lehen", "ERROREA", JOptionPane.ERROR_MESSAGE);
+			}else {
+				db.eguneratuBezero(izenaTF.getText(), abizenaTF.getText(), helbideaTF.getText(), emailTF.getText(), Integer.parseInt(VIPTF.getText()), Integer.parseInt(idbilatuTF.getText()));
+			}
+		}
 	}
 }

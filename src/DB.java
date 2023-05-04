@@ -55,7 +55,7 @@ public class DB {
          conn = DriverManager.getConnection(url, user, pass);
          return conn;
       } catch (Exception e){
-         System.out.println("Konexio errorea: "+e);
+  		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
       }
       return conn;
    }
@@ -77,7 +77,7 @@ public class DB {
             stmt.close();
             rs.close();
          } catch (SQLException e) {
-             System.out.println("ERROREA: " + e);
+     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
          }
     }
 
@@ -105,7 +105,7 @@ public class DB {
             stmt.close();
             rs.close();
     	}catch(SQLException e) {
-    		System.out.println("Errorea " + e);
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     		ondo = false;
     	}
 
@@ -128,7 +128,7 @@ public class DB {
         	cstmt.executeUpdate();
         	ondo = cstmt.getInt(1);
     	}catch(SQLException e) {
-    		System.out.println("Errorea "+ e);
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     		ondo = 0;
     	}
     	if(ondo == 0) {
@@ -165,7 +165,7 @@ public class DB {
             stmt.close();
             rs.close();
     	}catch(SQLException e) {
-    		System.out.println("Errorea " + e);
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     		ondo = false;
     	}
 
@@ -184,7 +184,7 @@ public class DB {
         	cstmt.executeUpdate();
         	ondo = cstmt.getInt(1);
     	}catch(SQLException e) {
-    		System.out.println("Errorea "+ e);
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     		ondo = 0;
     	}
     	if(ondo == 0) {
@@ -210,7 +210,7 @@ public class DB {
             stmt.close();
             rs.close();
     	}catch(SQLException e) {
-    		System.out.println("Errorea " + e);
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     	}
 
     	return handiena;
@@ -227,7 +227,6 @@ public class DB {
     		Connection conn = konexioa();
     		Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            rs.next();
             while(rs.next()) {
             	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
             	pk.addProduktu(p);
@@ -255,7 +254,6 @@ public class DB {
     		PreparedStatement stmt = conn.prepareStatement(sql);
     		stmt.setInt(1, (kategoria+1));
             ResultSet rs = stmt.executeQuery();
-            rs.next();
             while(rs.next()) {
             	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
             	pk.addProduktu(p);
@@ -283,6 +281,7 @@ public class DB {
 	 */
     public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
     	String order = "ASC", stockString = "NOT IN";
+    	String sql = null;
     	if(maxMin) {
     		order = "DESC";
     	}
@@ -295,18 +294,25 @@ public class DB {
     	else {
     		stockString = "NOT IN";
     	}
-    	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID " + stockString + " (SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA " + order + " FETCH FIRST ? ROWS ONLY";
+    	if(kategoria != 5) {
+        	sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID " + stockString + " (SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA " + order + " FETCH FIRST ? ROWS ONLY";
+    	}else {
+        	sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID " + stockString + " (SELECT ID_PRODUKTU FROM INBENTARIO) ORDER BY SALNEURRIA " + order + " FETCH FIRST ? ROWS ONLY";
+    	}
     	Produktuak pk = new Produktuak();
     	try {
     		Connection conn = konexioa();
     		PreparedStatement stmt = conn.prepareStatement(sql);
     		stmt.setDouble(1, gehienezkoPrezioa);
     		stmt.setDouble(2, gutxienezkoPrezioa);
-    		stmt.setInt(3, (kategoria+1));
-    		stmt.setInt(4, lehenengo);
+    		if(kategoria!=5) {
+    			stmt.setInt(3, (kategoria+1));
+        		stmt.setInt(4, lehenengo);
+    		}else {
+    			stmt.setInt(3, lehenengo);
+    		}
 
             ResultSet rs = stmt.executeQuery();
-            rs.next();
             while(rs.next()) {
             	Produktu p = new Produktu(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("DESKRIBAPENA"), rs.getDouble("BALIOA"), rs.getDouble("SALNEURRIA"), rs.getInt("ID_KATEGORIA"));
             	pk.addProduktu(p);
@@ -355,7 +361,6 @@ public class DB {
     		PreparedStatement stmt = conn.prepareStatement(sql);
     		stmt.setInt(1, ID);
             ResultSet rs = stmt.executeQuery();
-            //rs.next();
             while(rs.next()) {
             	es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
             }
@@ -378,7 +383,6 @@ public class DB {
     		PreparedStatement stmt = conn.prepareStatement(sql);
     		stmt.setString(1, erabiltzaile);
             ResultSet rs = stmt.executeQuery();
-            //rs.next();
             while(rs.next()) {
             	Eskari es = new Eskari(rs.getInt("ID"), rs.getInt("ID_BEZERO"), rs.getInt("ID_EGOERA"), rs.getInt("ID_SALTZAILE"), rs.getString("ESK_DATA"), rs.getInt("AZKEN_ALDAKETA"));
             	ee.addEskari(es);
@@ -395,7 +399,6 @@ public class DB {
     }
     
     public void prezioakAldatu(int cpuStock, int vcStock, int ramStock, int mbStock, int storageStock, int cpuIgo, int vcIgo, int ramIgo, int mbIgo, int storageIgo) {
-    	int zenbat = 0;
     	try{
     		Connection conn = konexioa();
     		CallableStatement cstmt = conn.prepareCall("{call IGOPREZIOAK(?,?,?,?,?,?,?,?,?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
@@ -409,8 +412,8 @@ public class DB {
         	cstmt.setInt(8, ramIgo);
         	cstmt.setInt(9, mbIgo);
         	cstmt.setInt(10, storageIgo);
-        	cstmt.executeUpdate();
-        	JOptionPane.showMessageDialog(null, zenbat + "lerro eguneratu dira guztira", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+        	int zenbat = cstmt.executeUpdate();
+        	JOptionPane.showMessageDialog(null, zenbat + " lerro eguneratu dira guztira", "ONDO", JOptionPane.INFORMATION_MESSAGE);
     	}catch(SQLException e) {
     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     	}
@@ -429,7 +432,81 @@ public class DB {
             statement.close();
         	JOptionPane.showMessageDialog(null, "Ondo eguneratu da " + kodea + " eskariaren egoera.", "ONDO", JOptionPane.INFORMATION_MESSAGE);
          }catch(SQLException e){
-            System.out.println("ERROREA: " +e);
+     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+         }
+    }
+    
+    public void erosi(int produktuKodea, String erabiltzaile) {
+    	try{
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{call EROSKETAPROZEDURA(?,?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.setInt(1, produktuKodea);
+        	cstmt.setString(2, erabiltzaile);
+        	cstmt.executeUpdate();
+        	JOptionPane.showMessageDialog(null, "Erosketa eginda!", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    }
+    
+    public Bezero getBezero(int ID) {
+    	String sql = "SELECT * FROM BEZERO WHERE ID = ?";
+    	Bezero b = null;
+    	try {
+    		Connection conn = konexioa();
+    		PreparedStatement stmt = conn.prepareStatement(sql);
+    		stmt.setInt(1, ID);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+            	b = new Bezero(rs.getInt("ID"), rs.getString("IZENA"), rs.getString("ABIZENA"), rs.getString("HELBIDEA"), rs.getString("EMAILA"), rs.getString("PASAHITZA"), rs.getInt("VIP"));
+            }
+
+            //konexioak itxi
+            conn.close();
+            stmt.close();
+            rs.close(); 
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+    	return b;
+    }
+    
+    public void eguneratuBezero(String izena, String abizena, String helbidea, String emaila, int VIP, int ID) {
+    	String sql = "UPDATE BEZERO SET IZENA = ?, ABIZENA = ?, HELBIDEA = ?, EMAILA = ?, VIP = ? WHERE ID = ?";
+    	try{
+            Connection conn = konexioa();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, izena);
+            statement.setString(2, abizena);
+            statement.setString(3, helbidea);
+            statement.setString(4, emaila);
+            if(VIP == 0) {
+            	statement.setRef(5, null);
+            }else {
+            	statement.setInt(5, VIP);
+            }
+            statement.setInt(6, ID);
+            statement.executeUpdate();
+            conn.close();
+            statement.close();
+        	JOptionPane.showMessageDialog(null, "Ondo eguneratu da " + ID + " bezeroaren informazioa.", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+         }catch(SQLException e){
+     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+         }
+    }
+    
+    public void ezabatuBezero(int ID) {
+    	String sql = "DELETE FROM BEZERO WHERE ID = ?";
+    	try{
+            Connection conn = konexioa();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, ID);
+            statement.executeUpdate();
+            conn.close();
+            statement.close();
+        	JOptionPane.showMessageDialog(null, "Ondo ezabatu da " + ID + " bezeroa.", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+         }catch(SQLException e){
+     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
          }
     }
 }
