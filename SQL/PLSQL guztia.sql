@@ -114,6 +114,7 @@ BEGIN
     IF S = 0 THEN
         RAISE_APPLICATION_ERROR(-20004, 'Ez dago stockik');
     END IF;
+/
     
     
     --INBENTARIOTIK KENTZEKO
