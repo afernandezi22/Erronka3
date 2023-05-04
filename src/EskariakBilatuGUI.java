@@ -145,7 +145,7 @@ public class EskariakBilatuGUI extends JFrame {
 		info.append("Eskari ID: " + es[x].getID() + "\n");
 		switch (es[x].getID_egoera()) {
 		case 1:
-			info.append("Egoera: bidaltzeke \n");
+			info.append("Egoera: egiteke \n");
 			break;
 		case 2:
 			info.append("Egoera: ezeztatuta \\n");

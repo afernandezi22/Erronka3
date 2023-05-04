@@ -282,8 +282,6 @@ public class DB {
 	 * @param int kategoria --> kategoriaren filtroa
 	 */
     public Produktuak getFiltroekin(double gehienezkoPrezioa, double gutxienezkoPrezioa, boolean maxMin, boolean minMax, boolean stock, int lehenengo, int kategoria) {
-    	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID IN(SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA ASC FETCH FIRST ? ROWS ONLY";
-    	Produktuak pk = new Produktuak();
     	String order = "ASC", stockString = "NOT IN";
     	if(maxMin) {
     		order = "DESC";
@@ -297,14 +295,14 @@ public class DB {
     	else {
     		stockString = "NOT IN";
     	}
+    	String sql = "SELECT * FROM PRODUKTU WHERE SALNEURRIA > ? AND SALNEURRIA < ? AND ID " + stockString + " (SELECT ID_PRODUKTU FROM INBENTARIO) AND ID_KATEGORIA = ? ORDER BY SALNEURRIA " + order + " FETCH FIRST ? ROWS ONLY";
+    	Produktuak pk = new Produktuak();
     	try {
     		Connection conn = konexioa();
     		PreparedStatement stmt = conn.prepareStatement(sql);
     		stmt.setDouble(1, gehienezkoPrezioa);
     		stmt.setDouble(2, gutxienezkoPrezioa);
-    		//stmt.setString(3, stockString);
     		stmt.setInt(3, (kategoria+1));
-    		//stmt.setString(4, order);
     		stmt.setInt(4, lehenengo);
 
             ResultSet rs = stmt.executeQuery();
@@ -333,21 +331,20 @@ public class DB {
 	 * @param JTextField tFPasahitza -->
 	 */
     public void erregistratuBezeroa(JTextField izenaTF, JTextField abizenaTF, JTextField helbideaTF, JTextField emailaTF, JTextField tFPasahitza) {
-    	String sql = "INSERT INTO BEZEROAK VALUES (?, ?, ? , ?, ?)";
     	try{
-            Connection conn = konexioa();
-            PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, izenaTF.getText());
-            statement.setString(1, abizenaTF.getText());
-            statement.setString(1, helbideaTF.getText());
-            statement.setString(1, emailaTF.getText());
-            statement.setString(1, tFPasahitza.getText());
-            statement.executeUpdate();
-            conn.close();
-            statement.close();
-         }catch(SQLException e){
-            System.out.println("ERROREA: " +e);
-         }
+    		Connection conn = konexioa();
+    		CallableStatement cstmt = conn.prepareCall("{call BEZEROERREGISTRO(?, ?, ?, ?, ?)}"); //call minuskulaz egon behar da, bestela ez du aurkitzen
+        	cstmt.setString(1, izenaTF.getText());
+        	cstmt.setString(2, abizenaTF.getText());
+        	cstmt.setString(3, helbideaTF.getText());
+        	cstmt.setString(4, emailaTF.getText());
+        	cstmt.setString(5, tFPasahitza.getText());;
+        	cstmt.executeUpdate();
+        	JOptionPane.showMessageDialog(null, "Erregistro zuzena!", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+    	}catch(SQLException e) {
+    		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+    	}
+
     }
     
     public Eskari getEskari(int ID) {
@@ -417,5 +414,22 @@ public class DB {
     	}catch(SQLException e) {
     		JOptionPane.showMessageDialog(null, "Errore bat egon da datu-basera konektatzean: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
     	}
+    }
+    
+    public void eskariEgoera(int egoera, String erabiltzaile, int kodea) {
+    	String sql = "UPDATE ESKARI SET ID_EGOERA = ?, AZKEN_ALDAKETA = (SELECT ID FROM SALTZAILE WHERE ERABILTZAILEA = ?) WHERE ID = ?";
+    	try{
+            Connection conn = konexioa();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, egoera+1);
+            statement.setString(2, erabiltzaile);
+            statement.setInt(3, kodea);
+            statement.executeUpdate();
+            conn.close();
+            statement.close();
+        	JOptionPane.showMessageDialog(null, "Ondo eguneratu da " + kodea + " eskariaren egoera.", "ONDO", JOptionPane.INFORMATION_MESSAGE);
+         }catch(SQLException e){
+            System.out.println("ERROREA: " +e);
+         }
     }
 }

@@ -42,7 +42,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 		db = new DB();
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 315);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -170,6 +170,7 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 		if (pasahitza1.equals(pasahitza2)) {
 			db.erregistratuBezeroa(izenaTF, abizenaTF, helbideaTF, emailaTF, tFPasahitza);
+			loginBueltatu();
 		} else {
 			JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak.", "PASAHITZ DESBERDINAK",
 					JOptionPane.WARNING_MESSAGE);

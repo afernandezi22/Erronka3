@@ -1,3 +1,4 @@
+
 /**
  * @clase Eskariaren egoera aldatzen duen pantailaren GUI
  * @author Talde3
@@ -36,13 +37,17 @@ public class EskariAldatuGUI extends JFrame {
 	private JTextArea eskariJTA;
 	private LoginSaltzaileGUI lsg;
 	private MenuSaltzaileGUI msg;
-
+	private JComboBox egoerarenCB;
 
 	/**
 	 * Sortzailea
+	 * 
 	 * @param ez
 	 */
 	public EskariAldatuGUI(String erabiltzaile) {
+		// Datu-baserako konexioa
+		db = new DB();
+		
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -89,31 +94,27 @@ public class EskariAldatuGUI extends JFrame {
 		gordeButton.setBounds(273, 197, 111, 31);
 		contentPane.add(gordeButton);
 
-		JComboBox egoerarenCB = new JComboBox();
+		egoerarenCB = new JComboBox();
 		egoerarenCB.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		egoerarenCB.setModel(new DefaultComboBoxModel(new String[] {"Egiteke", "Bidalita", "Ezeztatuta"}));
+		egoerarenCB.setModel(new DefaultComboBoxModel(new String[] { "Egiteke",  "Ezeztatuta", "Bidalita"}));
 		egoerarenCB.setBounds(45, 201, 138, 27);
 		contentPane.add(egoerarenCB);
-		
+
 		eskariJTA = new JTextArea();
 		eskariJTA.setEditable(false);
 		eskariJTA.setForeground(new Color(0, 0, 0));
 		eskariJTA.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		eskariJTA.setBounds(87, 80, 263, 106);
 		contentPane.add(eskariJTA);
-		
-		//Datu-baserako konexioa
-		db = new DB();
 
-		//Action listenerra
+		// Action listenerra
 		bilatuButton.addActionListener(e -> bilatu());
+		gordeButton.addActionListener(e -> eguneratu(erabiltzaile));
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-
-
 
 		setTitle("Eskariak kudeatu");
 		setLocationRelativeTo(null);
@@ -123,23 +124,51 @@ public class EskariAldatuGUI extends JFrame {
 	public void bilatu() {
 		try {
 			es = db.getEskari(Integer.parseInt(eskariIdTF.getText()));
-			 eskariJTA.setText("");
-			 eskariJTA.append("Eskari ID: " + es.getID() + "\n");
-			 eskariJTA.append("ID bezero: " + es.getID_bezero() + "\n");
-			 if(es.getID_saltzaile() == 0) {
-				 eskariJTA.append("ID saltzaile: EZ DAGO SALTZAILERIK \n"); 
-			 }else {
-				 eskariJTA.append("ID saltzaile: " + es.getID_saltzaile() + "\n"); 
-			 }
-			 eskariJTA.append("Eskaera data: " + es.getEskaera_data() + "\n");
-			 if(es.getAzken_aldaketa() == 0) {
-				 eskariJTA.append("Azken aldaketa: EZ DAGO SALTZAILERIK");
-			 }else {
-				 eskariJTA.append("Azken aldaketa: " + es.getAzken_aldaketa());
-			 }
-			 
-		}catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "Ez dago eskaririk zenbaki horrekin: \n" + e, "ERROREA", JOptionPane.ERROR_MESSAGE);
+			eskariJTA.setText("");
+			eskariJTA.append("Eskari ID: " + es.getID() + "\n");
+			eskariJTA.append("ID bezero: " + es.getID_bezero() + "\n");
+			if (es.getID_saltzaile() == 0) {
+				eskariJTA.append("ID saltzaile: EZ DAGO SALTZAILERIK \n");
+			} else {
+				eskariJTA.append("ID saltzaile: " + es.getID_saltzaile() + "\n");
+			}
+			switch (es.getID_egoera()) {
+			case 1:
+				eskariJTA.append("Egoera: EGITEKE \n");
+				break;
+			case 2:
+				eskariJTA.append("Egoera: EZEZTATUTA \n");
+				break;
+			case 3:
+				eskariJTA.append("Egoera: BIDALITA \n");
+				break;
+			default:
+				eskariJTA.append("Egoera: ezezaguna \n");
+				break;
+			}
+			eskariJTA.append("Eskaera data: " + es.getEskaera_data() + "\n");
+			if (es.getAzken_aldaketa() == 0) {
+				eskariJTA.append("Azken aldaketa: EZ DAGO SALTZAILERIK");
+			} else {
+				eskariJTA.append("Azken aldaketa: " + es.getAzken_aldaketa());
+			}
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Ez dago eskaririk zenbaki horrekin", "ERROREA",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private void eguneratu(String erabiltzaile) {
+		String testu = eskariJTA.getText();
+		if (JOptionPane.showConfirmDialog(null, "Ziur zaude?", "KONTUZ!",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if(testu.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Ez dago eskaririk", "ERROREA",
+						JOptionPane.ERROR_MESSAGE);
+			}else {
+				db.eskariEgoera(egoerarenCB.getSelectedIndex(), erabiltzaile, Integer.parseInt(eskariIdTF.getText()));
+			}
 		}
 	}
 
@@ -149,8 +178,8 @@ public class EskariAldatuGUI extends JFrame {
 	}
 
 	private void itxi() {
-		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
-		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}

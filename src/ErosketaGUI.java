@@ -93,12 +93,14 @@ public class ErosketaGUI extends JFrame {
 
 		// Sliderrak
 		gehienezkoPSli = new JSlider();
+		gehienezkoPSli.setEnabled(false);
 		gehienezkoPSli.setSnapToTicks(true);
 		gehienezkoPSli.setMajorTickSpacing(150);
 		gehienezkoPSli.setBounds(166, 29, 200, 26);
 		contentPane.add(gehienezkoPSli);
 
 		gutxinezkoPSli = new JSlider();
+		gutxinezkoPSli.setEnabled(false);
 		gutxinezkoPSli.setMajorTickSpacing(150);
 		gutxinezkoPSli.setSnapToTicks(true);
 		gutxinezkoPSli.setBounds(166, 66, 200, 26);
@@ -116,12 +118,14 @@ public class ErosketaGUI extends JFrame {
 
 		// TextPane
 		gehiPPane = new JTextPane();
+		gehiPPane.setEnabled(false);
 		gehiPPane.setEditable(false);
 		gehiPPane.setBounds(376, 29, 41, 26);
 		contentPane.add(gehiPPane);
 		gehiPPane.setText("" + (int) db.prezioHandiena() / 2);
 
 		gutxPPane = new JTextPane();
+		gutxPPane.setEnabled(false);
 		gutxPPane.setEditable(false);
 		gutxPPane.setBounds(376, 66, 41, 26);
 		contentPane.add(gutxPPane);
@@ -129,12 +133,14 @@ public class ErosketaGUI extends JFrame {
 
 		// RadioButton
 		maxMinB = new JRadioButton("Garestienetik merkeenera");
+		maxMinB.setEnabled(false);
 		maxMinB.setSelected(true);
 		maxMinB.setFont(new Font("Calibri", Font.PLAIN, 15));
 		maxMinB.setBounds(20, 119, 200, 23);
 		contentPane.add(maxMinB);
 
 		minMaxB = new JRadioButton("Merkeenatik garestienera");
+		minMaxB.setEnabled(false);
 		minMaxB.setFont(new Font("Calibri", Font.PLAIN, 15));
 		minMaxB.setBounds(20, 145, 185, 23);
 		contentPane.add(minMaxB);
@@ -146,6 +152,7 @@ public class ErosketaGUI extends JFrame {
 
 		// ToggleButton
 		strockbakarrikButton = new JToggleButton("STOCK BAKARRIK");
+		strockbakarrikButton.setEnabled(false);
 		strockbakarrikButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		strockbakarrikButton.setBounds(288, 97, 129, 36);
 		contentPane.add(strockbakarrikButton);
@@ -186,6 +193,7 @@ public class ErosketaGUI extends JFrame {
 		contentPane.add(filtratuButton);
 
 		ateralehenengoTF = new JTextField();
+		ateralehenengoTF.setEnabled(false);
 		ateralehenengoTF.setBounds(421, 142, 41, 22);
 		contentPane.add(ateralehenengoTF);
 		ateralehenengoTF.setColumns(10);
@@ -204,6 +212,9 @@ public class ErosketaGUI extends JFrame {
 
 		// Filtratu botoiaren listenerra
 		filtratuButton.addActionListener(e -> filtratu());
+		
+		//Action listenerrak
+		filtroaktibatuButton.addActionListener(e -> aktibatuFiltroak());
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
@@ -299,5 +310,27 @@ public class ErosketaGUI extends JFrame {
 	private void menuraBueltatu(String erabiltzaile) {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();
+	}
+	
+	private void aktibatuFiltroak() {
+		if(filtroaktibatuButton.isSelected()) {
+			gehienezkoPSli.setEnabled(true);
+			gutxinezkoPSli.setEnabled(true);
+			gehiPPane.setEnabled(true);
+			gutxPPane.setEnabled(true);
+			strockbakarrikButton.setEnabled(true);
+			maxMinB.setEnabled(true);
+			minMaxB.setEnabled(true);
+			ateralehenengoTF.setEnabled(true);
+		}else {
+			gehienezkoPSli.setEnabled(false);
+			gutxinezkoPSli.setEnabled(false);
+			gehiPPane.setEnabled(false);
+			gutxPPane.setEnabled(false);
+			strockbakarrikButton.setEnabled(false);
+			maxMinB.setEnabled(false);
+			minMaxB.setEnabled(false);
+			ateralehenengoTF.setEnabled(false);
+		}
 	}
 }
