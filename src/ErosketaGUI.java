@@ -50,6 +50,8 @@ public class ErosketaGUI extends JFrame {
 	private LoginBezeroGUI lbg;
 	private MenuBezeroGUI mbg;
 	private JMenuItem mnMenu;
+	private JTextField erabilTF;
+	private JTextField VIPTF;
 
 	/**
 	 * Sortzailea
@@ -204,6 +206,27 @@ public class ErosketaGUI extends JFrame {
 		gehienezkoPSli.setValue((int) db.prezioHandiena() / 2);
 		gutxinezkoPSli.setMaximum((int) db.prezioHandiena());
 		gutxinezkoPSli.setValue((int) db.prezioHandiena() / 2);
+		
+		erabilTF = new JTextField();
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setBounds(0, 353, 177, 29);
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
+		
+		JLabel lblVip = new JLabel("VIP:");
+		lblVip.setFont(new Font("Calibri", Font.PLAIN, 15));
+		lblVip.setBounds(20, 246, 41, 26);
+		contentPane.add(lblVip);
+		
+		VIPTF = new JTextField();
+		VIPTF.setEditable(false);
+		VIPTF.setColumns(10);
+		VIPTF.setBounds(57, 244, 75, 22);
+		contentPane.add(VIPTF);
+		VIPTF.setText(db.zeinVIP(erabiltzaile));
 
 		// Sliderraren aktzion listenerrak
 		gehienezkoPSli.addChangeListener(e -> gehiPPane.setText(Integer.toString(gehienezkoPSli.getValue())));
@@ -220,6 +243,7 @@ public class ErosketaGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
+				
 
 		setTitle("Produktuak erosi");
 		setLocationRelativeTo(null);

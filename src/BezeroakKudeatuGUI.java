@@ -40,6 +40,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 	private Bezero b;
 	private DB db;
 	private JTextField VIPTF;
+	private JTextField erabilTF;
 
 	/**
 	 * Sortzailea
@@ -171,6 +172,15 @@ public class BezeroakKudeatuGUI extends JFrame {
 		VIPTF.setColumns(10);
 		VIPTF.setBounds(109, 301, 73, 29);
 		contentPane.add(VIPTF);
+		
+		erabilTF = new JTextField();
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setBounds(360, 311, 177, 29);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());
@@ -230,7 +240,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 	}
 	
 	private void ezabatu() {
-		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			if(!bezeroIdTF.getText().equals(idbilatuTF.getText())) {
 	     		JOptionPane.showMessageDialog(null, "Bilatu bezeroa ezer egin baino lehen", "ERROREA", JOptionPane.ERROR_MESSAGE);
@@ -241,7 +251,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 	}
 	
 	private void eguneratu() {
-		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
+		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			if(!bezeroIdTF.getText().equals(idbilatuTF.getText())) {
 	     		JOptionPane.showMessageDialog(null, "Bilatu bezeroa ezer egin baino lehen", "ERROREA", JOptionPane.ERROR_MESSAGE);

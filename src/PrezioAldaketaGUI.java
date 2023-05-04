@@ -38,6 +38,7 @@ public class PrezioAldaketaGUI extends JFrame {
 	private LoginSaltzaileGUI lsg;
 	private MenuSaltzaileGUI msg;
 	private DB db;
+	private JTextField erabilTF;
 
 
 	/**
@@ -166,6 +167,15 @@ public class PrezioAldaketaGUI extends JFrame {
 		lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblNewLabel_6.setBounds(300, 17, 19, 20);
 		contentPane.add(lblNewLabel_6);
+		
+		erabilTF = new JTextField();
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setBounds(0, 237, 157, 29);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
 
 		// Menua
 		itxisaioaMI.addActionListener(e -> itxi());

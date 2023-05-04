@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class EskariakBilatuGUI extends JFrame {
 
@@ -41,6 +42,7 @@ public class EskariakBilatuGUI extends JFrame {
 	private Eskari[] es;
 	private DB db;
 	private JTextArea info;
+	private JTextField erabilTF;
 
 	/**
 	 * Sortzailea
@@ -98,6 +100,16 @@ public class EskariakBilatuGUI extends JFrame {
 		info.setEditable(false);
 		info.setBounds(92, 87, 242, 128);
 		contentPane.add(info);
+		
+		erabilTF = new JTextField();
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setBounds(0, 220, 177, 20);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
+		
 		kargatuEskariak(erabiltzaile);
 
 		// Menua

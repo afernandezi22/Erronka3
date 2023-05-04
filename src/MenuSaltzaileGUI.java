@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 public class MenuSaltzaileGUI extends JFrame {
 
@@ -28,6 +29,7 @@ public class MenuSaltzaileGUI extends JFrame {
 	private EskariAldatuGUI eag;
 	private BezeroakKudeatuGUI bkg;
 	private LoginSaltzaileGUI lsg;
+	private JTextField erabilTF;
 
 	/**
 	 * Sortzailea
@@ -72,6 +74,15 @@ public class MenuSaltzaileGUI extends JFrame {
 		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
 		produktuPrezioButton.setBounds(10, 77, 155, 31);
 		contentPane.add(produktuPrezioButton);
+		
+		erabilTF = new JTextField();
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setBounds(0, 211, 177, 29);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
 
 		// Action listenerrak
 		eskariEgoeraButton.addActionListener(e -> sortuEskariAldatu(erabiltzaile));
@@ -113,5 +124,4 @@ public class MenuSaltzaileGUI extends JFrame {
 			this.dispose();
 		}
 	}
-
 }

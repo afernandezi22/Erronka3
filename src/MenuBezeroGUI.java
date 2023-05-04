@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 public class MenuBezeroGUI extends JFrame {
 
@@ -37,6 +38,7 @@ public class MenuBezeroGUI extends JFrame {
 	private JMenu erabiltzaileM;
 	private JMenuItem aldatuerabiltzaileMI;
 	private JMenuItem itxisaioaMI;
+	private JTextField erabilTF;
 
 
 	/**
@@ -84,6 +86,14 @@ public class MenuBezeroGUI extends JFrame {
 		bilatuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		bilatuButton.setBounds(90, 223, 144, 47);
 		contentPane.add(bilatuButton);
+		
+		erabilTF = new JTextField();
+		erabilTF.setEditable(false);
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setBounds(0, 353, 177, 29);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
 
 		// Listenerrak
 		erosiButton.addActionListener(e -> zabaldu(erosiButton, erabiltzaile));

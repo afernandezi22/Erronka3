@@ -38,6 +38,7 @@ public class EskariAldatuGUI extends JFrame {
 	private LoginSaltzaileGUI lsg;
 	private MenuSaltzaileGUI msg;
 	private JComboBox egoerarenCB;
+	private JTextField erabilTF;
 
 	/**
 	 * Sortzailea
@@ -79,33 +80,42 @@ public class EskariAldatuGUI extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Eskari ID-a");
 		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 15));
-		lblNewLabel.setBounds(48, 23, 79, 20);
+		lblNewLabel.setBounds(47, 10, 79, 20);
 		contentPane.add(lblNewLabel);
 
 		eskariIdTF = new JTextField();
-		eskariIdTF.setBounds(48, 49, 86, 20);
+		eskariIdTF.setBounds(47, 36, 86, 20);
 		contentPane.add(eskariIdTF);
 		eskariIdTF.setColumns(10);
 
 		JButton bilatuButton = new JButton("BILATU");
-		bilatuButton.setBounds(273, 38, 111, 31);
+		bilatuButton.setBounds(272, 25, 111, 31);
 		contentPane.add(bilatuButton);
 		JButton gordeButton = new JButton("GORDE");
-		gordeButton.setBounds(273, 197, 111, 31);
+		gordeButton.setBounds(272, 184, 111, 31);
 		contentPane.add(gordeButton);
 
 		egoerarenCB = new JComboBox();
 		egoerarenCB.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		egoerarenCB.setModel(new DefaultComboBoxModel(new String[] { "Egiteke",  "Ezeztatuta", "Bidalita"}));
-		egoerarenCB.setBounds(45, 201, 138, 27);
+		egoerarenCB.setBounds(44, 188, 138, 27);
 		contentPane.add(egoerarenCB);
 
 		eskariJTA = new JTextArea();
 		eskariJTA.setEditable(false);
 		eskariJTA.setForeground(new Color(0, 0, 0));
 		eskariJTA.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		eskariJTA.setBounds(87, 80, 263, 106);
+		eskariJTA.setBounds(86, 67, 263, 106);
 		contentPane.add(eskariJTA);
+		
+		erabilTF = new JTextField();
+		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
+		erabilTF.setEnabled(false);
+		erabilTF.setEditable(false);
+		erabilTF.setBounds(0, 220, 177, 20);
+		contentPane.add(erabilTF);
+		erabilTF.setColumns(10);
+		erabilTF.setText(erabiltzaile);
 
 		// Action listenerra
 		bilatuButton.addActionListener(e -> bilatu());
