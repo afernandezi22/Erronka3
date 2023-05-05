@@ -175,7 +175,6 @@ public class BezeroakKudeatuGUI extends JFrame {
 		
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
-		erabilTF.setEnabled(false);
 		erabilTF.setEditable(false);
 		erabilTF.setBounds(360, 311, 177, 29);
 		contentPane.add(erabilTF);

@@ -110,7 +110,6 @@ public class EskariAldatuGUI extends JFrame {
 		
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
-		erabilTF.setEnabled(false);
 		erabilTF.setEditable(false);
 		erabilTF.setBounds(0, 220, 177, 20);
 		contentPane.add(erabilTF);

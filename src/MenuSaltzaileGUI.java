@@ -77,7 +77,6 @@ public class MenuSaltzaileGUI extends JFrame {
 		
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
-		erabilTF.setEnabled(false);
 		erabilTF.setEditable(false);
 		erabilTF.setBounds(0, 211, 177, 29);
 		contentPane.add(erabilTF);

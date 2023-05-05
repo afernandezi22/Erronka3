@@ -102,7 +102,6 @@ public class EskariakBilatuGUI extends JFrame {
 		contentPane.add(info);
 		
 		erabilTF = new JTextField();
-		erabilTF.setEnabled(false);
 		erabilTF.setEditable(false);
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
 		erabilTF.setBounds(0, 220, 177, 20);

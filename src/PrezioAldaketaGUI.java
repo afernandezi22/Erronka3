@@ -170,7 +170,6 @@ public class PrezioAldaketaGUI extends JFrame {
 		
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
-		erabilTF.setEnabled(false);
 		erabilTF.setEditable(false);
 		erabilTF.setBounds(0, 237, 157, 29);
 		contentPane.add(erabilTF);

@@ -208,7 +208,7 @@ public class ErosketaGUI extends JFrame {
 		gutxinezkoPSli.setValue((int) db.prezioHandiena() / 2);
 		
 		erabilTF = new JTextField();
-		erabilTF.setEnabled(false);
+		erabilTF.setEnabled(true);
 		erabilTF.setEditable(false);
 		erabilTF.setBounds(0, 353, 177, 29);
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
