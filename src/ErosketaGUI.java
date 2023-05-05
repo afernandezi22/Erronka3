@@ -107,12 +107,12 @@ public class ErosketaGUI extends JFrame {
 		gutxinezkoPSli.setBounds(166, 66, 200, 26);
 		contentPane.add(gutxinezkoPSli);
 
-		JLabel lblNewLabel = new JLabel("Gehienezko prezioa");
+		JLabel lblNewLabel = new JLabel("Gutxienezko prezioa");
 		lblNewLabel.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblNewLabel.setBounds(20, 29, 136, 26);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblGutxienezkoPrezioa = new JLabel("Gutxienezko prezioa");
+		JLabel lblGutxienezkoPrezioa = new JLabel("Gehienezko prezioa");
 		lblGutxienezkoPrezioa.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblGutxienezkoPrezioa.setBounds(20, 66, 136, 26);
 		contentPane.add(lblGutxienezkoPrezioa);
