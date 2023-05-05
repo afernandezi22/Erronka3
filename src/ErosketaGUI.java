@@ -1,10 +1,8 @@
 
 /**
- * @clase Erosketaren pantailaren GUI
+ * Erosketaren pantailaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 05/05/2023
  */
 
 import java.awt.Font;
@@ -55,8 +53,7 @@ public class ErosketaGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 *
-	 * @param ez
+	 * @param erabiltzaile Pantaila batetik bestera erabiltzailea ez galtzeko
 	 */
 	public ErosketaGUI(String erabiltzaile) {
 		// Datu-baserako konexioa
@@ -251,9 +248,8 @@ public class ErosketaGUI extends JFrame {
 	}
 
 	/**
-	 * Produktuak kargatzen duen funtzioa
+	 * Produktu guztiak kargatzen ditu comboboxean
 	 *
-	 * @param ez
 	 */
 	public void kargatuProduktuGuztiak() {
 		pk = db.getProduktuak(); // Produktuak objektua lortzeko
@@ -267,9 +263,8 @@ public class ErosketaGUI extends JFrame {
 	}
 
 	/**
-	 * Kategoria kargatzen duen funtzioa
-	 *
-	 * @param int x --> filtroCB-aren posizioa jakiteko
+	 * Kategoria zehatz bateko produktuak kargatzen ditu comboboxean
+	 * @param int x Aukeratutako kategoria
 	 */
 	public void kargatuKategoria(int x) {
 		pk = db.getKategoriarekin(x);
@@ -283,9 +278,7 @@ public class ErosketaGUI extends JFrame {
 	}
 
 	/**
-	 * Kategoria kargatzen duen funtzioa
-	 *
-	 * @param ez
+	 * Filtro guztiak erabilita produktuak kargatzen ditu comboboxean
 	 */
 	public void kargatuFiltroekin() {
 		pk = db.getFiltroekin(Double.parseDouble(gehiPPane.getText()), Double.parseDouble(gutxPPane.getText()),
@@ -301,9 +294,7 @@ public class ErosketaGUI extends JFrame {
 	}
 
 	/**
-	 * filtroCB eguneratzeko filtroekin
-	 *
-	 * @param ez
+	 * Filtroekin comboboxa eguneratzeko
 	 */
 	public void filtratu() {
 		if (filtroaktibatuButton.isSelected()) {
@@ -317,24 +308,35 @@ public class ErosketaGUI extends JFrame {
 			}
 		}
 	}
-
+	
+	/**
+	 * Menuko funtzio bat da. Loginera bueltatzen du
+	 */
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuko funtzio bat da. Leihoa ixten du.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
-
+	/**
+	 * Menuko funtzio bat da. Aukera-menura bueltatzen du erabiltzailea mantenduz
+	 * @param erabiltzaile
+	 */
 	private void menuraBueltatu(String erabiltzaile) {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	
+	/**
+	 * Filtroak aktibatuta edo desaktibatuta dauden erakusteko
+	 */
 	private void aktibatuFiltroak() {
 		if (filtroaktibatuButton.isSelected()) {
 			gehienezkoPSli.setEnabled(true);
@@ -356,7 +358,11 @@ public class ErosketaGUI extends JFrame {
 			ateralehenengoTF.setEnabled(false);
 		}
 	}
-
+	
+	/**
+	 * Erosteko funtzioa. Erosketa egiten da dagoen egoera kontuan hartua
+	 * @param erabiltzailea erosketa nork egin duen jakiteko
+	 */
 	private void erosi(String erabiltzailea) {
 		//Lortu comboboxean dauden produktuak
 		if (!filtroaktibatuButton.isSelected()) {

@@ -1,9 +1,7 @@
 
 /**
- * @clase Bezeroak kudeazteko pantailaren GUI
+ * Bezeroak kudeazteko pantailaren GUI
  * @author Talde3
- * @param
- * @return
  * @version 02/05/2023
  */
 
@@ -45,7 +43,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzailea Erabiltzailea leiho batetik bestera pasatu ahal izateko
 	 */
 	public BezeroakKudeatuGUI(String erabiltzaile) {
 		//Datubaserako konexioa
@@ -197,24 +195,35 @@ public class BezeroakKudeatuGUI extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
+	
+	/**
+	 * Menuaren funtzio bat. Loginera bueltatzeko balio du.
+	 */
 	private void loginBueltatu() {
 		lsg = new LoginSaltzaileGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat. Leihoa ixteko balio du.
+	 */
 	private void itxi() {
 		if  (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
-
+	/**
+	 * Menuaren funtzio bat. Aukera-menura joateko.
+	 * @param erabiltzaile Erabiltzailea nor den ez galtzeko
+	 */
 	private void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	
+	/**
+	 * IDa sartuz JTextFieldetan informazioa agertzeko
+	 */
 	private void bilatu() {
 		try{
 			b = db.getBezero(Integer.parseInt(idbilatuTF.getText()));
@@ -228,7 +237,9 @@ public class BezeroakKudeatuGUI extends JFrame {
      		JOptionPane.showMessageDialog(null, "Errore bat egon da. Idatzi duzun ID-a ez da zuzena", "ERROREA", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	/**
+	 * JTextFieldetan dagoen informazioa ezabatzeko
+	 */
 	private void garbitu() {
 		bezeroIdTF.setText("");
 		izenaTF.setText("");
@@ -237,7 +248,9 @@ public class BezeroakKudeatuGUI extends JFrame {
 		emailTF.setText("");
 		VIPTF.setText("");
 	}
-
+	/**
+	 * Aukeratuta dagoen bezeroa ezabatzeko datubasetik
+	 */
 	private void ezabatu() {
 		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -248,7 +261,9 @@ public class BezeroakKudeatuGUI extends JFrame {
 			}
 		}
 	}
-
+	/**
+	 * Idatzita dagoen informazioarekin aukeratuta bezeroa eguneratzeko
+	 */
 	private void eguneratu() {
 		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

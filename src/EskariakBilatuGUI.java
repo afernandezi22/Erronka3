@@ -1,9 +1,7 @@
 
 /**
- * @clase Eskariak bilatzen duen pantailaren GUI
+ * Eskariak bilatzen duen pantailaren GUI
  * @author Talde3
- * @param
- * @return
  * @version 02/05/2023
  */
 
@@ -46,7 +44,7 @@ public class EskariakBilatuGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzaile Erabiltzailea ez galtzeko
 	 */
 	public EskariakBilatuGUI(String erabiltzaile) {
 		// Datubaserako konexioa
@@ -120,24 +118,35 @@ public class EskariakBilatuGUI extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
+	
+	/**
+	 * Menuaren funtzio bat da. Loginera bueltatzen du.
+	 */
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtxio bat da. Leihoa ixten du.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Menura bueltatzen du erabiltzailea mantenduz
+	 * @param erabiltzaile
+	 */
 	private void menuraBueltatu(String erabiltzaile) {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	/**
+	 * Bezero zehatz baten eskariak comboboxean sartzen ditu.
+	 * @param erabiltzaile
+	 */
 	private void kargatuEskariak(String erabiltzaile) {
 		ee = db.bezeroEskariak(erabiltzaile);
 		es = ee.getEskari();

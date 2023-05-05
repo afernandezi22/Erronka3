@@ -1,4 +1,9 @@
-
+/**
+ * Eskari zehatz baten informazio gordetzeko
+ * @author Talde3
+ * @version 2023/05/05
+ * @see Eskariak
+ */
 public class Eskari {
 	private int ID;
 	private int ID_bezero;
@@ -6,9 +11,20 @@ public class Eskari {
 	private int ID_saltzaile;
 	private String eskaera_data;
 	private int azken_aldaketa;
-
+	
+	/**
+	 * Lehenetsitako sortzailea. Ez dauka ezer.
+	 */
 	public Eskari() {}
-
+	/**
+	 * Sortzailea parametroekin
+	 * @param ID
+	 * @param ID_bezero
+	 * @param ID_egoera
+	 * @param iD_saltzaile
+	 * @param eskaera_data
+	 * @param azken_aldaketa
+	 */
 	public Eskari(int ID, int ID_bezero, int ID_egoera, int iD_saltzaile, String eskaera_data, int azken_aldaketa) {
 		this.ID = ID;
 		this.ID_bezero = ID_bezero;
@@ -17,55 +33,96 @@ public class Eskari {
 		this.eskaera_data = eskaera_data;
 		this.azken_aldaketa = azken_aldaketa;
 	}
-
+	
+	/**
+	 * IDaren getterra
+	 * @return ID
+	 */
 	public int getID() {
 		return ID;
 	}
-
+	/**
+	 * IDearen setterra
+	 * @param iD
+	 */
 	public void setID(int iD) {
 		ID = iD;
 	}
-
+	/**
+	 * Bezeroaren IDaren getterra
+	 * @return ID_bezero
+	 */
 	public int getID_bezero() {
 		return ID_bezero;
 	}
-
+	/**
+	 * Bezeroaren IDaren setterra
+	 * @param iD_bezero
+	 */
 	public void setID_bezero(int iD_bezero) {
 		ID_bezero = iD_bezero;
 	}
-
+	/**
+	 * Egoeraren IDaren getterra
+	 * @return ID_egoera
+	 */
 	public int getID_egoera() {
 		return ID_egoera;
 	}
-
+	/**
+	 * Egoeraren IDaren setterra
+	 * @param iD_egoera
+	 */
 	public void setID_egoera(int iD_egoera) {
 		ID_egoera = iD_egoera;
 	}
-
+	/**
+	 * Saltzailearen IDaren getterra
+	 * @return ID_saltzaile
+	 */
 	public int getID_saltzaile() {
 		return ID_saltzaile;
 	}
-
+	/**
+	 * Saltzailearen IDaren setterra
+	 * @param iD_saltzaile
+	 */
 	public void setID_saltzaile(int iD_saltzaile) {
 		ID_saltzaile = iD_saltzaile;
 	}
-
+	/**
+	 * Eskaeraren dataren getterra
+	 * @return eskaera_data
+	 */
 	public String getEskaera_data() {
 		return eskaera_data;
 	}
-
+	/**
+	 * Eskaeraren dataren setterra
+	 * @param eskaera_data
+	 */
 	public void setEskaera_data(String eskaera_data) {
 		this.eskaera_data = eskaera_data;
 	}
-
+	/**
+	 * Azken aldaketa egin duen saltzailearen IDaren getterra
+	 * @return azken_aldaketa
+	 */
 	public int getAzken_aldaketa() {
 		return azken_aldaketa;
 	}
-
+	/**
+	 * Azken aldaketa egin duen saltzailearen IDaren setterra
+	 * @param azken_aldaketa
+	 */
 	public void setAzken_aldaketa(int azken_aldaketa) {
 		this.azken_aldaketa = azken_aldaketa;
 	}
-
+	
+	/**
+	 * Klasearen toStringa
+	 * @return guztia
+	 */
 	@Override
 	public String toString() {
 		return "Eskari [ID=" + ID + ", ID_bezero=" + ID_bezero + ", ID_egoera=" + ID_egoera + ", ID_saltzaile="

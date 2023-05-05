@@ -1,10 +1,8 @@
 
 /**
- * @clase Bezeroak erregistroaren pantailaren GUI
+ * Bezeroak erregistroaren pantailaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 05/05/2023
  */
 
 import java.awt.Font;
@@ -35,8 +33,6 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 *
-	 * @param ez
 	 */
 	public BezeroarenErregistroaGUI() {
 		db = new DB();
@@ -146,8 +142,6 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Garbitzeko botoia sakatzean testu guztia kentzen da
-	 *
-	 * @param ez
 	 */
 	public void garbitu() {
 
@@ -161,27 +155,34 @@ public class BezeroarenErregistroaGUI extends JFrame {
 
 	/**
 	 * Erregistroa egitean pasahitza bi alditan jartzean berdina dela zihurtatzeko
-	 *
-	 * @param ez
 	 */
 	public void erregistratu() {
 		String pasahitza1 = tFPasahitza.getText();
 		String pasahitza2 = tFPasahitza_1.getText();
 
 		if (pasahitza1.equals(pasahitza2)) {
-			db.erregistratuBezeroa(izenaTF, abizenaTF, helbideaTF, emailaTF, tFPasahitza);
-			loginBueltatu();
+			try{
+				db.erregistratuBezeroa(izenaTF, abizenaTF, helbideaTF, emailaTF, tFPasahitza);
+				loginBueltatu();
+			}catch(Exception e) {
+				
+			}
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "Pasahitzak ez dira berdinak.", "PASAHITZ DESBERDINAK",
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Logineko leihora bueltatzen du.
+	 */
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Leihoa ixteko.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
