@@ -112,13 +112,13 @@ public class EskariakBilatuGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-		btnNewButton.addActionListener(e -> kargatuInfo(erabiltzaile, comboBox.getSelectedIndex()) );
+		btnNewButton.addActionListener(e -> kargatuInfo(erabiltzaile, comboBox.getSelectedIndex()));
 
 		setTitle("Eskariak bilatu");
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Menuaren funtzio bat da. Loginera bueltatzen du.
 	 */
@@ -126,6 +126,7 @@ public class EskariakBilatuGUI extends JFrame {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
 	}
+
 	/**
 	 * Menuaren funtxio bat da. Leihoa ixten du.
 	 */
@@ -135,16 +136,20 @@ public class EskariakBilatuGUI extends JFrame {
 			this.dispose();
 		}
 	}
+
 	/**
 	 * Menuaren funtzio bat da. Menura bueltatzen du erabiltzailea mantenduz
+	 * 
 	 * @param erabiltzaile
 	 */
 	private void menuraBueltatu(String erabiltzaile) {
 		this.mbg = new MenuBezeroGUI(erabiltzaile);
 		this.dispose();
 	}
+
 	/**
 	 * Bezero zehatz baten eskariak comboboxean sartzen ditu.
+	 * 
 	 * @param erabiltzaile
 	 */
 	private void kargatuEskariak(String erabiltzaile) {
@@ -155,6 +160,11 @@ public class EskariakBilatuGUI extends JFrame {
 		}
 	}
 
+	/**
+	 * Info text arean eskariaren informazioa kargatzen du
+	 * @param erabiltzaile Erabiltzailearen emaila
+	 * @param x eskariaren zenbakia
+	 */
 	private void kargatuInfo(String erabiltzaile, int x) {
 		ee = db.bezeroEskariak(erabiltzaile);
 		es = ee.getEskari();

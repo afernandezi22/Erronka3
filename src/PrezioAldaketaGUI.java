@@ -1,10 +1,8 @@
 
 /**
- * @clase Prezio aldaketen pantailaren GUI
+ * Prezio aldaketen pantailaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 2023/05/05
  */
 
 import java.awt.Font;
@@ -44,7 +42,7 @@ public class PrezioAldaketaGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
 	 */
 	public PrezioAldaketaGUI(String erabiltzaile) {
 		//Datubaserako konexioa
@@ -192,24 +190,34 @@ public class PrezioAldaketaGUI extends JFrame {
 
 		setVisible(true);
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Loginera bueltatzen du
+	 */
 	public void loginBueltatu() {
 		lsg = new LoginSaltzaileGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Programa ixten du.
+	 */
 	public void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Aukera-menura buelatzen du erabiltzailea mantenduz.
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
+	 */
 	public void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	
+	/**
+	 * Zehaztutako parametroekin prezioak aldatzen ditu.
+	 */
 	public void prezioakAldatu() {
 		String cpu = cpuTF.getText(), cpuP = cpuPortzTF.getText(), vc = vcTF.getText(), vcP = vcPortzTF.getText(), ram = ramTF.getText(), ramP = ramPortzTF.getText(), mb = mbTF.getText(), mbP = mbPortzTF.getText(), sto = stoTF.getText(), stoP = dtoPortzTF.getText();
 		if(cpu.isEmpty()||cpuP.isEmpty()||vc.isEmpty()||vcP.isEmpty()||ram.isEmpty()||ramP.isEmpty()||mb.isEmpty()||mbP.isEmpty()||sto.isEmpty()||stoP.isEmpty()) {

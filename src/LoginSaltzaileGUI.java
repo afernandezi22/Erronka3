@@ -1,9 +1,7 @@
 /**
- * @clase Saltzailearen loginaren GUI
+ * Saltzailearen loginaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 28/04/2023
+ * @version 2023/05/05
  */
 
 import java.awt.Color;
@@ -32,7 +30,7 @@ public class LoginSaltzaileGUI {
 
 
 	/**
-	 * Sortzailea
+	 * Lehenetsitako sortzailea. Guztia kargatzen duen funtzioa deitzen du.
 	 * @param ez
 	 */
 	public LoginSaltzaileGUI() {
@@ -40,8 +38,8 @@ public class LoginSaltzaileGUI {
 	}
 
 	/**
-	 * Diseinu guztia daukan funtzioa
-	 * @param ez
+	 * Diseinu guztia daukan funtzioa.
+	 * 
 	 */
 
 	private void initialize() {
@@ -121,7 +119,11 @@ public class LoginSaltzaileGUI {
 	        }
 		});
 	}
-
+	/**
+	 * Saltzailearen logina egiten du.
+	 * @param erabiltzaile saltzailearen erabiltzailea
+	 * @param pasahitza saltzailearen pasahitza
+	 */
 	private void login(String erabiltzaile, char[] pasahitza) {
 		String pass = String.valueOf(pasahitza);
 
@@ -138,13 +140,12 @@ public class LoginSaltzaileGUI {
 			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	
+	/**
+	 * Bezeroaren logina zabaltzen du.
+	 */
 	private void bezeroZabaldu() {
 		lbg = new LoginBezeroGUI();
 		frame.dispose();
-	}
-
-	public static void main(String[] args) {
-		new LoginSaltzaileGUI();
 	}
 }

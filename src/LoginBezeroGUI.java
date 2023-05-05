@@ -11,6 +11,13 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+/**
+ * Bezeroek logina egiteko GUI
+ * 
+ * @author Talde3
+ * @version 2023/05/05
+ *
+ */
 public class LoginBezeroGUI {
 
 	private JFrame frame;
@@ -22,10 +29,16 @@ public class LoginBezeroGUI {
 	private BezeroarenErregistroaGUI beGUI;
 	private LoginSaltzaileGUI slg;
 
+	/**
+	 * Lehenetsitako sortzailea. GUI-a sortzen du
+	 */
 	public LoginBezeroGUI() {
 		initialize();
 	}
 
+	/**
+	 * GUI guztia eta hasierako egoera ezartzen duena
+	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Vladimir Script", Font.PLAIN, 11));
@@ -85,62 +98,72 @@ public class LoginBezeroGUI {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		//Datu basearekin konektatu
+		// Datu basearekin konektatu
 		db = new DB();
-		//Datubaserako konexioa egiteko goiko konexioa komentatu eta behekoa deskomentatu
-		//db = new DB("jdbc:oracle:thin:@192.168.106.11:1521/xepdb1", "GAMESTOP", "GAMESTOP");
+		// Datubaserako konexioa egiteko goiko konexioa komentatu eta behekoa
+		// deskomentatu
+		// db = new DB("jdbc:oracle:thin:@192.168.106.11:1521/xepdb1", "GAMESTOP",
+		// "GAMESTOP");
 
-		//listenerrak
+		// listenerrak
 		sartuButton.addActionListener(e -> login(erabiltzaileF.getText(), pasahitzaF.getPassword()));
-		erregistratuButton.addActionListener(e->zabaldu(erregistratuButton));
-		saltzaileButton.addActionListener(e->zabaldu(saltzaileButton));
+		erregistratuButton.addActionListener(e -> zabaldu(erregistratuButton));
+		saltzaileButton.addActionListener(e -> zabaldu(saltzaileButton));
 		pasahitzaF.addKeyListener(new KeyAdapter() {
-	        @Override
-	        public void keyPressed(KeyEvent e) {
-	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	login(erabiltzaileF.getText(), pasahitzaF.getPassword());
-	            }
-	        }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					login(erabiltzaileF.getText(), pasahitzaF.getPassword());
+				}
+			}
 		});
 		erabiltzaileF.addKeyListener(new KeyAdapter() {
-	        @Override
-	        public void keyPressed(KeyEvent e) {
-	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	login(erabiltzaileF.getText(), pasahitzaF.getPassword());
-	            }
-	        }
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					login(erabiltzaileF.getText(), pasahitzaF.getPassword());
+				}
+			}
 		});
 	}
 
+	/**
+	 * Bezeroaren logina egiten du.
+	 * 
+	 * @param erabiltzaile Bezeroaren emaila
+	 * @param pasahitza    Bezeroaren pasahitza
+	 */
 	private void login(String erabiltzaile, char[] pasahitza) {
 		String pass = String.valueOf(pasahitza);
 
-		if(db.bezeroDago(erabiltzaile)) {
-			if(db.bezeroLogin(erabiltzaile, pass)) {
-				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA", JOptionPane.INFORMATION_MESSAGE);
+		if (db.bezeroDago(erabiltzaile)) {
+			if (db.bezeroLogin(erabiltzaile, pass)) {
+				JOptionPane.showMessageDialog(null, "Kaixo " + erabiltzaile + " !", "LOGIN ZUZENA",
+						JOptionPane.INFORMATION_MESSAGE);
 				frame.dispose();
 				mbg = new MenuBezeroGUI(erabiltzaile);
+			} else {
+				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA",
+						JOptionPane.WARNING_MESSAGE);
 			}
-			else {
-				JOptionPane.showMessageDialog(null, "Pasahitza ez da egokia.", "LOGIN OKERRA", JOptionPane.WARNING_MESSAGE);
-			}
-		}else {
-			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA", JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "Erabiltzaile hori ez da existitzen.", "ERABILTZAILE OKERRA",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
+	/**
+	 * Sakatzen duen botoiaren arabera erregistroko GUI-a zabaltzen du edo saltzaileen logina.
+	 * @param botoi Sakatzen duen botoia
+	 */
 	public void zabaldu(JButton botoi) {
-		if(botoi == erregistratuButton) {
+		if (botoi == erregistratuButton) {
 			beGUI = new BezeroarenErregistroaGUI();
 			frame.dispose();
 		}
-		if(botoi == saltzaileButton) {
+		if (botoi == saltzaileButton) {
 			slg = new LoginSaltzaileGUI();
 			frame.dispose();
 		}
-	}
-
-	public static void main(String[]args) {
-		new LoginBezeroGUI();
 	}
 }

@@ -1,10 +1,8 @@
 
 /**
- * @clase Eskariaren egoera aldatzen duen pantailaren GUI
+ * Eskariaren egoera aldatzen duen pantailaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 05/05/2023
  */
 import java.awt.Color;
 import java.awt.Font;
@@ -40,7 +38,7 @@ public class EskariAldatuGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzaile Saltzailearen emaila mantentzeko
 	 */
 	public EskariAldatuGUI(String erabiltzaile) {
 		// Datu-baserako konexioa
@@ -126,7 +124,10 @@ public class EskariAldatuGUI extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
+	
+	/**
+	 * Idatzitako eskari baten informazioa textarean kargatzen du.
+	 */
 	public void bilatu() {
 		try {
 			es = db.getEskari(Integer.parseInt(eskariIdTF.getText()));
@@ -164,7 +165,11 @@ public class EskariAldatuGUI extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	
+	/**
+	 * Saltzailearen erabiltzailea eta aukeratutako egoera kontuan hartuta eskari bat aldatzen du.
+	 * @param erabiltzaile Saltzailearen erabiltzailea
+	 */
 	private void eguneratu(String erabiltzaile) {
 		String testu = eskariJTA.getText();
 		if (JOptionPane.showConfirmDialog(null, "Ziur zaude?", "KONTUZ!",
@@ -177,22 +182,29 @@ public class EskariAldatuGUI extends JFrame {
 			}
 		}
 	}
-
+	
+	/**
+	 * Manuaren funtzio bat da. Loginera bueltatzen du.
+	 */
 	private void loginBueltatu() {
 		lsg = new LoginSaltzaileGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Programa ixten du.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 			this.dispose();
 		}
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Aukera-menura bueltatzen du saltzailearen erabiltzailea mantenduz.
+	 * @param erabiltzaile
+	 */
 	private void menuraBueltatu(String erabiltzaile) {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
 	}
-
 }

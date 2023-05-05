@@ -1,10 +1,8 @@
 
 /**
- * @clase Saltzailearen menuaren GUI
+ * Saltzailearen menuaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 2023/05/05
  */
 
 import java.awt.Font;
@@ -34,7 +32,7 @@ public class MenuSaltzaileGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
 	 */
 	public MenuSaltzaileGUI(String erabiltzaile) {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -96,27 +94,41 @@ public class MenuSaltzaileGUI extends JFrame {
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-
+	/**
+	 * Eskaria aldatzeko GUI-a irekitzen du
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
+	 */
 	public void sortuEskariAldatu(String erabiltzaile) {
 		this.eag = new EskariAldatuGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	/**
+	 * Bezeroak kudatzeko GUI-a irekitzen du
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
+	 */
 	public void sortuBezeroakKudeatu(String erabiltzaile) {
 		this.bkg = new BezeroakKudeatuGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	/**
+	 * Prezioa aldatzeko GUI-a irekitzen du
+	 * @param erabiltzaile saltzailearen erabiltzailea mantentzeko
+	 */
 	public void sortuPrezioAldaketa(String erabiltzaile) {
 		this.pag = new PrezioAldaketaGUI(erabiltzaile);
 		this.dispose();
 	}
-
+	
+	/**
+	 * Menuaren funtzio bat da. Loginera bueltatzen du.
+	 */
 	private void loginBueltatu() {
 		lsg = new LoginSaltzaileGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Programa ixten du.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

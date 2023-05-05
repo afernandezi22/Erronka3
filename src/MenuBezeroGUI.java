@@ -1,10 +1,8 @@
 
 /**
- * @clase Bezeroaren menuaren GUI
+ * Bezeroaren menuaren GUI
  * @author Talde3
- * @param
- * @return
- * @version 02/05/2023
+ * @version 2023/05/05
  */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -39,7 +37,7 @@ public class MenuBezeroGUI extends JFrame {
 	/**
 	 * Sortzailea
 	 *
-	 * @param ez
+	 * @param erabiltzaile Bezeroaren emaila mantentzeko
 	 */
 	public MenuBezeroGUI(String erabiltzaile) {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -106,7 +104,7 @@ public class MenuBezeroGUI extends JFrame {
 	/**
 	 * Beste pantaila batera mugitzeko
 	 *
-	 * @param JButton botoi --> botoiak sakatzean bere pantailara mugitzeko
+	 * @param JButton botoi botoiak sakatzean bere pantailara mugitzeko
 	 */
 	public void zabaldu(JButton botoi, String erabiltzaile) {
 		if (botoi == erosiButton) {
@@ -117,12 +115,17 @@ public class MenuBezeroGUI extends JFrame {
 			this.dispose();
 		}
 	}
-
+	
+	/**
+	 * Menuaren funtzio bat da. Loginera bueltatzen du.
+	 */
 	private void loginBueltatu() {
 		lbg = new LoginBezeroGUI();
 		this.dispose();
 	}
-
+	/**
+	 * Menuaren funtzio bat da. Programa ixten du.
+	 */
 	private void itxi() {
 		if (JOptionPane.showConfirmDialog(null, "Programa itxi nahi duzu?", "KONTUZ!",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
