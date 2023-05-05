@@ -158,13 +158,13 @@ public class EskariakBilatuGUI extends JFrame {
 			info.append("Egoera: egiteke \n");
 			break;
 		case 2:
-			info.append("Egoera: ezeztatuta \\n");
+			info.append("Egoera: ezeztatuta \n");
 			break;
 		case 3:
-			info.append("Egoera: bidalita \\n");
+			info.append("Egoera: bidalita \n");
 			break;
 		default:
-			info.append("Egoera: ezezaguna \\n");
+			info.append("Egoera: ezezaguna \n");
 			break;
 		}
 		info.append("Saltzailearen ID: " + es[x].getID_saltzaile() + "\n");
