@@ -30,10 +30,17 @@ public class DB {
 	 *
 	 * @param ez
 	 */
+	/*
 	public DB() {
 		this.url = "jdbc:oracle:thin:@localhost:1521/xepdb1";
 		this.user = "ERRONKA_HIRU";
 		this.pass = "ERRONKA_HIRU";
+	}*/
+	
+	public DB() {
+		this.url = "jdbc:oracle:thin:@192.168.106.11:1521/xepdb1";
+		this.user = "GAMESTOP";
+		this.pass = "GAMESTOP";
 	}
 
 	/**
