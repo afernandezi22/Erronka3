@@ -49,7 +49,7 @@ public class PrezioAldaketaGUI extends JFrame {
 	public PrezioAldaketaGUI(String erabiltzaile) {
 		//Datubaserako konexioa
 		db = new DB();
-		
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 471, 326);
 
@@ -167,7 +167,7 @@ public class PrezioAldaketaGUI extends JFrame {
 		lblNewLabel_6.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblNewLabel_6.setBounds(300, 17, 19, 20);
 		contentPane.add(lblNewLabel_6);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
 		erabilTF.setEditable(false);
@@ -180,7 +180,7 @@ public class PrezioAldaketaGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-		
+
 		//Action listenerrak
 		igoButton.addActionListener(e -> prezioakAldatu());
 
@@ -209,7 +209,7 @@ public class PrezioAldaketaGUI extends JFrame {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
 	}
-	
+
 	public void prezioakAldatu() {
 		String cpu = cpuTF.getText(), cpuP = cpuPortzTF.getText(), vc = vcTF.getText(), vcP = vcPortzTF.getText(), ram = ramTF.getText(), ramP = ramPortzTF.getText(), mb = mbTF.getText(), mbP = mbPortzTF.getText(), sto = stoTF.getText(), stoP = dtoPortzTF.getText();
 		if(cpu.isEmpty()||cpuP.isEmpty()||vc.isEmpty()||vcP.isEmpty()||ram.isEmpty()||ramP.isEmpty()||mb.isEmpty()||mbP.isEmpty()||sto.isEmpty()||stoP.isEmpty()) {

@@ -6,11 +6,6 @@
  * @return
  * @version 02/05/2023
  */
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,9 +18,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 
 public class MenuBezeroGUI extends JFrame {
 
@@ -86,7 +81,7 @@ public class MenuBezeroGUI extends JFrame {
 		bilatuButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		bilatuButton.setBounds(90, 223, 144, 47);
 		contentPane.add(bilatuButton);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setEditable(false);
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));

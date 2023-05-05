@@ -59,7 +59,7 @@ public class Produktu {
 	}
 
 	public int getID_kategoria() {
-		return ID_kategoria;
+		return ID_kategoria; 
 	}
 
 	public void setID_kategoria(int iD_kategoria) {

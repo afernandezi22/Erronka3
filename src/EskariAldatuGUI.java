@@ -22,9 +22,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
-import java.awt.Color;
-import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -42,13 +39,13 @@ public class EskariAldatuGUI extends JFrame {
 
 	/**
 	 * Sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public EskariAldatuGUI(String erabiltzaile) {
 		// Datu-baserako konexioa
 		db = new DB();
-		
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 
@@ -107,7 +104,7 @@ public class EskariAldatuGUI extends JFrame {
 		eskariJTA.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		eskariJTA.setBounds(86, 67, 263, 106);
 		contentPane.add(eskariJTA);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
 		erabilTF.setEditable(false);

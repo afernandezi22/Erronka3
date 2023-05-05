@@ -27,7 +27,7 @@ public class DB {
 
 	/**
 	 * defektuzko sortzailea
-	 * 
+	 *
 	 * @param ez
 	 */
 	public DB() {
@@ -38,7 +38,7 @@ public class DB {
 
 	/**
 	 * sortzailea parametroekin
-	 * 
+	 *
 	 * @param url  --> esteka
 	 * @param user --> erabiltzailea
 	 * @param pass --> pasahitza
@@ -51,7 +51,7 @@ public class DB {
 
 	/**
 	 * konexioa egin, bat generikoa balio izango duena konexio guztietarako
-	 * 
+	 *
 	 * @param ez
 	 */
 	public Connection konexioa() {
@@ -68,7 +68,7 @@ public class DB {
 
 	/**
 	 * konexioa produktuekin
-	 * 
+	 *
 	 * @param ez
 	 */
 	public void erakutsiProd() {
@@ -91,7 +91,7 @@ public class DB {
 
 	/**
 	 * Bezeroa datu-basean dagoen edo ez konprobatzeko
-	 * 
+	 *
 	 * @param String erabiltzailea --> erabiltzailea+
 	 */
 	public boolean bezeroDago(String erabiltzailea) {
@@ -124,7 +124,7 @@ public class DB {
 
 	/**
 	 * LOGIN BERRIA. DATU-BASEAN DAGOEN FUNTZIOA ERABILTZEN DU
-	 * 
+	 *
 	 * @param String erabiltzailea --> erabiltzailea
 	 * @param String pasahitza --> pasahitza
 	 */
@@ -153,7 +153,7 @@ public class DB {
 
 	/**
 	 * Datu-basean dagoen preziorik handiena lortzeko
-	 * 
+	 *
 	 * @param ez
 	 */
 
@@ -236,7 +236,7 @@ public class DB {
 
 	/**
 	 * Datu-basean dauden produktu guztiak lortzeko. Filtro barik
-	 * 
+	 *
 	 * @param ez
 	 */
 	public Produktuak getProduktuak() {
@@ -265,7 +265,7 @@ public class DB {
 
 	/**
 	 * Datu-basean dauden produktuak, kategoria kontuan hartuta
-	 * 
+	 *
 	 * @param int kategoria --> kategoria
 	 */
 	public Produktuak getKategoriarekin(int kategoria) {
@@ -295,7 +295,7 @@ public class DB {
 
 	/**
 	 * Datu-basean dauden produktuak, filtro guztiekin
-	 * 
+	 *
 	 * @param double  gehienezkoPrezioa --> prezio maximoaren filtroa
 	 * @param double  gutxienezkoPrezioa --> prezio minimoaren filtroa
 	 * @param boolean maxMin --> handienetik txikiraren filtroa
@@ -360,7 +360,7 @@ public class DB {
 
 	/**
 	 * Bezeroak erregistratzeko
-	 * 
+	 *
 	 * @param JTextField izenaTF -->
 	 * @param JTextField abizenaTF -->
 	 * @param JTextField helbideaTF -->
@@ -380,7 +380,7 @@ public class DB {
 			cstmt.setString(3, helbideaTF.getText());
 			cstmt.setString(4, emailaTF.getText());
 			cstmt.setString(5, tFPasahitza.getText());
-			;
+
 			cstmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Erregistro zuzena!", "ONDO", JOptionPane.INFORMATION_MESSAGE);
 		} catch (SQLException e) {
@@ -583,7 +583,7 @@ public class DB {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	public String zeinVIP(String erabiltzaile) {
 		String sql = "SELECT VIP FROM BEZERO WHERE EMAILA = ?";
 		String VIP = null;

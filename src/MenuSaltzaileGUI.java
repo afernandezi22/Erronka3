@@ -16,10 +16,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
 
 public class MenuSaltzaileGUI extends JFrame {
 
@@ -74,7 +74,7 @@ public class MenuSaltzaileGUI extends JFrame {
 		JButton produktuPrezioButton = new JButton("PRODUKTU PREZIOA");
 		produktuPrezioButton.setBounds(10, 77, 155, 31);
 		contentPane.add(produktuPrezioButton);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
 		erabilTF.setEditable(false);

@@ -50,7 +50,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 	public BezeroakKudeatuGUI(String erabiltzaile) {
 		//Datubaserako konexioa
 		db = new DB();
-		
+
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 551, 400);
 
@@ -162,17 +162,17 @@ public class BezeroakKudeatuGUI extends JFrame {
 		JButton ezabatuButton = new JButton("EZABATU");
 		ezabatuButton.setBounds(345, 181, 115, 29);
 		contentPane.add(ezabatuButton);
-		
+
 		JLabel lblPasahitza_1_1 = new JLabel("VIP:");
 		lblPasahitza_1_1.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblPasahitza_1_1.setBounds(20, 308, 61, 19);
 		contentPane.add(lblPasahitza_1_1);
-		
+
 		VIPTF = new JTextField();
 		VIPTF.setColumns(10);
 		VIPTF.setBounds(109, 301, 73, 29);
 		contentPane.add(VIPTF);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
 		erabilTF.setEditable(false);
@@ -185,7 +185,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-		
+
 		//Action listenerrak
 		bilatuButton.addActionListener(e -> bilatu());
 		garbituButton.addActionListener(e -> garbitu());
@@ -214,7 +214,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 		this.msg = new MenuSaltzaileGUI(erabiltzaile);
 		this.dispose();
 	}
-	
+
 	private void bilatu() {
 		try{
 			b = db.getBezero(Integer.parseInt(idbilatuTF.getText()));
@@ -228,7 +228,7 @@ public class BezeroakKudeatuGUI extends JFrame {
      		JOptionPane.showMessageDialog(null, "Errore bat egon da. Idatzi duzun ID-a ez da zuzena", "ERROREA", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	private void garbitu() {
 		bezeroIdTF.setText("");
 		izenaTF.setText("");
@@ -237,7 +237,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 		emailTF.setText("");
 		VIPTF.setText("");
 	}
-	
+
 	private void ezabatu() {
 		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -248,7 +248,7 @@ public class BezeroakKudeatuGUI extends JFrame {
 			}
 		}
 	}
-	
+
 	private void eguneratu() {
 		if  (JOptionPane.showConfirmDialog(null, "Ziur zaude??", "KONTUZ!",
 		        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {

@@ -206,7 +206,7 @@ public class ErosketaGUI extends JFrame {
 		gehienezkoPSli.setValue((int) db.prezioHandiena() / 2);
 		gutxinezkoPSli.setMaximum((int) db.prezioHandiena());
 		gutxinezkoPSli.setValue((int) db.prezioHandiena() / 2);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setEnabled(true);
 		erabilTF.setEditable(false);
@@ -215,12 +215,12 @@ public class ErosketaGUI extends JFrame {
 		contentPane.add(erabilTF);
 		erabilTF.setColumns(10);
 		erabilTF.setText(erabiltzaile);
-		
+
 		JLabel lblVip = new JLabel("VIP:");
 		lblVip.setFont(new Font("Calibri", Font.PLAIN, 15));
 		lblVip.setBounds(20, 246, 41, 26);
 		contentPane.add(lblVip);
-		
+
 		VIPTF = new JTextField();
 		VIPTF.setEditable(false);
 		VIPTF.setColumns(10);
@@ -243,7 +243,7 @@ public class ErosketaGUI extends JFrame {
 		itxisaioaMI.addActionListener(e -> itxi());
 		aldatuerabiltzaileMI.addActionListener(e -> loginBueltatu());
 		mnMenu.addActionListener(e -> menuraBueltatu(erabiltzaile));
-				
+
 
 		setTitle("Produktuak erosi");
 		setLocationRelativeTo(null);

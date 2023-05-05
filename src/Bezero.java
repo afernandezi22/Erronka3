@@ -60,6 +60,6 @@ public class Bezero {
 		public void setVIP(int vIP) {
 			VIP = vIP;
 		}
-		
-		
+
+
 }

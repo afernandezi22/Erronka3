@@ -18,12 +18,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class EskariakBilatuGUI extends JFrame {
 
@@ -100,7 +99,7 @@ public class EskariakBilatuGUI extends JFrame {
 		info.setEditable(false);
 		info.setBounds(92, 87, 242, 128);
 		contentPane.add(info);
-		
+
 		erabilTF = new JTextField();
 		erabilTF.setEditable(false);
 		erabilTF.setFont(new Font("Tahoma", Font.BOLD, 10));
@@ -108,7 +107,7 @@ public class EskariakBilatuGUI extends JFrame {
 		contentPane.add(erabilTF);
 		erabilTF.setColumns(10);
 		erabilTF.setText(erabiltzaile);
-		
+
 		kargatuEskariak(erabiltzaile);
 
 		// Menua
@@ -142,15 +141,15 @@ public class EskariakBilatuGUI extends JFrame {
 	private void kargatuEskariak(String erabiltzaile) {
 		ee = db.bezeroEskariak(erabiltzaile);
 		es = ee.getEskari();
-		for (int i = 0; i < es.length; i++) {
-			comboBox.addItem(es[i].getID());
+		for (Eskari element : es) {
+			comboBox.addItem(element.getID());
 		}
 	}
 
 	private void kargatuInfo(String erabiltzaile, int x) {
 		ee = db.bezeroEskariak(erabiltzaile);
 		es = ee.getEskari();
-		
+
 		info.setText("");
 
 		info.append("Eskari ID: " + es[x].getID() + "\n");

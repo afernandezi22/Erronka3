@@ -14,11 +14,11 @@ public class Produktuak {
 	public Produktu[] getP() {
 		return p;
 	}
-	
+
 	public int length() {
 		return this.p.length;
 	}
-	
+
 	public Produktu lortuProduktu(int i) {
 		return this.p[i];
 	}
