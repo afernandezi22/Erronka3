@@ -1,12 +1,5 @@
-
-/**
- * Eskariaren egoera aldatzen duen pantailaren GUI
- * @author Talde3
- * @version 05/05/2023
- */
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,7 +15,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Eskariaren egoera aldatzen duen pantailaren GUI
+ * @author Talde3
+ * @version 05/05/2023
+ */
 public class EskariAldatuGUI extends JFrame {
 
 	private JPanel contentPane;

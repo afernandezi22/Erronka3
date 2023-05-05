@@ -1,13 +1,6 @@
-
-/**
- * Bezeroaren menuaren GUI
- * @author Talde3
- * @version 2023/05/05
- */
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +12,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Bezeroaren menuaren GUI
+ * @author Talde3
+ * @version 2023/05/05
+ */
 public class MenuBezeroGUI extends JFrame {
 
 	private JPanel contentPane;

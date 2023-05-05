@@ -1,12 +1,4 @@
-
-/**
- * Bezeroak kudeazteko pantailaren GUI
- * @author Talde3
- * @version 02/05/2023
- */
-
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +12,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Bezeroak kudeazteko pantailaren GUI
+ * @author Talde3
+ * @version 02/05/2023
+ */
 public class BezeroakKudeatuGUI extends JFrame {
 
 	private JPanel contentPane;

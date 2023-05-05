@@ -1,12 +1,4 @@
-
-/**
- * Prezio aldaketen pantailaren GUI
- * @author Talde3
- * @version 2023/05/05
- */
-
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Prezio aldaketen pantailaren GUI
+ * @author Talde3
+ * @version 2023/05/05
+ */
 public class PrezioAldaketaGUI extends JFrame {
 
 	private JPanel contentPane;

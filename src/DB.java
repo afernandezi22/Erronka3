@@ -1,10 +1,3 @@
-
-/**
- * Datu Basearen konexioa
- * @author Talde3
- * @version 05/05/2023
- */
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,10 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-
+/**
+ * Datu Basearen konexioa
+ * @author Talde3
+ * @version 05/05/2023
+ */
 public class DB {
 
 	private String url;

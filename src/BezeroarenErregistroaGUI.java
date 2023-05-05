@@ -1,12 +1,4 @@
-
-/**
- * Bezeroak erregistroaren pantailaren GUI
- * @author Talde3
- * @version 05/05/2023
- */
-
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +10,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * Bezeroak erregistroaren pantailaren GUI
+ * @author Talde3
+ * @version 05/05/2023
+ */
 public class BezeroarenErregistroaGUI extends JFrame {
 
 	private JPanel contentPane;
