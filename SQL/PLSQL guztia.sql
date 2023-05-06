@@ -161,15 +161,15 @@ WHERE ID_BEZERO = (SELECT ID FROM BEZERO WHERE EMAILA = ?);
 CREATE OR REPLACE PROCEDURE BEZEROERREGISTRO(IZEN BEZERO.IZENA%TYPE, ABIZEN BEZERO.ABIZENA%TYPE, HELBIDE BEZERO.HELBIDEA%TYPE, EMAIL BEZERO.EMAILA%TYPE, PASS BEZERO.PASAHITZA%TYPE) AS
     KODE BEZERO.ID%TYPE;
 BEGIN
-    SELECT ID INTO KODE FROM BEZERO WHERE EMAILA = EMAIL;
+    SELECT ID INTO KODE FROM BEZERO WHERE EMAILA = EMAIL; --Hau egiterakoan emaila ez badu topatzen "NO_DATA_FOUND" salbuespenera sartuko da, bestela errore bat erakutsiko du.
 
     RAISE_APPLICATION_ERROR(-20002, 'Email hori dagoeneko datu-basean dago');
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        IF EMAIL NOT LIKE('%@%') THEN
+        IF EMAIL NOT LIKE('%@%') THEN --Idatzitakoa @ ikurra ez badauka errore bat botako du.
             RAISE_APPLICATION_ERROR(-20003, 'Ez duzu email bat idatzi');
         ELSE
-            SELECT (MAX(ID)+1) INTO KODE FROM BEZERO;
+            SELECT (MAX(ID)+1) INTO KODE FROM BEZERO; --Azkeneko IDa gordeko du eta bat gehituko dio bezero berriari ezartzeko
             INSERT INTO BEZERO(ID, IZENA, ABIZENA, HELBIDEA, EMAILA, PASAHITZA) VALUES(KODE, IZEN, ABIZEN, HELBIDE, EMAIL, PASS);
         END IF;
 END;
